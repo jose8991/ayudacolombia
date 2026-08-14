@@ -12,7 +12,7 @@ import {
   TriangleAlert,
   X,
 } from 'lucide-react';
-import { DEMO_REGIONS, type HumanitarianMapPoint, type MapCategory } from '../../entities/incident';
+import { DEMO_REGIONS, type MapCategory } from '../../entities/incident';
 import { MapFilters } from '../../features/map-filter';
 import { matchesQuery } from '../../features/map-filter/search';
 import { MapLegend } from '../../features/map-legend';
