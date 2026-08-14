@@ -139,7 +139,7 @@ it('muestra acciones con una explicación clara', () => {
   renderHome();
   expect(screen.getByText(/Agua, comida, salud o dónde dormir/i)).toBeVisible();
   expect(screen.getByRole('button', { name: /^Reportar/ })).toBeVisible();
-  expect(screen.getByText(/Un daño, una vía cerrada o un albergue/i)).toBeVisible();
+  expect(screen.getByText(/Un daño, un albergue o dónde necesitan ayuda/i)).toBeVisible();
 });
 
 it('permite consultar las ayudas ofrecidas desde Quiero ayudar', () => {
@@ -292,7 +292,7 @@ it('ofrecer ayuda es tocar lo que se puede dar, no escribir un resumen', () => {
   expect(screen.queryByLabelText('Resumen')).not.toBeInTheDocument();
 });
 
-it('lleva una oferta hasta la revisión con dos toques y una frase', () => {
+it('publica una oferta sin pasar por una pantalla de revisión', () => {
   renderHome();
   fireEvent.click(screen.getByRole('button', { name: /^Quiero ayudar/ }));
   fireEvent.click(screen.getByRole('button', { name: /^Ofrecer ayuda/ }));
@@ -302,13 +302,16 @@ it('lleva una oferta hasta la revisión con dos toques y una frase', () => {
   });
   fireEvent.click(screen.getByRole('checkbox', { name: /Acepto que TIMELIBER S\.A\.S\./i }));
   fireEvent.click(screen.getByRole('button', { name: 'Ver y enviar' }));
-  expect(screen.getByRole('heading', { name: 'Revisa y envía' })).toBeVisible();
-  expect(screen.getByText('Ofrezco transporte')).toBeVisible();
+  expect(screen.queryByRole('heading', { name: 'Revisa y envía' })).not.toBeInTheDocument();
 });
 
-it('los atajos de Necesito ayuda buscan por tema, no por una palabra exacta', () => {
+it('permite avisar que en un lugar necesitan ayuda, sin que sea una solicitud propia', () => {
   renderHome();
-  fireEvent.click(screen.getByRole('button', { name: /^Necesito ayuda/ }));
-  fireEvent.click(screen.getByRole('button', { name: 'Dónde dormir' }));
-  expect(screen.getByRole('searchbox')).toHaveValue('dormir');
+  fireEvent.click(screen.getByRole('button', { name: /^Reportar/ }));
+  fireEvent.click(screen.getByRole('button', { name: /^Aquí necesitan ayuda/ }));
+  expect(screen.getByRole('group', { name: '¿Qué hace falta?' })).toBeVisible();
+  expect(screen.getByRole('radio', { name: 'Agua' })).toBeVisible();
+  expect(screen.getByLabelText(/¿En qué barrio o vereda?/i)).toBeRequired();
+  expect(screen.getByLabelText(/Tu teléfono/i)).not.toBeRequired();
+  expect(screen.getByText(/solo para coordinar esta ayuda/i)).toBeVisible();
 });

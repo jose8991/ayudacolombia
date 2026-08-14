@@ -79,14 +79,14 @@ export function HomePrimaryActions({
         <ActionButton
           icon={<HandHeart size={20} />}
           label="Quiero ayudar"
-          description="Ver qué falta y dónde llevarlo"
+          description="Ofrece lo que puedes dar o mira dónde llevarlo"
           onClick={() => onOpenJourney('donate')}
           tone="support"
         />
         <ActionButton
           icon={<MapPin size={20} />}
           label="Reportar"
-          description="Un daño, una vía cerrada o un albergue"
+          description="Un daño, un albergue o dónde necesitan ayuda"
           onClick={() => onOpenJourney('report')}
           tone="neutral"
         />

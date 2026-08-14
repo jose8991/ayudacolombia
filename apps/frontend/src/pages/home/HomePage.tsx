@@ -38,6 +38,7 @@ import { formatFreshness } from '../../shared/format/freshness';
 import { useBodyScrollLock } from '../../shared/hooks/use-body-scroll-lock';
 import { distanceInMeters, formatDistance } from '../../shared/format/distance';
 import { linesForTerritory } from '../../shared/data/emergency-lines';
+import { RELIEF_ITEMS } from '../../shared/data/relief-items';
 const EmergencyMap = lazy(() =>
   import('../../widgets/emergency-map').then((module) => ({ default: module.EmergencyMap })),
 );
@@ -89,7 +90,9 @@ export function HomePage() {
   const [nearbyNotice, setNearbyNotice] = useState<string | null>(null);
   const [onlyConfirmed, setOnlyConfirmed] = useState(false);
   const [activeJourney, setActiveJourney] = useState<HelpJourney | null>(null);
-  const [reportKind, setReportKind] = useState<'need' | 'offer' | 'place' | 'damage' | null>(null);
+  const [reportKind, setReportKind] = useState<
+    'need' | 'community-need' | 'offer' | 'place' | 'damage' | null
+  >(null);
   const [reportDraft, setReportDraft] = useState<Record<string, string> | null>(null);
   const [reviewingReport, setReviewingReport] = useState(false);
   const [reportStatus, setReportStatus] = useState<
@@ -389,10 +392,17 @@ export function HomePage() {
       values[key] = String(value);
     });
     setReportDraft(values);
+    // Ofrecer ayuda no pasa por revisión: no lleva datos de terceros y lo que se publica
+    // es exactamente lo que la persona acaba de ver en pantalla. Un paso menos en el
+    // recorrido que más queremos que la gente complete.
+    if (reportKind === 'offer') {
+      void submitPublicReport(values);
+      return;
+    }
     setReviewingReport(true);
   };
-  const submitPublicReport = async () => {
-    if (!reportDraft) return;
+  const submitPublicReport = async (draft: Record<string, string> | null = reportDraft) => {
+    if (!draft) return;
     setReportStatus('sending');
     setLocationNotice(null);
     try {
@@ -408,30 +418,30 @@ export function HomePage() {
       if (useLocation && !position)
         setLocationNotice('No pudimos obtener tu ubicación. Guardaremos el lugar que escribiste.');
       const isPrivateNeed = reportKind === 'need';
-      const urgency = reportDraft.severity;
+      const urgency = draft.severity;
       const privacy = { privacy_authorized: true, privacy_policy_version: PRIVACY_POLICY_VERSION };
       const payload = isPrivateNeed
         ? {
             territory_id: region.id,
-            category: reportDraft.needCategory,
-            people_count: Number(reportDraft.peopleCount),
-            neighborhood: reportDraft.neighborhood,
+            category: draft.needCategory,
+            people_count: Number(draft.peopleCount),
+            neighborhood: draft.neighborhood,
             latitude: position?.coords.latitude ?? null,
             longitude: position?.coords.longitude ?? null,
             urgency:
               urgency === 'critical' ? 'immediate_danger' : urgency === 'low' ? 'soon' : 'today',
-            contact: reportDraft.contact,
-            description: reportDraft.description,
+            contact: draft.contact,
+            description: draft.description,
             ...privacy,
           }
         : {
             territory_id: region.id,
-            category: reportDraft.category,
-            title: reportDraft.title,
-            description: reportDraft.description,
-            neighborhood_code: reportDraft.neighborhood || null,
-            severity: reportDraft.severity,
-            contact: reportDraft.contact || null,
+            category: draft.category,
+            title: draft.title,
+            description: draft.description,
+            neighborhood_code: draft.neighborhood || null,
+            severity: draft.severity,
+            contact: draft.contact || null,
             coordinates: position
               ? { longitude: position.coords.longitude, latitude: position.coords.latitude }
               : null,
@@ -672,6 +682,10 @@ export function HomePage() {
                     <strong>Un lugar de ayuda</strong>
                     <small>Albergue, centro de acopio o punto de atención</small>
                   </button>
+                  <button onClick={() => setReportKind('community-need')} type="button">
+                    <strong>Aquí necesitan ayuda</strong>
+                    <small>Un barrio, una vereda o una familia que necesita algo</small>
+                  </button>
                   <button onClick={() => setReportKind('damage')} type="button">
                     <strong>Un daño o una vía cerrada</strong>
                     <small>Casa en riesgo, derrumbe o paso bloqueado</small>
@@ -690,11 +704,13 @@ export function HomePage() {
                   <p className="eyebrow">
                     {reportKind === 'need'
                       ? 'Solicitud privada'
-                      : reportKind === 'offer'
-                        ? 'Ofrezco ayuda'
-                        : reportKind === 'place'
-                          ? 'Informar un lugar'
-                          : 'Reportar una situación'}
+                      : reportKind === 'community-need'
+                        ? 'Aquí necesitan ayuda'
+                        : reportKind === 'offer'
+                          ? 'Ofrezco ayuda'
+                          : reportKind === 'place'
+                            ? 'Informar un lugar'
+                            : 'Reportar una situación'}
                   </p>
                   <h2 id="journey-title">
                     {reportKind === 'need' ? 'Dinos 3 cosas' : 'Dinos lo necesario'}
@@ -745,8 +761,31 @@ export function HomePage() {
                     </label>
                   ) : (
                     reportKind !== 'need' && (
-                      <input name="category" type="hidden" value={reportKind} />
+                      <input
+                        name="category"
+                        type="hidden"
+                        value={reportKind === 'community-need' ? 'need' : reportKind}
+                      />
                     )
+                  )}
+                  {reportKind === 'community-need' && (
+                    <fieldset className="offer-kinds">
+                      <legend>¿Qué hace falta?</legend>
+                      {RELIEF_ITEMS.map((item) => (
+                        <label key={item}>
+                          <input
+                            defaultChecked={
+                              reportDraft?.title === 'Necesitan ' + item.toLocaleLowerCase('es')
+                            }
+                            name="title"
+                            required
+                            type="radio"
+                            value={'Necesitan ' + item.toLocaleLowerCase('es')}
+                          />
+                          <span>{item}</span>
+                        </label>
+                      ))}
+                    </fieldset>
                   )}
                   {reportKind === 'offer' && (
                     <fieldset className="offer-kinds">
@@ -786,14 +825,18 @@ export function HomePage() {
                   )}
                   <label>
                     ¿En qué barrio o vereda?{' '}
-                    <span>{reportKind === 'need' ? 'Barrio, vereda o sector' : 'Opcional'}</span>
+                    <span>
+                      {reportKind === 'need' || reportKind === 'community-need'
+                        ? 'Barrio, vereda o sector'
+                        : 'Opcional'}
+                    </span>
                     <input
                       defaultValue={reportDraft?.neighborhood}
                       maxLength={reportKind === 'need' ? 120 : 80}
                       minLength={reportKind === 'need' ? 2 : undefined}
                       name="neighborhood"
                       placeholder="Ej. vereda El Manzano"
-                      required={reportKind === 'need'}
+                      required={reportKind === 'need' || reportKind === 'community-need'}
                     />
                   </label>
                   <label className="location-choice">
@@ -808,7 +851,7 @@ export function HomePage() {
                     </span>
                   </label>
                   <label>
-                    {reportKind === 'need'
+                    {reportKind === 'need' || reportKind === 'community-need'
                       ? '¿Qué está pasando?'
                       : reportKind === 'offer'
                         ? '¿Cuánto y hasta cuándo?'
@@ -834,13 +877,15 @@ export function HomePage() {
                       rows={3}
                     />
                   </label>
-                  {(reportKind === 'need' || reportKind === 'offer') && (
+                  {reportKind !== 'place' && reportKind !== 'damage' && (
                     <label>
                       Tu teléfono{' '}
                       <span>
                         {reportKind === 'need'
                           ? 'Para poder llamarte. No aparece en el mapa.'
-                          : 'Opcional. Para poder llamarte y coordinar. No aparece en el mapa.'}
+                          : reportKind === 'community-need'
+                            ? 'Opcional. Para confirmar el aviso. No aparece en el mapa.'
+                            : 'Opcional. Para poder llamarte y coordinar. No aparece en el mapa.'}
                       </span>
                       <input
                         autoComplete="tel"
@@ -869,7 +914,9 @@ export function HomePage() {
                   <label className="privacy-consent">
                     <input name="privacyConsent" required type="checkbox" />
                     <span>
-                      Acepto que TIMELIBER S.A.S. use estos datos solo para ayudarme.{' '}
+                      {reportKind === 'need'
+                        ? 'Acepto que TIMELIBER S.A.S. use estos datos solo para ayudarme.'
+                        : 'Acepto que TIMELIBER S.A.S. use estos datos solo para coordinar esta ayuda.'}{' '}
                       <a href="/tratamiento-de-datos" rel="noreferrer" target="_blank">
                         Cómo cuidamos tus datos
                       </a>
@@ -958,7 +1005,7 @@ export function HomePage() {
                     <button
                       className="primary-submit"
                       disabled={reportStatus === 'sending'}
-                      onClick={submitPublicReport}
+                      onClick={() => void submitPublicReport()}
                       type="button"
                     >
                       {reportStatus === 'sending' ? 'Enviando…' : 'Enviar'}
