@@ -25,18 +25,18 @@ export async function loadPublicReportPoints(
   const response = await fetch('/api/v1/reports/public?' + params.toString());
   if (!response.ok) throw new Error('No fue posible cargar la información verificada');
   const reports = (await response.json()) as PublicReport[];
-  return reports
-    .filter((report) => report.coordinates !== null)
-    .map((report) => ({
-      id: 'report-' + report.id,
-      regionId: report.territory_id,
-      category: mapCategory(report.category),
-      title: report.title,
-      neighborhood: report.neighborhood || 'Ubicación aproximada',
-      description: report.description,
-      severity: report.severity,
-      verificationStatus: report.verification_status,
-      observedAt: report.observed_at,
-      coordinates: [report.coordinates!.longitude, report.coordinates!.latitude],
-    }));
+  return reports.map((report) => ({
+    id: 'report-' + report.id,
+    regionId: report.territory_id,
+    category: mapCategory(report.category),
+    title: report.title,
+    neighborhood: report.neighborhood || 'Ubicación aproximada',
+    description: report.description,
+    severity: report.severity,
+    verificationStatus: report.verification_status,
+    observedAt: report.observed_at,
+    coordinates: report.coordinates
+      ? ([report.coordinates.longitude, report.coordinates.latitude] as const)
+      : null,
+  }));
 }

@@ -452,7 +452,7 @@ export function HomePage() {
       );
     }
   };
-  const directionsUrl = selectedPoint
+  const directionsUrl = selectedPoint?.coordinates
     ? 'https://www.google.com/maps/dir/?api=1&destination=' +
       selectedPoint.coordinates[1] +
       ',' +
@@ -1193,14 +1193,20 @@ export function HomePage() {
                     </div>
                   )}
                 </dl>
-                <a
-                  className="directions-button"
-                  href={directionsUrl}
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  <Navigation size={18} /> Cómo llegar
-                </a>
+                {directionsUrl ? (
+                  <a
+                    className="directions-button"
+                    href={directionsUrl}
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <Navigation size={18} /> Cómo llegar
+                  </a>
+                ) : (
+                  <p className="no-exact-location">
+                    Quien lo reportó no compartió la ubicación exacta. Guíate por el barrio.
+                  </p>
+                )}
                 <small>
                   {selectedPoint.sourceLabel ?? 'Fuente ciudadana'} · actualizado{' '}
                   {formatObservedAt(selectedPoint.observedAt)}
@@ -1224,6 +1230,9 @@ export function HomePage() {
                   </div>
                   <h3>{point.title}</h3>
                   <p>{point.neighborhood}</p>
+                  {!point.coordinates && (
+                    <small className="no-exact-location">Sin punto exacto en el mapa</small>
+                  )}
                   <small>{point.description}</small>
                   <time dateTime={point.observedAt}>
                     Actualizado {formatObservedAt(point.observedAt)}

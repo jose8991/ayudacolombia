@@ -2526,3 +2526,7 @@ input:focus-visible {
     grid-template-columns: 1fr;
   }
 }
+.no-exact-location {
+  color: var(--color-muted);
+  font-weight: 700;
+}

@@ -23,7 +23,8 @@ export interface HumanitarianMapPoint {
   severity: Severity;
   verificationStatus: VerificationStatus;
   observedAt: string;
-  coordinates: readonly [number, number];
+  /** Nulo cuando quien reportó no compartió GPS: se ubica por barrio y no se dibuja en el mapa. */
+  coordinates: readonly [number, number] | null;
   address?: string;
   schedule?: string;
   acceptedItems?: readonly string[];

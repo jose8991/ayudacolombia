@@ -70,8 +70,8 @@ function enrichBoundaries(
   return {
     ...collection,
     features: collection.features.map((feature) => {
-      const contained = points.filter((point) =>
-        isPointInBoundary(point.coordinates, feature.geometry),
+      const contained = points.filter(
+        (point) => point.coordinates && isPointInBoundary(point.coordinates, feature.geometry),
       );
       const needs = contained.filter((point) => point.category === 'need');
       const damage = contained.filter((point) => point.category === 'damage');
@@ -109,19 +109,21 @@ function createPopupContent(properties: Record<string, string>) {
 function toGeoJSON(points: readonly HumanitarianMapPoint[]): FeatureCollection {
   return {
     type: 'FeatureCollection',
-    features: points.map((point) => ({
-      type: 'Feature',
-      geometry: { type: 'Point', coordinates: [...point.coordinates] },
-      properties: {
-        id: point.id,
-        title: point.title,
-        category: point.category,
-        neighborhood: point.neighborhood,
-        description: point.description,
-        severity: point.severity,
-        verificationStatus: point.verificationStatus,
-      },
-    })),
+    features: points
+      .filter((point) => point.coordinates !== null)
+      .map((point) => ({
+        type: 'Feature',
+        geometry: { type: 'Point', coordinates: [...point.coordinates!] },
+        properties: {
+          id: point.id,
+          title: point.title,
+          category: point.category,
+          neighborhood: point.neighborhood,
+          description: point.description,
+          severity: point.severity,
+          verificationStatus: point.verificationStatus,
+        },
+      })),
   };
 }
 
@@ -551,7 +553,7 @@ export function EmergencyMap({
         4,
         2,
       ]);
-      if (selectedPoint)
+      if (selectedPoint?.coordinates)
         map.easeTo({
           center: [...selectedPoint.coordinates],
           zoom: Math.max(map.getZoom(), 14),
