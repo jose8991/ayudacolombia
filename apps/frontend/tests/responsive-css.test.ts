@@ -66,3 +66,11 @@ it('no calcula el alto del mapa restando una altura fija inventada', () => {
     /@media \(min-width: 901px\)[\s\S]*?#main-content\s*\{[^}]*flex-direction:\s*column/,
   );
 });
+
+it('separa el título de su descripción en todas las opciones de recorrido', () => {
+  // Estuvo limitado a un solo menú y en los demás el texto salía pegado.
+  const rule = css.slice(css.indexOf('.journey-options button {'));
+  expect(css).toMatch(/\.journey-options button \{\s*display: grid/);
+  expect(css).toMatch(/\.journey-options small \{/);
+  expect(rule.length).toBeGreaterThan(0);
+});
