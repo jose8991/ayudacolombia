@@ -942,25 +942,11 @@ input:focus-visible {
   align-items: center;
   gap: 0.3rem;
 }
-.legend-dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-}
 .urgency-scale {
   width: 42px;
   height: 8px;
   border-radius: 999px;
   background: linear-gradient(90deg, #d9e3df, #f2c94c, #e98532, #cf3f36);
-}
-.legend-dot--need {
-  background: #d8483e;
-}
-.legend-dot--aid {
-  background: #168267;
-}
-.legend-dot--damage {
-  background: #e47b28;
 }
 .map-freshness {
   position: absolute;
@@ -2617,4 +2603,134 @@ input:focus-visible {
 }
 .card-distance {
   color: var(--color-brand-dark);
+}
+
+/* Leyenda del mapa: explica forma, borde y avisos sin depender del color. */
+.map-legend-panel {
+  position: absolute;
+  left: 0.6rem;
+  bottom: 0.6rem;
+  right: 0.6rem;
+  max-width: 27rem;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 6px 18px rgba(22, 50, 41, 0.12);
+  font-size: 0.8rem;
+}
+.map-legend-panel > summary {
+  min-height: 44px;
+  padding: 0 0.75rem;
+  display: flex;
+  align-items: center;
+  font-weight: 800;
+  cursor: pointer;
+}
+.legend-groups {
+  max-height: 42vh;
+  overflow-y: auto;
+  padding: 0 0.75rem 0.6rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 0.5rem 0.9rem;
+}
+.legend-groups h4 {
+  margin: 0.2rem 0 0.3rem;
+  color: var(--color-muted);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.legend-groups ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.3rem;
+}
+.legend-groups li {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  line-height: 1.25;
+}
+.legend-mark {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--color-ink);
+  border-radius: 50%;
+  background: #ffffff;
+}
+.legend-mark svg {
+  width: 13px;
+  height: 13px;
+  fill: #ffffff;
+}
+.legend-mark--aid-center {
+  background: #168267;
+}
+.legend-mark--need {
+  background: #d8483e;
+}
+.legend-mark--offer {
+  background: #2767b2;
+}
+.legend-mark--damage {
+  background: #e47b28;
+}
+.legend-mark--official {
+  border-width: 4px;
+  background: #dfe5df;
+}
+.legend-mark--verified {
+  border-width: 2px;
+  background: #dfe5df;
+}
+.legend-mark--reported {
+  border-style: dashed;
+  background: #dfe5df;
+}
+.legend-mark--aged {
+  position: relative;
+  background: #b9c4bf;
+}
+.legend-mark--aged::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: 9px;
+  height: 9px;
+  border: 1.5px solid #ffffff;
+  border-radius: 50%;
+  background: var(--color-warning);
+}
+.legend-mark--blocked {
+  position: relative;
+  overflow: hidden;
+  background: #dfe5df;
+}
+.legend-mark--blocked::after {
+  content: '';
+  position: absolute;
+  width: 26px;
+  height: 4px;
+  background: var(--color-ink);
+  transform: rotate(-45deg);
+}
+@media (max-width: 700px) {
+  .map-legend-panel {
+    left: 0.5rem;
+    right: 0.5rem;
+    bottom: 0.5rem;
+    max-width: none;
+    font-size: 0.78rem;
+  }
+  .legend-groups {
+    max-height: 34vh;
+    grid-template-columns: 1fr;
+  }
 }

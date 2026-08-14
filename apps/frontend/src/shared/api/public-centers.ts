@@ -63,6 +63,7 @@ export async function loadPublicCenterPoints(
               : ('low' as const),
         verificationStatus: center.verification_status,
         isStale: center.is_stale ?? false,
+        status: center.status,
         observedAt: latest?.published_at ?? center.updated_at,
         coordinates: [Number(center.longitude), Number(center.latitude)] as const,
         address: center.address,

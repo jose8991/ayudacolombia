@@ -3,6 +3,13 @@ import maplibregl, { type GeoJSONSource, type Map } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import type { FeatureCollection, MultiPolygon, Polygon } from 'geojson';
 import type { HumanitarianMapPoint, HumanitarianRegion } from '../../entities/incident';
+import {
+  MARKER_PIXEL_RATIO,
+  buildMarkerImages,
+  isAged,
+  isBlocked,
+  markerIconName,
+} from './markers';
 
 const SOURCE_ID = 'humanitarian-points';
 const BOUNDARY_SOURCE_ID = 'territorial-boundaries';
@@ -122,6 +129,9 @@ function toGeoJSON(points: readonly HumanitarianMapPoint[]): FeatureCollection {
           description: point.description,
           severity: point.severity,
           verificationStatus: point.verificationStatus,
+          icon: markerIconName(point),
+          aged: isAged(point),
+          blocked: isBlocked(point),
         },
       })),
   };
@@ -470,33 +480,20 @@ export function EmergencyMap({
         layout: { 'text-field': ['get', 'point_count_abbreviated'], 'text-size': 13 },
         paint: { 'text-color': '#fff' },
       });
-      map.addLayer({
-        id: 'point-halo',
-        type: 'circle',
-        source: SOURCE_ID,
-        filter: ['!', ['has', 'point_count']],
-        paint: { 'circle-radius': 15, 'circle-color': '#ffffff', 'circle-opacity': 0.92 },
-      });
+      for (const image of buildMarkerImages()) {
+        if (!map.hasImage(image.name))
+          map.addImage(image.name, image.data, { pixelRatio: MARKER_PIXEL_RATIO });
+      }
       map.addLayer({
         id: 'points',
-        type: 'circle',
+        type: 'symbol',
         source: SOURCE_ID,
         filter: ['!', ['has', 'point_count']],
-        paint: {
-          'circle-radius': 10,
-          'circle-color': [
-            'match',
-            ['get', 'category'],
-            'need',
-            '#d8483e',
-            'offer',
-            '#2767b2',
-            'aid-center',
-            '#168267',
-            '#e47b28',
-          ],
-          'circle-stroke-width': 2,
-          'circle-stroke-color': '#17332a',
+        layout: {
+          'icon-image': ['get', 'icon'],
+          'icon-size': 1,
+          'icon-allow-overlap': true,
+          'icon-ignore-placement': true,
         },
       });
       map.on('click', 'points', (event) => {
@@ -541,17 +538,11 @@ export function EmergencyMap({
     const map = mapRef.current;
     const selectedPoint = points.find((point) => point.id === selectedPointId);
     if (map?.getLayer('points')) {
-      map.setPaintProperty('points', 'circle-radius', [
+      map.setLayoutProperty('points', 'icon-size', [
         'case',
         ['==', ['get', 'id'], selectedPointId ?? ''],
-        14,
-        10,
-      ]);
-      map.setPaintProperty('points', 'circle-stroke-width', [
-        'case',
-        ['==', ['get', 'id'], selectedPointId ?? ''],
-        4,
-        2,
+        1.3,
+        1,
       ]);
       if (selectedPoint?.coordinates)
         map.easeTo({

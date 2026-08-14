@@ -30,6 +30,8 @@ export interface HumanitarianMapPoint {
   acceptedItems?: readonly string[];
   /** El servidor marca como envejecido lo que lleva más de un día sin reconfirmarse. */
   isStale?: boolean;
+  /** Solo para centros: si ya no reciben gente, el mapa lo marca. */
+  status?: 'open' | 'almost_full' | 'do_not_send' | 'closed';
   sourceLabel?: string;
   sourceUrl?: string;
 }

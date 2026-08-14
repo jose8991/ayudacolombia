@@ -129,8 +129,9 @@ it('explica claramente la diferencia entre información oficial y comunitaria', 
   renderHome();
   openCentersMap();
   fireEvent.click(screen.getByText('De dónde viene la información'));
-  expect(screen.getByText('Sin confirmar')).toBeVisible();
-  expect(screen.getByText(/Mira la hora antes de ir/i)).toBeVisible();
+  const guia = within(screen.getByText('De dónde viene la información').closest('details')!);
+  expect(guia.getByText('Sin confirmar')).toBeVisible();
+  expect(guia.getByText(/Mira la hora antes de ir/i)).toBeVisible();
 });
 
 it('muestra todo con su nivel y permite quedarse solo con lo confirmado', () => {
@@ -270,4 +271,16 @@ it('ofrece ordenar por cercanía y avisa si no puede ubicar a la persona', async
   fireEvent.click(button);
   expect(await screen.findByText(/No pudimos ubicarte/i)).toBeVisible();
   vi.unstubAllGlobals();
+});
+
+it('explica en el mapa qué significa cada símbolo y cada nivel', async () => {
+  renderHome();
+  openCentersMap();
+  fireEvent.click(screen.getByText('Qué significa cada símbolo'));
+  const leyenda = within(screen.getByText('Qué significa cada símbolo').closest('details')!);
+  expect(leyenda.getByText('Albergue o centro')).toBeVisible();
+  expect(leyenda.getByText('Confirmado por una entidad')).toBeVisible();
+  expect(leyenda.getByText('Sin confirmar')).toBeVisible();
+  expect(leyenda.getByText('Ya no recibe gente')).toBeVisible();
+  expect(leyenda.getByText('Puede estar desactualizado')).toBeVisible();
 });

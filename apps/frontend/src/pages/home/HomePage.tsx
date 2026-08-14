@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { DEMO_REGIONS, type MapCategory } from '../../entities/incident';
 import { MapFilters } from '../../features/map-filter';
+import { MapLegend } from '../../features/map-legend';
 import { NationalOverview } from '../../features/national-overview/NationalOverview';
 import { AppHeader } from '../../widgets/app-header';
 import { HomePrimaryActions, type HelpJourney } from '../../widgets/home-primary-actions';
@@ -1406,16 +1407,13 @@ export function HomePage() {
                 Ver el mapa
               </button>
             )}
-            <div className="map-legend" aria-label="Leyenda del mapa">
-              {hasLocalBoundaries && (
-                <span>
-                  <i className="urgency-scale" /> Color del área: urgencia
-                </span>
-              )}
-              <span>
-                <i className="legend-dot legend-dot--need" /> Punto: reporte
-              </span>
-            </div>
+            <MapLegend
+              defaultOpen={
+                typeof window.matchMedia === 'function' &&
+                window.matchMedia('(min-width: 901px)').matches
+              }
+              showAreaScale={hasLocalBoundaries}
+            />
             <p className="map-freshness">
               <ShieldCheck size={15} /> Fuentes y hora visibles en cada ficha
             </p>
