@@ -1094,49 +1094,17 @@ export function HomePage() {
                 value={query}
               />
             </label>
-            <details className="trust-controls">
-              <summary>De dónde viene la información</summary>
-              <div className="trust-guide">
-                <p>
-                  <strong className="trust-badge trust-badge--official">
-                    <ShieldCheck size={14} /> Confirmado
-                  </strong>
-                  <span>Lo publicó una entidad responsable.</span>
-                </p>
-                <p>
-                  <strong className="trust-badge trust-badge--verified">
-                    <ShieldCheck size={14} /> Revisado
-                  </strong>
-                  <span>Alguien del equipo lo comprobó.</span>
-                </p>
-                <p>
-                  <strong className="trust-badge trust-badge--reported">
-                    <TriangleAlert size={14} /> Sin confirmar
-                  </strong>
-                  <span>Lo contó la comunidad. Mira la hora antes de ir.</span>
-                </p>
-              </div>
-              <label className="community-layer-toggle">
-                <input
-                  checked={onlyConfirmed}
-                  onChange={(event) => {
-                    setOnlyConfirmed(event.target.checked);
-                    setSelectedPointId(null);
-                  }}
-                  type="checkbox"
-                />
-                <span>
-                  <strong>Ver solo información confirmada</strong>
-                  <small>Oculta lo que la comunidad reportó y aún no hemos revisado.</small>
-                </span>
-              </label>
-              {!onlyConfirmed && (
-                <p className="community-warning" role="status">
-                  <TriangleAlert size={16} /> Estás viendo todo, incluido lo que aún no está
-                  confirmado. Cada ficha dice su nivel.
-                </p>
-              )}
-            </details>
+            <label className="confirmed-only">
+              <input
+                checked={onlyConfirmed}
+                onChange={(event) => {
+                  setOnlyConfirmed(event.target.checked);
+                  setSelectedPointId(null);
+                }}
+                type="checkbox"
+              />
+              <span>Ver solo información confirmada</span>
+            </label>
             {selectedArea && (
               <section aria-live="polite" className="area-detail">
                 <button

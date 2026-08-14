@@ -7,7 +7,7 @@ interface MapLegendProps {
 // Los dos primeros van en color fuerte; los otros dos, apagados, son contexto.
 const MAIN = [
   { key: 'aid-center', label: 'Aquí hay ayuda', glyph: 'casa' },
-  { key: 'need', label: 'Aquí la necesitan', glyph: 'gota' },
+  { key: 'need', label: 'Aquí la necesitan', glyph: 'persona' },
 ] as const;
 
 const CONTEXT = [
@@ -21,7 +21,9 @@ function Glyph({ glyph }: { glyph: GlyphName }) {
   return (
     <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
       {glyph === 'casa' && <path d="M12 5 22 14h-4v6H6v-6H2z" />}
-      {glyph === 'gota' && <path d="M12 3c5 6 7 8.5 7 11a7 7 0 0 1-14 0c0-2.5 2-5 7-11z" />}
+      {glyph === 'persona' && (
+        <path d="M12 3a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm0 9c4.4 0 8 2.8 8 6.3V21H4v-2.7C4 14.8 7.6 12 12 12z" />
+      )}
       {glyph === 'corazon' && (
         <path d="M12 20S3 14.5 3 9.5A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 9 2.5C21 14.5 12 20 12 20z" />
       )}

@@ -87,25 +87,20 @@ function drawGlyph(context: CanvasRenderingContext2D, category: MapCategory, cen
     return;
   }
   if (category === 'need') {
-    // Gota: necesidad básica.
+    // Persona: aquí hay gente que necesita ayuda.
     context.beginPath();
-    context.moveTo(center, center - scale(22));
-    context.bezierCurveTo(
-      center + scale(20),
-      center - scale(2),
-      center + scale(14),
-      center + scale(20),
-      center,
+    context.arc(center, center - scale(13), scale(8), 0, Math.PI * 2);
+    context.fill();
+    context.beginPath();
+    context.moveTo(center - scale(17), center + scale(20));
+    context.quadraticCurveTo(center - scale(17), center - scale(1), center, center - scale(1));
+    context.quadraticCurveTo(
+      center + scale(17),
+      center - scale(1),
+      center + scale(17),
       center + scale(20),
     );
-    context.bezierCurveTo(
-      center - scale(14),
-      center + scale(20),
-      center - scale(20),
-      center - scale(2),
-      center,
-      center - scale(22),
-    );
+    context.closePath();
     context.fill();
     return;
   }

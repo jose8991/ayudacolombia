@@ -125,22 +125,14 @@ it('cierra el selector territorial con Escape y devuelve el foco', async () => {
   await waitFor(() => expect(trigger).toHaveFocus());
 });
 
-it('explica claramente la diferencia entre información oficial y comunitaria', () => {
+it('permite quedarse solo con lo confirmado sin explicarlo dos veces', () => {
   renderHome();
   openCentersMap();
-  fireEvent.click(screen.getByText('De dónde viene la información'));
-  const guia = within(screen.getByText('De dónde viene la información').closest('details')!);
-  expect(guia.getByText('Sin confirmar')).toBeVisible();
-  expect(guia.getByText(/Mira la hora antes de ir/i)).toBeVisible();
-});
-
-it('muestra todo con su nivel y permite quedarse solo con lo confirmado', () => {
-  renderHome();
-  openCentersMap();
-  fireEvent.click(screen.getByText('De dónde viene la información'));
-  expect(screen.getByText(/incluido lo que aún no está confirmado/i)).toBeVisible();
-  fireEvent.click(screen.getByRole('checkbox', { name: /Ver solo información confirmada/i }));
-  expect(screen.queryByText(/incluido lo que aún no está confirmado/i)).not.toBeInTheDocument();
+  const soloConfirmado = screen.getByRole('checkbox', { name: /Ver solo información confirmada/i });
+  expect(soloConfirmado).not.toBeChecked();
+  fireEvent.click(soloConfirmado);
+  expect(soloConfirmado).toBeChecked();
+  expect(screen.queryByText('De dónde viene la información')).not.toBeInTheDocument();
 });
 
 it('muestra acciones con una explicación clara', () => {
