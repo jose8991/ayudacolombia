@@ -149,7 +149,6 @@ export function ReportForm({
 
   return (
     <>
-      {reportStatus !== 'sent' && <StatusLookup savedCode={savedCode} />}
       {reportStatus !== 'sent' && !reviewingReport && (
         <form className="public-report-form" onSubmit={prepareReport}>
           {kind !== 'need' && kind !== 'offer' && (
@@ -510,6 +509,7 @@ export function ReportForm({
           </button>
         </div>
       )}
+      {reportStatus !== 'sent' && <StatusLookup savedCode={savedCode} />}
     </>
   );
 }
