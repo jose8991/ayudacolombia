@@ -2581,3 +2581,40 @@ input:focus-visible {
   padding: 0.15rem 0.7rem 0;
   color: var(--color-muted);
 }
+.nearby-action {
+  min-height: 48px;
+  margin-top: 0.5rem;
+  padding: 0 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid var(--color-brand);
+  border-radius: 10px;
+  background: white;
+  color: var(--color-brand-dark);
+  font-weight: 800;
+  cursor: pointer;
+}
+.nearby-action:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+.nearby-active {
+  margin: 0.5rem 0 0;
+  font-weight: 700;
+  color: var(--color-brand-dark);
+}
+.nearby-active button {
+  min-height: 44px;
+  padding: 0 0.5rem;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: 800;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.card-distance {
+  color: var(--color-brand-dark);
+}

@@ -33,6 +33,7 @@ import {
 } from '../../shared/offline/secure-submission-outbox';
 import { loadTrackingCode, saveTrackingCode } from '../../shared/offline/last-tracking-code';
 import { formatFreshness } from '../../shared/format/freshness';
+import { distanceInMeters, formatDistance } from '../../shared/format/distance';
 import { linesForTerritory } from '../../shared/data/emergency-lines';
 const EmergencyMap = lazy(() =>
   import('../../widgets/emergency-map').then((module) => ({ default: module.EmergencyMap })),
@@ -72,6 +73,9 @@ export function HomePage() {
   );
   const [linkCopied, setLinkCopied] = useState(false);
   const [codeCopied, setCodeCopied] = useState(false);
+  const [userPosition, setUserPosition] = useState<readonly [number, number] | null>(null);
+  const [locatingNearby, setLocatingNearby] = useState(false);
+  const [nearbyNotice, setNearbyNotice] = useState<string | null>(null);
   const [onlyConfirmed, setOnlyConfirmed] = useState(false);
   const [activeJourney, setActiveJourney] = useState<HelpJourney | null>(null);
   const [reportKind, setReportKind] = useState<'need' | 'offer' | 'place' | 'damage' | null>(null);
@@ -206,18 +210,50 @@ export function HomePage() {
     [neighborhoods, selectedArea],
   );
   const normalizedQuery = query.trim().toLocaleLowerCase('es');
-  const visiblePoints = useMemo(
-    () =>
-      regionPoints.filter(
-        (point) =>
-          layers.has(point.category) &&
-          (!normalizedQuery ||
-            [point.title, point.neighborhood, point.description, point.address ?? ''].some(
-              (value) => value.toLocaleLowerCase('es').includes(normalizedQuery),
-            )),
-      ),
-    [regionPoints, layers, normalizedQuery],
-  );
+  const visiblePoints = useMemo(() => {
+    const matching = regionPoints.filter(
+      (point) =>
+        layers.has(point.category) &&
+        (!normalizedQuery ||
+          [point.title, point.neighborhood, point.description, point.address ?? ''].some((value) =>
+            value.toLocaleLowerCase('es').includes(normalizedQuery),
+          )),
+    );
+    if (!userPosition) return matching;
+    // Lo más cerca primero. Lo que no tiene ubicación exacta va al final, no se descarta.
+    return [...matching].sort((first, second) => {
+      const firstDistance = first.coordinates
+        ? distanceInMeters(userPosition, first.coordinates)
+        : Number.POSITIVE_INFINITY;
+      const secondDistance = second.coordinates
+        ? distanceInMeters(userPosition, second.coordinates)
+        : Number.POSITIVE_INFINITY;
+      return firstDistance - secondDistance;
+    });
+  }, [regionPoints, layers, normalizedQuery, userPosition]);
+  const distanceTo = (point: (typeof regionPoints)[number]) =>
+    userPosition && point.coordinates
+      ? formatDistance(distanceInMeters(userPosition, point.coordinates))
+      : null;
+  const showNearby = () => {
+    if (!navigator.geolocation) {
+      setNearbyNotice('Este dispositivo no puede darnos tu ubicación.');
+      return;
+    }
+    setLocatingNearby(true);
+    setNearbyNotice(null);
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setUserPosition([position.coords.longitude, position.coords.latitude]);
+        setLocatingNearby(false);
+      },
+      () => {
+        setLocatingNearby(false);
+        setNearbyNotice('No pudimos ubicarte. Puedes buscar por barrio.');
+      },
+      { enableHighAccuracy: true, timeout: 12000 },
+    );
+  };
   const selectedPoint = visiblePoints.find((point) => point.id === selectedPointId);
   const counts = useMemo(
     () =>
@@ -1000,6 +1036,29 @@ export function HomePage() {
                     ? 'Sin información publicada'
                     : visiblePoints.length + ' lugares y reportes'}
               </p>
+              {userPosition ? (
+                <p className="nearby-active" role="status">
+                  Ordenado por cercanía.{' '}
+                  <button onClick={() => setUserPosition(null)} type="button">
+                    Quitar
+                  </button>
+                </p>
+              ) : (
+                <button
+                  className="nearby-action"
+                  disabled={locatingNearby}
+                  onClick={showNearby}
+                  type="button"
+                >
+                  <Navigation size={18} />{' '}
+                  {locatingNearby ? 'Buscando tu ubicación…' : 'Ver lo más cerca de mí'}
+                </button>
+              )}
+              {nearbyNotice && (
+                <p className="form-notice" role="status">
+                  {nearbyNotice}
+                </p>
+              )}
             </header>
             {hasLocalBoundaries && (
               <label className="area-picker">
@@ -1248,7 +1307,12 @@ export function HomePage() {
                     </span>
                   </div>
                   <h3>{point.title}</h3>
-                  <p>{point.neighborhood}</p>
+                  <p>
+                    {point.neighborhood}
+                    {distanceTo(point) && (
+                      <strong className="card-distance"> · {distanceTo(point)}</strong>
+                    )}
+                  </p>
                   {!point.coordinates && (
                     <small className="no-exact-location">Sin punto exacto en el mapa</small>
                   )}

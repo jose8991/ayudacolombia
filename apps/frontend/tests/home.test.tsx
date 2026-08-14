@@ -259,3 +259,15 @@ it('ofrece las líneas oficiales de cada municipio para llamar', async () => {
   expect(screen.getByRole('link', { name: /Alcaldía de Pereira/ })).toBeVisible();
   expect(screen.queryByRole('link', { name: /DIGER Dosquebradas/ })).not.toBeInTheDocument();
 });
+
+it('ofrece ordenar por cercanía y avisa si no puede ubicar a la persona', async () => {
+  const getCurrentPosition = vi.fn((_success, failure) => failure(new Error('denegado')));
+  vi.stubGlobal('navigator', { ...window.navigator, geolocation: { getCurrentPosition } });
+  renderHome();
+  openCentersMap();
+  const button = screen.getByRole('button', { name: /Ver lo más cerca de mí/i });
+  expect(button).toBeVisible();
+  fireEvent.click(button);
+  expect(await screen.findByText(/No pudimos ubicarte/i)).toBeVisible();
+  vi.unstubAllGlobals();
+});
