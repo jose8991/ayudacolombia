@@ -28,6 +28,8 @@ export interface HumanitarianMapPoint {
   address?: string;
   schedule?: string;
   acceptedItems?: readonly string[];
+  /** El servidor marca como envejecido lo que lleva más de un día sin reconfirmarse. */
+  isStale?: boolean;
   sourceLabel?: string;
   sourceUrl?: string;
 }

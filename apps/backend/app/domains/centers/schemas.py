@@ -3,7 +3,9 @@ from decimal import Decimal
 from enum import StrEnum
 from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, computed_field
+
+from app.core.freshness import is_stale as has_expired
 
 
 class CenterStatus(StrEnum):
@@ -54,6 +56,12 @@ class CenterRead(BaseModel):
     verification_status: CenterVerificationStatus
     last_verified_at: datetime | None
     updated_at: datetime
+
+    @computed_field  # type: ignore[prop-decorator]
+    @property
+    def is_stale(self) -> bool:
+        """Un centro sin reconfirmar deja de ser confiable aunque siga publicado."""
+        return has_expired(self.last_verified_at or self.updated_at)
 
 
 class CenterPublicationCreate(BaseModel):

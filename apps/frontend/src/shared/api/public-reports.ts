@@ -11,6 +11,7 @@ interface PublicReport {
   coordinates: { longitude: number; latitude: number } | null;
   observed_at: string;
   verification_status: 'reported' | 'verified' | 'official';
+  is_stale?: boolean;
 }
 
 const mapCategory = (category: PublicReport['category']): MapCategory =>
@@ -34,6 +35,7 @@ export async function loadPublicReportPoints(
     description: report.description,
     severity: report.severity,
     verificationStatus: report.verification_status,
+    isStale: report.is_stale ?? false,
     observedAt: report.observed_at,
     coordinates: report.coordinates
       ? ([report.coordinates.longitude, report.coordinates.latitude] as const)

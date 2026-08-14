@@ -32,6 +32,7 @@ import {
   savePendingSubmission,
 } from '../../shared/offline/secure-submission-outbox';
 import { loadTrackingCode, saveTrackingCode } from '../../shared/offline/last-tracking-code';
+import { formatFreshness } from '../../shared/format/freshness';
 const EmergencyMap = lazy(() =>
   import('../../widgets/emergency-map').then((module) => ({ default: module.EmergencyMap })),
 );
@@ -44,8 +45,6 @@ const CATEGORY_LABELS: Record<MapCategory, string> = {
   'aid-center': 'Centro o albergue',
   damage: 'Daño o acceso',
 };
-const formatObservedAt = (value: string) =>
-  new Intl.DateTimeFormat('es-CO', { hour: 'numeric', minute: '2-digit' }).format(new Date(value));
 
 const STATUS_LABELS = {
   reported: 'Sin confirmar',
@@ -1207,9 +1206,14 @@ export function HomePage() {
                     Quien lo reportó no compartió la ubicación exacta. Guíate por el barrio.
                   </p>
                 )}
+                {selectedPoint.isStale && (
+                  <p className="stale-warning" role="status">
+                    <TriangleAlert size={16} /> Puede estar desactualizado. Confirma antes de ir.
+                  </p>
+                )}
                 <small>
                   {selectedPoint.sourceLabel ?? 'Fuente ciudadana'} · actualizado{' '}
-                  {formatObservedAt(selectedPoint.observedAt)}
+                  {formatFreshness(selectedPoint.observedAt)}
                 </small>
               </section>
             )}
@@ -1235,7 +1239,8 @@ export function HomePage() {
                   )}
                   <small>{point.description}</small>
                   <time dateTime={point.observedAt}>
-                    Actualizado {formatObservedAt(point.observedAt)}
+                    Actualizado {formatFreshness(point.observedAt)}
+                    {point.isStale && ' · puede estar desactualizado'}
                   </time>
                 </button>
               ))}

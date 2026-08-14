@@ -74,6 +74,7 @@ class PublicReportRead(BaseModel):
     observed_at: datetime
     verification_status: VerificationStatus
     updated_at: datetime
+    is_stale: bool = False
 
 
 class ReportStatusRead(BaseModel):

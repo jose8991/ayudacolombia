@@ -25,11 +25,14 @@ cerrada cuando tiene implementación, prueba, documentación y validación de de
 | 9 | Migraciones y contratos en CI | Pendiente | Ciclo upgrade/downgrade/upgrade en PostgreSQL y detección de drift OpenAPI. |
 | 10 | Documentación y ownership | Pendiente | CONTRIBUTING, ownership, `llms-full.txt` y aduana documental. |
 | 11 | Política de tratamiento de datos | Bloqueado por información | TIMELIBER S.A.S. debe aportar NIT, domicilio, dirección, teléfono, retención y revisión jurídica. |
-| 12 | Repositorio Git canónico | Bloqueado por infraestructura | Identificar o restaurar metadatos Git y CI del proyecto. |
+| 12 | Repositorio Git canónico | Parcial | Repositorio restaurado en `main` con historial propio. Falta un remoto: el código vive en un solo disco. |
+| 13 | Caducidad de la información | Cerrado | `is_stale` se calcula al leer con una ventana de 24 h; la interfaz muestra el tiempo transcurrido y advierte antes de desplazarse. |
 
 ## Evidencia del último corte
 
-- Frontend: 22 pruebas, axe y presupuestos de build aprobados.
+- Frontend: 28 pruebas, axe y presupuestos de build aprobados.
+- Backend: 29 pruebas, Ruff y `mypy --strict` aprobados.
+- Tipografía alojada en el propio dominio: ninguna llamada a servicios externos en el arranque.
 - Código frontend: Prettier obligatorio; `AppHeader` tiene 41 líneas y `HomePrimaryActions` 105. `HomePage` bajó de 1.416 a 1.288 líneas y sigue en refactorización.
 - Backend: 21 pruebas, Ruff y `mypy --strict` sobre 51 archivos aprobados.
 - Base de datos: migración `0011_idempotency` aplicada y respaldo previo creado.

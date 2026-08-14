@@ -12,6 +12,7 @@ interface PublicCenter {
   schedule?: string;
   accepted_items: string[];
   verification_status: 'reported' | 'verified' | 'official' | 'stale' | 'closed';
+  is_stale?: boolean;
   updated_at: string;
 }
 
@@ -61,6 +62,7 @@ export async function loadPublicCenterPoints(
               ? ('high' as const)
               : ('low' as const),
         verificationStatus: center.verification_status,
+        isStale: center.is_stale ?? false,
         observedAt: latest?.published_at ?? center.updated_at,
         coordinates: [Number(center.longitude), Number(center.latitude)] as const,
         address: center.address,

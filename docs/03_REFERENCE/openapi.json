@@ -1144,6 +1144,12 @@
             "type": "string",
             "format": "date-time",
             "title": "Updated At"
+          },
+          "is_stale": {
+            "type": "boolean",
+            "title": "Is Stale",
+            "description": "Un centro sin reconfirmar deja de ser confiable aunque siga publicado.",
+            "readOnly": true
           }
         },
         "type": "object",
@@ -1160,7 +1166,8 @@
           "accepted_items",
           "verification_status",
           "last_verified_at",
-          "updated_at"
+          "updated_at",
+          "is_stale"
         ],
         "title": "CenterRead"
       },
@@ -1537,6 +1544,11 @@
             "type": "string",
             "format": "date-time",
             "title": "Updated At"
+          },
+          "is_stale": {
+            "type": "boolean",
+            "title": "Is Stale",
+            "default": false
           }
         },
         "type": "object",

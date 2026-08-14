@@ -5,6 +5,7 @@ from typing import Protocol
 from uuid import UUID
 
 from app.core.encryption import decrypt_sensitive, encrypt_sensitive
+from app.core.freshness import is_stale
 from app.domains.identity.policy import evaluate_access
 from app.domains.identity.schemas import Actor, Permission, ResourceContext, Role
 
@@ -157,6 +158,7 @@ class ReportService:
             observed_at=report.observed_at,
             verification_status=report.verification_status,
             updated_at=report.updated_at,
+            is_stale=is_stale(report.updated_at),
         )
 
     @staticmethod
