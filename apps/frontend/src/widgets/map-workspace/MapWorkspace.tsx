@@ -328,7 +328,7 @@ export function MapWorkspace({
               <X size={16} />
             </button>
             <p className="eyebrow">
-              {region.name} / {formatAreaLabel(selectedArea)}
+              {selectedNeighborhood ? formatAreaLabel(selectedArea) : 'Zona de ' + region.name}
             </p>
             <h3>
               {selectedNeighborhood
@@ -348,7 +348,6 @@ export function MapWorkspace({
                 Volver a la zona
               </button>
             )}
-            <p>Los colores resumen la urgencia de los reportes visibles.</p>
             <details className="neighborhood-list">
               <summary>
                 Ver {areaNeighborhoods.length}{' '}
@@ -384,8 +383,8 @@ export function MapWorkspace({
               <Share2 size={16} /> {linkCopied ? 'Enlace copiado' : 'Copiar enlace'}
             </button>
             <small>
-              Catálogo oficial de Datos Abiertos Colombia. Toca un barrio o sector para filtrar el
-              mapa.
+              Toca un barrio para ver solo lo de ahí. Los límites vienen del catálogo oficial de
+              Datos Abiertos.
             </small>
           </section>
         )}
