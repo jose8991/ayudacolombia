@@ -36,3 +36,25 @@ it('mantiene los controles principales en 44px o más', () => {
     expect(size, rule).toBeGreaterThanOrEqual(44);
   }
 });
+
+it('no deja listas horizontales en pantallas pequeñas', () => {
+  // Un carrusel horizontal esconde casi todos los resultados y nadie lo descubre.
+  const small = css.slice(css.indexOf('@media (max-width: 900px)'));
+  expect(small).not.toMatch(/\.result-list\s*\{[^}]*overflow-x:\s*auto/);
+});
+
+it('la leyenda del mapa se adapta desde tablet hacia abajo', () => {
+  const small = css.slice(css.indexOf('@media (max-width: 900px)'));
+  expect(small).toMatch(/\.map-legend-panel\s*\{[^}]*max-width:\s*none/);
+  expect(small).toMatch(/\.legend-groups\s*\{[^}]*grid-template-columns:\s*1fr/);
+});
+
+it('los botones de artículos caben en dos columnas en un teléfono angosto', () => {
+  const narrow = css.slice(css.indexOf('@media (max-width: 420px)'));
+  expect(narrow).toMatch(/\.offer-kinds\s*\{\s*grid-template-columns:\s*1fr 1fr/);
+  expect(narrow).toMatch(/\.item-picker\s*\{\s*grid-template-columns:\s*1fr 1fr/);
+});
+
+it('no deja CSS de la leyenda que ya no existe', () => {
+  expect(css).not.toMatch(/\.map-legend(?!-panel)/);
+});
