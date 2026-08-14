@@ -1,6 +1,7 @@
 import { expect, it } from 'vitest';
 import type { HumanitarianMapPoint } from '../src/entities/incident';
 import {
+  CATEGORY_COLORS,
   describeCluster,
   isAged,
   isBlocked,
@@ -61,7 +62,8 @@ it('un grupo dice cuántos son y de qué tipo', () => {
   expect(resumen.count).toBe(12);
   expect(resumen.label).toBe('Grupo de 12 puntos: 5 albergues, 4 necesidades, 3 daños');
   expect(resumen.gradient).toContain('conic-gradient');
-  expect(resumen.gradient).not.toContain('#2767b2');
+  expect(resumen.gradient).not.toContain(CATEGORY_COLORS.offer);
+  expect(resumen.gradient).toContain(CATEGORY_COLORS['aid-center']);
 });
 
 it('usa el singular cuando hay uno solo', () => {

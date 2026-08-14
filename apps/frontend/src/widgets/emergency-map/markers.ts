@@ -13,11 +13,18 @@ import type { HumanitarianMapPoint, MapCategory } from '../../entities/incident'
 
 export type TrustLevel = 'official' | 'verified' | 'reported';
 
+/**
+ * La saturación marca la jerarquía, no el capricho: dos colores fuertes para las dos
+ * preguntas que la gente trae —dónde HAY ayuda y dónde la NECESITAN— y dos apagados para
+ * el contexto. Así el mapa no compite consigo mismo y lo importante salta a la vista.
+ *
+ * Si cambian aquí, hay que cambiarlos también en `:root` de styles.css.
+ */
 export const CATEGORY_COLORS: Record<MapCategory, string> = {
-  need: '#d8483e',
-  offer: '#2767b2',
   'aid-center': '#168267',
-  damage: '#e47b28',
+  need: '#c4392d',
+  offer: '#5d7f96',
+  damage: '#8a7250',
 };
 
 const CATEGORIES = Object.keys(CATEGORY_COLORS) as MapCategory[];

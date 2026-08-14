@@ -4,14 +4,20 @@ interface MapLegendProps {
   defaultOpen: boolean;
 }
 
-const CATEGORIES = [
-  { key: 'aid-center', label: 'Albergue o centro', glyph: 'casa' },
-  { key: 'need', label: 'Necesidad', glyph: 'gota' },
-  { key: 'offer', label: 'Ayuda ofrecida', glyph: 'corazon' },
-  { key: 'damage', label: 'Daño o vía', glyph: 'alerta' },
+// Los dos primeros van en color fuerte; los otros dos, apagados, son contexto.
+const MAIN = [
+  { key: 'aid-center', label: 'Aquí hay ayuda', glyph: 'casa' },
+  { key: 'need', label: 'Aquí la necesitan', glyph: 'gota' },
 ] as const;
 
-function Glyph({ glyph }: { glyph: (typeof CATEGORIES)[number]['glyph'] }) {
+const CONTEXT = [
+  { key: 'offer', label: 'Ayuda ofrecida', glyph: 'corazon' },
+  { key: 'damage', label: 'Daño o vía cerrada', glyph: 'alerta' },
+] as const;
+
+type GlyphName = (typeof MAIN)[number]['glyph'] | (typeof CONTEXT)[number]['glyph'];
+
+function Glyph({ glyph }: { glyph: GlyphName }) {
   return (
     <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
       {glyph === 'casa' && <path d="M12 5 22 14h-4v6H6v-6H2z" />}
@@ -30,9 +36,22 @@ export function MapLegend({ showAreaScale, defaultOpen }: MapLegendProps) {
       <summary>Qué significa cada símbolo</summary>
       <div className="legend-groups">
         <section>
-          <h4>Qué es</h4>
+          <h4>Lo que más importa</h4>
           <ul>
-            {CATEGORIES.map((item) => (
+            {MAIN.map((item) => (
+              <li key={item.key}>
+                <span className={'legend-mark legend-mark--' + item.key}>
+                  <Glyph glyph={item.glyph} />
+                </span>
+                {item.label}
+              </li>
+            ))}
+          </ul>
+        </section>
+        <section>
+          <h4>Contexto</h4>
+          <ul>
+            {CONTEXT.map((item) => (
               <li key={item.key}>
                 <span className={'legend-mark legend-mark--' + item.key}>
                   <Glyph glyph={item.glyph} />

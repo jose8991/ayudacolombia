@@ -278,7 +278,8 @@ it('explica en el mapa qué significa cada símbolo y cada nivel', async () => {
   openCentersMap();
   fireEvent.click(screen.getByText('Qué significa cada símbolo'));
   const leyenda = within(screen.getByText('Qué significa cada símbolo').closest('details')!);
-  expect(leyenda.getByText('Albergue o centro')).toBeVisible();
+  expect(leyenda.getByText('Aquí hay ayuda')).toBeVisible();
+  expect(leyenda.getByText('Aquí la necesitan')).toBeVisible();
   expect(leyenda.getByText('Confirmado por una entidad')).toBeVisible();
   expect(leyenda.getByText('Sin confirmar')).toBeVisible();
   expect(leyenda.getByText('Ya no recibe gente')).toBeVisible();

@@ -30,6 +30,11 @@
   --color-danger: #c9362b;
   --color-warning: #e16e27;
   --color-border: #dfe5df;
+  /* Categorías del mapa y de las listas. Deben coincidir con markers.ts. */
+  --cat-aid: #168267;
+  --cat-need: #c4392d;
+  --cat-offer: #5d7f96;
+  --cat-damage: #8a7250;
   --shadow-float: 0 18px 50px rgba(22, 50, 41, 0.13);
   font-family: 'DM Sans', system-ui, sans-serif;
   color: var(--color-ink);
@@ -612,13 +617,13 @@ input:focus-visible {
   border-color: #d7e5df;
 }
 .filter-pill--need[aria-pressed='true'] svg {
-  color: #d8483e;
+  color: var(--cat-need);
 }
 .filter-pill--aid-center[aria-pressed='true'] svg {
-  color: #168267;
+  color: var(--cat-aid);
 }
 .filter-pill--damage[aria-pressed='true'] svg {
-  color: #e47b28;
+  color: var(--cat-damage);
 }
 .result-list {
   flex: 1;
@@ -640,13 +645,13 @@ input:focus-visible {
   background: white;
 }
 .result-card--need {
-  border-left-color: #d8483e;
+  border-left-color: var(--cat-need);
 }
 .result-card--aid-center {
-  border-left-color: #168267;
+  border-left-color: var(--cat-aid);
 }
 .result-card--damage {
-  border-left-color: #e47b28;
+  border-left-color: var(--cat-damage);
 }
 .result-card[aria-pressed='true'] {
   background: #f2f7f5;
@@ -787,13 +792,13 @@ input:focus-visible {
   box-shadow: 0 8px 24px rgba(22, 50, 41, 0.1);
 }
 .place-detail--aid-center {
-  border-top-color: #168267;
+  border-top-color: var(--cat-aid);
 }
 .place-detail--need {
-  border-top-color: #d8483e;
+  border-top-color: var(--cat-need);
 }
 .place-detail--damage {
-  border-top-color: #e47b28;
+  border-top-color: var(--cat-damage);
 }
 .place-detail h3 {
   margin: 0 2rem 0.55rem 0;
@@ -2670,16 +2675,16 @@ input:focus-visible {
   fill: #ffffff;
 }
 .legend-mark--aid-center {
-  background: #168267;
+  background: var(--cat-aid);
 }
 .legend-mark--need {
-  background: #d8483e;
+  background: var(--cat-need);
 }
 .legend-mark--offer {
-  background: #2767b2;
+  background: var(--cat-offer);
 }
 .legend-mark--damage {
-  background: #e47b28;
+  background: var(--cat-damage);
 }
 .legend-mark--official {
   border-width: 4px;
