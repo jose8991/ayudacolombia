@@ -33,6 +33,7 @@ import {
 } from '../../shared/offline/secure-submission-outbox';
 import { loadTrackingCode, saveTrackingCode } from '../../shared/offline/last-tracking-code';
 import { formatFreshness } from '../../shared/format/freshness';
+import { linesForTerritory } from '../../shared/data/emergency-lines';
 const EmergencyMap = lazy(() =>
   import('../../widgets/emergency-map').then((module) => ({ default: module.EmergencyMap })),
 );
@@ -549,6 +550,20 @@ export function HomePage() {
                 <p className="emergency-hint">
                   ¿Hay peligro ahora? <a href="tel:123">Llama al 123</a>.
                 </p>
+                <details className="emergency-lines">
+                  <summary>Líneas oficiales para llamar</summary>
+                  <ul>
+                    {linesForTerritory(region.id).map((line) => (
+                      <li key={line.number}>
+                        <a href={'tel:' + line.number}>
+                          <strong>{line.label}</strong>
+                          <span>{line.display}</span>
+                        </a>
+                        <small>{line.purpose}</small>
+                      </li>
+                    ))}
+                  </ul>
+                </details>
                 {publicDataLoaded && counts['aid-center'] === 0 && (
                   <p className="journey-notice">
                     Todavía no hay centros publicados aquí. Puedes pedir ayuda.

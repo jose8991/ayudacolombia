@@ -66,9 +66,9 @@ async def load(payload: dict[str, Any]) -> tuple[int, int]:
             center.latitude = Decimal(str(item["latitude"]))
             center.longitude = Decimal(str(item["longitude"]))
             center.status = item.get("status", "open")
-            # Nunca "official": la fuente es prensa que cita a la entidad, no la entidad
-            # publicando aquí. Quien confirme en terreno puede ascenderlo desde /coordina.
-            center.verification_status = "verified"
+            # "official" solo cuando la entidad lo publica en su propio canal. Si la fuente es
+            # prensa que la cita, queda en "verified" y alguien lo asciende desde /coordina.
+            center.verification_status = item.get("verification_status", "verified")
             center.schedule = item.get("schedule")
             center.accepted_items = item.get("accepted_items", [])
             center.last_verified_at = datetime.fromisoformat(item["last_verified_at"])

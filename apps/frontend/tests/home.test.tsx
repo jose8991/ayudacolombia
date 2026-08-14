@@ -249,3 +249,13 @@ it('recuerda el código de seguimiento para no exigir memoria', () => {
   expect(screen.getByLabelText('Código')).toHaveValue('SOS-ABC1234567');
   localStorage.clear();
 });
+
+it('ofrece las líneas oficiales de cada municipio para llamar', async () => {
+  renderHome();
+  fireEvent.click(screen.getByRole('button', { name: /^Necesito ayuda/ }));
+  fireEvent.click(screen.getByText('Líneas oficiales para llamar'));
+  expect(screen.getByRole('link', { name: /Emergencias 123/ })).toHaveAttribute('href', 'tel:123');
+  expect(screen.getByRole('link', { name: /Bomberos 119/ })).toBeVisible();
+  expect(screen.getByRole('link', { name: /Alcaldía de Pereira/ })).toBeVisible();
+  expect(screen.queryByRole('link', { name: /DIGER Dosquebradas/ })).not.toBeInTheDocument();
+});

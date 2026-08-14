@@ -1,6 +1,6 @@
 {
   "revision": "2026-08-14",
-  "note": "Lugares publicos reportados como albergue o punto de acopio tras el terremoto del 10 de agosto de 2026. Cada coordenada fue geocodificada y verificada dentro del poligono del municipio (DANE MGN 2025). El nivel es 'verified' —revisado por coordinacion— y nunca 'official': la fuente es prensa nacional que cita a la administracion municipal, no una publicacion directa de la entidad en esta plataforma. last_verified_at guarda la fecha de la fuente, de modo que la caducidad de 24 horas los muestra como posiblemente desactualizados hasta que alguien los reconfirme en terreno.",
+  "note": "Albergues y puntos de acopio tras el terremoto del 10 de agosto de 2026. Cada coordenada fue geocodificada y verificada dentro del poligono del municipio (DANE MGN 2025). Los albergues de Pereira aparecen en la publicacion oficial de la Alcaldia, por eso su nivel es 'official'. last_verified_at guarda la fecha de la fuente: la caducidad de 24 horas se encarga de advertir cuando el dato envejece.",
   "organizations": [
     {
       "slug": "alcaldia-pereira",
@@ -22,10 +22,13 @@
       "latitude": 4.809428,
       "longitude": -75.696283,
       "status": "open",
-      "schedule": "Confirma por teléfono antes de ir. Reportado el 11 de agosto de 2026.",
-      "accepted_items": ["Alojamiento temporal"],
-      "last_verified_at": "2026-08-11T12:00:00-05:00",
-      "source": "https://citytv.eltiempo.com/fotos-y-videos/video-y-multimedia/pereira-habilita-uno-de-sus-mayores-albergues-tras-el-terremoto-en-el-parque-olaya-herrera_94312"
+      "schedule": "Confirma por teléfono antes de ir. Listado oficial de la Alcaldía del 12 de agosto de 2026.",
+      "accepted_items": [
+        "Alojamiento temporal"
+      ],
+      "last_verified_at": "2026-08-12T12:00:00-05:00",
+      "source": "https://www.pereira.gov.co/publicaciones/11291/actualizacion-puntos-albergue/",
+      "verification_status": "official"
     },
     {
       "organization_slug": "alcaldia-pereira",
@@ -35,10 +38,15 @@
       "latitude": 4.806989,
       "longitude": -75.67088,
       "status": "open",
-      "schedule": "Confirma por teléfono antes de ir. Reportado el 11 de agosto de 2026.",
-      "accepted_items": ["Alojamiento temporal", "Alimentación", "Agua"],
-      "last_verified_at": "2026-08-11T12:00:00-05:00",
-      "source": "https://www.eltiempo.com/colombia/otras-ciudades/terremoto-en-colombia-hoy-13-de-agosto-director-de-la-ungrd-dijo-que-el-pais-esta-recibiendo-ayuda-internacional-para-busqueda-y-rescate-de-victimas-3578053"
+      "schedule": "Confirma por teléfono antes de ir. Listado oficial de la Alcaldía del 12 de agosto de 2026.",
+      "accepted_items": [
+        "Alojamiento temporal",
+        "Alimentación",
+        "Agua"
+      ],
+      "last_verified_at": "2026-08-12T12:00:00-05:00",
+      "source": "https://www.pereira.gov.co/publicaciones/11291/actualizacion-puntos-albergue/",
+      "verification_status": "official"
     },
     {
       "organization_slug": "alcaldia-pereira",
@@ -48,10 +56,13 @@
       "latitude": 4.798927,
       "longitude": -75.732712,
       "status": "open",
-      "schedule": "Confirma por teléfono antes de ir. Reportado el 11 de agosto de 2026.",
-      "accepted_items": ["Alojamiento temporal"],
-      "last_verified_at": "2026-08-11T12:00:00-05:00",
-      "source": "https://www.eltiempo.com/colombia/otras-ciudades/terremoto-en-colombia-hoy-13-de-agosto-director-de-la-ungrd-dijo-que-el-pais-esta-recibiendo-ayuda-internacional-para-busqueda-y-rescate-de-victimas-3578053"
+      "schedule": "Confirma por teléfono antes de ir. Listado oficial de la Alcaldía del 12 de agosto de 2026.",
+      "accepted_items": [
+        "Alojamiento temporal"
+      ],
+      "last_verified_at": "2026-08-12T12:00:00-05:00",
+      "source": "https://www.pereira.gov.co/publicaciones/11291/actualizacion-puntos-albergue/",
+      "verification_status": "official"
     },
     {
       "organization_slug": "alcaldia-dosquebradas",
@@ -70,7 +81,24 @@
         "Aseo personal"
       ],
       "last_verified_at": "2026-08-13T12:00:00-05:00",
-      "source": "https://www.semana.com/nacion/regionales/articulo/alcaldia-de-dosquebradas-decreta-toque-de-queda-hasta-el-viernes-14-de-agosto-tras-terremoto-en-colombia/202644/"
+      "source": "https://www.semana.com/nacion/regionales/articulo/alcaldia-de-dosquebradas-decreta-toque-de-queda-hasta-el-viernes-14-de-agosto-tras-terremoto-en-colombia/202644/",
+      "verification_status": "verified"
+    },
+    {
+      "organization_slug": "alcaldia-pereira",
+      "territory_id": "co-ris-pereira",
+      "name": "Albergue Coliseo Mayor",
+      "address": "Coliseo Mayor, Carrera 8, sector Primero de Febrero, Pereira",
+      "latitude": 4.815091,
+      "longitude": -75.709013,
+      "status": "almost_full",
+      "verification_status": "official",
+      "schedule": "Aforo completo reportado por la Alcaldía el 12 de agosto de 2026. Confirma antes de ir.",
+      "accepted_items": [
+        "Alojamiento temporal"
+      ],
+      "last_verified_at": "2026-08-12T12:00:00-05:00",
+      "source": "https://www.pereira.gov.co/publicaciones/11291/actualizacion-puntos-albergue/"
     }
   ]
 }

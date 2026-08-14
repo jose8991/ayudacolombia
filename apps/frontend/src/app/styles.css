@@ -2538,3 +2538,46 @@ input:focus-visible {
   font-weight: 700;
   color: var(--color-warning);
 }
+.emergency-lines {
+  margin-top: 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: white;
+}
+.emergency-lines > summary {
+  min-height: 48px;
+  padding: 0 0.8rem;
+  display: flex;
+  align-items: center;
+  font-weight: 800;
+  cursor: pointer;
+}
+.emergency-lines ul {
+  margin: 0;
+  padding: 0 0.8rem 0.6rem;
+  list-style: none;
+  display: grid;
+  gap: 0.5rem;
+}
+.emergency-lines a {
+  min-height: 48px;
+  padding: 0 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  color: var(--color-ink);
+  text-decoration: none;
+}
+.emergency-lines a span {
+  color: var(--color-danger);
+  font-weight: 800;
+  white-space: nowrap;
+}
+.emergency-lines small {
+  display: block;
+  padding: 0.15rem 0.7rem 0;
+  color: var(--color-muted);
+}
