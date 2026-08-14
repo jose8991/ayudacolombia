@@ -1,0 +1,230 @@
+import '@testing-library/jest-dom/vitest';
+import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import axe from 'axe-core';
+import { afterEach, expect, it, vi } from 'vitest';
+import { HomePage } from '../src/pages/home';
+
+vi.mock('../src/widgets/emergency-map', () => ({
+  EmergencyMap: ({ region }: { region: { name: string } }) => (
+    <div role="region" aria-label={'Mapa humanitario interactivo de ' + region.name} />
+  ),
+}));
+
+afterEach(() => {
+  cleanup();
+  window.history.replaceState({}, '', '/');
+});
+
+function renderHome() {
+  const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false } } });
+  return render(
+    <QueryClientProvider client={queryClient}>
+      <HomePage />
+    </QueryClientProvider>,
+  );
+}
+
+async function expectNoAutomaticAccessibilityViolations(container: HTMLElement) {
+  const results = await axe.run(container, {
+    runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'] },
+    rules: { 'color-contrast': { enabled: false } },
+  });
+  expect(
+    results.violations,
+    results.violations.map((item) => `${item.id}: ${item.help}`).join('\n'),
+  ).toEqual([]);
+}
+
+function openCentersMap() {
+  // The map is visible by default; this helper keeps map-focused tests readable.
+}
+
+it('empieza con decisiones claras y el mapa visible', async () => {
+  renderHome();
+  expect(screen.getByRole('heading', { name: '¿Qué necesitas?' })).toBeVisible();
+  expect(
+    await screen.findByRole('region', { name: /mapa humanitario interactivo de Pereira/i }),
+  ).toBeVisible();
+});
+
+it('abre directamente el mapa cuando llega un enlace territorial compartido', async () => {
+  window.history.replaceState({}, '', '/?region=co-ris-pereira&comuna=Centro');
+  renderHome();
+  expect(
+    await screen.findByRole('region', { name: /mapa humanitario interactivo de Pereira/i }),
+  ).toBeVisible();
+});
+
+it('muestra el mapa desde el inicio en una pantalla de escritorio', async () => {
+  const originalMatchMedia = window.matchMedia;
+  window.matchMedia = vi.fn().mockImplementation((query: string) => ({
+    matches: query === '(min-width: 901px)',
+    media: query,
+    onchange: null,
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    addListener: vi.fn(),
+    removeListener: vi.fn(),
+    dispatchEvent: vi.fn(),
+  }));
+  try {
+    renderHome();
+    expect(
+      await screen.findByRole('region', { name: /mapa humanitario interactivo de Pereira/i }),
+    ).toBeVisible();
+  } finally {
+    window.matchMedia = originalMatchMedia;
+  }
+});
+
+it('permite cambiar lo que muestra el mapa', async () => {
+  renderHome();
+  fireEvent.click(screen.getByText('Qué mostrar'));
+  const needs = screen.getByRole('button', { name: /^Necesidades/i, pressed: false });
+  expect(needs).toHaveAttribute('aria-pressed', 'false');
+  fireEvent.click(needs);
+  expect(needs).toHaveAttribute('aria-pressed', 'true');
+});
+
+it('muestra acciones funcionales', () => {
+  renderHome();
+  expect(screen.getByRole('button', { name: /^Necesito ayuda/ })).toBeVisible();
+  expect(screen.getByRole('button', { name: /^Quiero ayudar/ })).toBeVisible();
+  fireEvent.click(screen.getByRole('button', { name: /^Quiero ayudar/ }));
+  fireEvent.click(screen.getByRole('button', { name: /^Ofrecer ayuda/ }));
+  expect(screen.getByRole('heading', { name: 'Dinos lo necesario' })).toBeVisible();
+  expect(screen.getByLabelText(/¿Qué ofreces y hasta cuándo?/i)).toBeVisible();
+});
+
+it('permite cambiar a Dosquebradas desde el filtro de municipio', async () => {
+  renderHome();
+  openCentersMap();
+  fireEvent.click(screen.getByRole('button', { name: /Municipio Pereira/i }));
+  fireEvent.click(await screen.findByRole('button', { name: /Dosquebradas/i }));
+  expect(
+    await screen.findByRole('region', { name: /mapa humanitario interactivo de Dosquebradas/i }),
+  ).toBeVisible();
+  expect(screen.getByRole('combobox', { name: 'Seleccionar zona' })).toBeVisible();
+  fireEvent.click(screen.getByRole('button', { name: /Municipio Dosquebradas/i }));
+  fireEvent.click(await screen.findByRole('button', { name: /^Pereira/i }));
+  expect(
+    await screen.findByRole('region', { name: /mapa humanitario interactivo de Pereira/i }),
+  ).toBeVisible();
+});
+
+it('cierra el selector territorial con Escape y devuelve el foco', async () => {
+  renderHome();
+  const trigger = screen.getByRole('button', { name: /Municipio Pereira/i });
+  fireEvent.click(trigger);
+  expect(screen.getByRole('dialog', { name: /¿Dónde necesitas ayuda?/i })).toBeVisible();
+  fireEvent.keyDown(window, { key: 'Escape' });
+  expect(
+    screen.queryByRole('dialog', { name: /¿Dónde necesitas ayuda?/i }),
+  ).not.toBeInTheDocument();
+  await waitFor(() => expect(trigger).toHaveFocus());
+});
+
+it('explica claramente la diferencia entre información oficial y comunitaria', () => {
+  renderHome();
+  openCentersMap();
+  fireEvent.click(screen.getByText('De dónde viene la información'));
+  expect(screen.getByText('Sin confirmar')).toBeVisible();
+  expect(screen.getByText(/Mira la hora antes de ir/i)).toBeVisible();
+});
+
+it('mantiene ocultos los avisos comunitarios hasta que la persona los solicite', () => {
+  renderHome();
+  openCentersMap();
+  expect(
+    screen.queryByText(/Estás viendo información comunitaria sin confirmar/i),
+  ).not.toBeInTheDocument();
+  fireEvent.click(screen.getByText('De dónde viene la información'));
+  fireEvent.click(screen.getByRole('checkbox', { name: /Mostrar avisos de la comunidad/i }));
+  expect(screen.getByText(/Estás viendo información comunitaria sin confirmar/i)).toBeVisible();
+});
+
+it('muestra acciones con una explicación clara', () => {
+  renderHome();
+  expect(screen.getByText(/Agua, comida, salud o dónde dormir/i)).toBeVisible();
+  expect(screen.getByRole('button', { name: /^Reportar/ })).toBeVisible();
+  expect(screen.getByText(/Un daño, una vía cerrada o un albergue/i)).toBeVisible();
+});
+
+it('permite consultar las ayudas ofrecidas desde Quiero ayudar', () => {
+  renderHome();
+  fireEvent.click(screen.getByRole('button', { name: /^Quiero ayudar/ }));
+  fireEvent.click(screen.getByRole('button', { name: 'Ver ayudas ofrecidas' }));
+  fireEvent.click(screen.getByText('Qué mostrar'));
+  expect(screen.getByRole('button', { name: /^Ayudas ofrecidas/i })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  );
+});
+
+it('reserva Reportar para lugares y problemas', () => {
+  renderHome();
+  fireEvent.click(screen.getByRole('button', { name: /^Reportar/ }));
+  const dialog = screen.getByRole('dialog');
+  expect(within(dialog).getByRole('heading', { name: '¿Qué quieres reportar?' })).toBeVisible();
+  expect(within(dialog).getByRole('button', { name: /^Un lugar de ayuda/ })).toBeVisible();
+  expect(within(dialog).getByRole('button', { name: /^Un daño o una vía cerrada/ })).toBeVisible();
+  expect(within(dialog).queryByRole('button', { name: /^Necesito ayuda/ })).not.toBeInTheDocument();
+  expect(within(dialog).queryByRole('button', { name: /^Ofrezco ayuda/ })).not.toBeInTheDocument();
+});
+
+it('no presenta ceros como si fueran datos confirmados', () => {
+  renderHome();
+  fireEvent.click(screen.getByRole('button', { name: /^Necesito ayuda/ }));
+  expect(screen.getByRole('heading', { name: '¿Qué buscas?' })).toBeVisible();
+  expect(screen.queryByText('0 necesidades')).not.toBeInTheDocument();
+  expect(screen.getAllByText(/Consultando información|Todavía no hay/i).length).toBeGreaterThan(0);
+});
+
+it('separa la solicitud privada de la consulta pública', () => {
+  renderHome();
+  fireEvent.click(screen.getByRole('button', { name: /^Necesito ayuda/ }));
+  fireEvent.click(screen.getByRole('button', { name: /^Pedir ayuda/ }));
+  expect(screen.getByRole('heading', { name: 'Dinos 3 cosas' })).toBeVisible();
+  expect(screen.getByLabelText('¿Qué necesitas?')).toBeVisible();
+  expect(screen.getByLabelText(/Tu teléfono/i)).toBeVisible();
+  expect(screen.getByText(/no aparecerán en el mapa/i)).toBeVisible();
+});
+
+it('permite revisar y editar una solicitud antes de enviarla', () => {
+  renderHome();
+  fireEvent.click(screen.getByRole('button', { name: /^Necesito ayuda/ }));
+  fireEvent.click(screen.getByRole('button', { name: /^Pedir ayuda/ }));
+  fireEvent.change(screen.getByLabelText(/¿Cuántas personas?/i), { target: { value: '3' } });
+  fireEvent.change(screen.getByLabelText(/¿En qué barrio o vereda?/i), {
+    target: { value: 'Cuba' },
+  });
+  fireEvent.change(screen.getByLabelText(/¿Qué está pasando?/i), {
+    target: { value: 'Necesitamos alimentos para hoy' },
+  });
+  fireEvent.change(screen.getByLabelText(/Tu teléfono/i), {
+    target: { value: '3001234567' },
+  });
+  fireEvent.click(screen.getByRole('checkbox', { name: /Acepto que TIMELIBER S\.A\.S\./i }));
+  fireEvent.click(screen.getByRole('button', { name: 'Ver y enviar' }));
+  expect(screen.getByRole('heading', { name: 'Revisa y envía' })).toBeVisible();
+  expect(screen.getByText('Necesitamos alimentos para hoy')).toBeVisible();
+  fireEvent.click(screen.getByRole('button', { name: 'Editar' }));
+  expect(screen.getByDisplayValue('Necesitamos alimentos para hoy')).toBeVisible();
+});
+
+it('no presenta violaciones WCAG automáticas en la portada', async () => {
+  const { container } = renderHome();
+  await screen.findByRole('region', { name: /mapa humanitario interactivo de Pereira/i });
+  await expectNoAutomaticAccessibilityViolations(container);
+});
+
+it('mantiene accesibles los recorridos principales', async () => {
+  const { container } = renderHome();
+  for (const action of [/^Necesito ayuda/, /^Quiero ayudar/, /^Reportar/]) {
+    fireEvent.click(screen.getByRole('button', { name: action }));
+    expect(screen.getByRole('dialog')).toBeVisible();
+    await expectNoAutomaticAccessibilityViolations(container);
+    fireEvent.click(screen.getByRole('button', { name: /^Volver/ }));
+  }
+});

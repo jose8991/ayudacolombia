@@ -1,0 +1,470 @@
+[{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10739","nombre":"Villa Del Sol","nombre_popular":"Villa Del Sol","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10738","nombre":"Villa Colombia","nombre_popular":"Villa Colombia","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10737","nombre":"Verona","nombre_popular":"Verona","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10736","nombre":"Venecia","nombre_popular":"Venecia","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10735","nombre":"Vasconia","nombre_popular":"Vasconia","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10734","nombre":"Tulcan III","nombre_popular":"Tulcan III","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10733","nombre":"Tulcan II","nombre_popular":"Tulcan II","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10732","nombre":"Tulcan I","nombre_popular":"Tulcan I","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10731","nombre":"Travesuras - La Churria","nombre_popular":"Travesuras - La Churria","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10730","nombre":"Terminal","nombre_popular":"Terminal","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10729","nombre":"Santa Catalina II","nombre_popular":"Santa Catalina II","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10728","nombre":"San Remo","nombre_popular":"San Remo","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10727","nombre":"San Luis Gonzaga","nombre_popular":"San Luis Gonzaga","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10726","nombre":"Providencia","nombre_popular":"Providencia","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10725","nombre":"Pereira","nombre_popular":"Pereira","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10724","nombre":"Olaya Herrera","nombre_popular":"Olaya Herrera","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10723","nombre":"Mejia Robledo","nombre_popular":"Mejia Robledo","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10722","nombre":"Los Profesionales","nombre_popular":"Los Profesionales","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10721","nombre":"Los Almendros","nombre_popular":"Los Almendros","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10720","nombre":"Las Gaviotas","nombre_popular":"Las Gaviotas","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10719","nombre":"La Unidad","nombre_popular":"Unidad","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10718","nombre":"La Platanera","nombre_popular":"La Platanera","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10717","nombre":"La Lorena IV","nombre_popular":"La Lorena IV","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10716","nombre":"La Lorena III","nombre_popular":"La Lorena III","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10715","nombre":"La Lorena II","nombre_popular":"La Lorena II","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10714","nombre":"La Lorena I","nombre_popular":"La Lorena I","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10713","nombre":"La Laguna","nombre_popular":"La Laguna","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10712","nombre":"La Florida","nombre_popular":"La Florida","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10711","nombre":"La Arboleda","nombre_popular":"La Arboleda","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10710","nombre":"Guaduales de Canaan","nombre_popular":"Guaduales de Canaan","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10709","nombre":"El Vergel","nombre_popular":"El Vergel","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10708","nombre":"Ciudad Pereira","nombre_popular":"Ciudad Pereira","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10707","nombre":"Ciudad Palermo","nombre_popular":"Ciudad Palermo","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10706","nombre":"Central","nombre_popular":"Central","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10705","nombre":"Centenario","nombre_popular":"Centenario","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10704","nombre":"Caminos de Canaan","nombre_popular":"Caminos de Canaan","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10703","nombre":"Boston","nombre_popular":"Boston","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10702","nombre":"Bosques de La Salle","nombre_popular":"Bosques de La Salle","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"7","comuna":"Boston","codigo_del_barrio":"10701","nombre":"Belalcazar","nombre_popular":"Belalcazar","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"3","comuna":"Centro","codigo_del_barrio":"10318","nombre":"Venecia","nombre_popular":"Venecia","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"3","comuna":"Centro","codigo_del_barrio":"10317","nombre":"Turin","nombre_popular":"Turin","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"3","comuna":"Centro","codigo_del_barrio":"10316","nombre":"Sector Plaza de Bolivar","nombre_popular":"Centro","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"3","comuna":"Centro","codigo_del_barrio":"10315","nombre":"Sector Parque La Libertad","nombre_popular":"Parque La Libertad","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"3","comuna":"Centro","codigo_del_barrio":"10314","nombre":"Sector Lago Uribe","nombre_popular":"El Lago","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"3","comuna":"Centro","codigo_del_barrio":"10313","nombre":"Sector Galeria Central","nombre_popular":"Galería Central","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"3","comuna":"Centro","codigo_del_barrio":"10312","nombre":"Sector 30 de Agosto","nombre_popular":"Av. 30 de Agosto","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"3","comuna":"Centro","codigo_del_barrio":"10312","nombre":"Sector 30 de Agosto","nombre_popular":"Av. 30 de Agosto","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"3","comuna":"Centro","codigo_del_barrio":"10311","nombre":"Santander","nombre_popular":"Santander","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"3","comuna":"Centro","codigo_del_barrio":"10310","nombre":"San Esteban","nombre_popular":"San Esteban","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"3","comuna":"Centro","codigo_del_barrio":"10309","nombre":"Ricardo Ramirez Carmona","nombre_popular":"El Porvenir","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"3","comuna":"Centro","codigo_del_barrio":"10308","nombre":"Primero de Febrero","nombre_popular":"Primero de Febrero","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"3","comuna":"Centro","codigo_del_barrio":"10307","nombre":"Los Periodistas","nombre_popular":"Los Periodistas","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"3","comuna":"Centro","codigo_del_barrio":"10306","nombre":"Los Nogales","nombre_popular":"Los Nogales","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"3","comuna":"Centro","codigo_del_barrio":"10305","nombre":"Las Garzas","nombre_popular":"Las Garzas","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"3","comuna":"Centro","codigo_del_barrio":"10304","nombre":"La Victoria","nombre_popular":"La Victoria","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"3","comuna":"Centro","codigo_del_barrio":"10303","nombre":"La Paz","nombre_popular":"La Paz","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"3","comuna":"Centro","codigo_del_barrio":"10302","nombre":"Buenos Aires","nombre_popular":"Buenos Aires","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"3","comuna":"Centro","codigo_del_barrio":"10301","nombre":"Bloques Primero de Febrero","nombre_popular":"Bloques Primero de Febrero","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"10","comuna":"Consota","codigo_del_barrio":"11028","nombre":"Villa Elena","nombre_popular":"Villa Elena","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"10","comuna":"Consota","codigo_del_barrio":"11027","nombre":"Villa de La Paz","nombre_popular":"Villa de La Paz","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"10","comuna":"Consota","codigo_del_barrio":"11026","nombre":"Villa Consota","nombre_popular":"Panorama II","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"10","comuna":"Consota","codigo_del_barrio":"11025","nombre":"Villa Cecilia","nombre_popular":"Villa Cecilia","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"10","comuna":"Consota","codigo_del_barrio":"11024","nombre":"Villa Andrea","nombre_popular":"Villa Andrea","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"10","comuna":"Consota","codigo_del_barrio":"11023","nombre":"Vendedores Ambulantes","nombre_popular":"Las Mercedes","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"10","comuna":"Consota","codigo_del_barrio":"11022","nombre":"Sanai II","nombre_popular":"Sanai II","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"10","comuna":"Consota","codigo_del_barrio":"11021","nombre":"Restrepo","nombre_popular":"Restrepo","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"10","comuna":"Consota","codigo_del_barrio":"11020","nombre":"Quintas de Panorama II","nombre_popular":"Quintas de Panorama II","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"10","comuna":"Consota","codigo_del_barrio":"11019","nombre":"Quintas de Panorama I","nombre_popular":"Quintas de Panorama I","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"10","comuna":"Consota","codigo_del_barrio":"11018","nombre":"Porvenir","nombre_popular":"Las Mercedes","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"10","comuna":"Consota","codigo_del_barrio":"11017","nombre":"Plan Camilo","nombre_popular":"Las Mercedes","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"10","comuna":"Consota","codigo_del_barrio":"11016","nombre":"Panorama I","nombre_popular":"Panorama I","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"10","comuna":"Consota","codigo_del_barrio":"11015","nombre":"Normandia","nombre_popular":"Normandia","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"10","comuna":"Consota","codigo_del_barrio":"11014","nombre":"Naranjito","nombre_popular":"Naranjito","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"10","comuna":"Consota","codigo_del_barrio":"11013","nombre":"El Paraiso","nombre_popular":"El Paraiso","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"10","comuna":"Consota","codigo_del_barrio":"11013","nombre":"Mirador de Naranjito","nombre_popular":"Mirador de Naranjito","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"10","comuna":"Consota","codigo_del_barrio":"11013","nombre":"Miraflores *4","nombre_popular":"Miraflores *4","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"10","comuna":"Consota","codigo_del_barrio":"11012","nombre":"Mirador de Bella Sardi","nombre_popular":"Mirador de Bella Sardi","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"10","comuna":"Consota","codigo_del_barrio":"11012","nombre":"La Idalia II","nombre_popular":"La Idalia II","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"10","comuna":"Consota","codigo_del_barrio":"11011","nombre":"Los Nogales","nombre_popular":"Los Nogales","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"10","comuna":"Consota","codigo_del_barrio":"11010","nombre":"Las Piramides","nombre_popular":"Las Piramides","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"10","comuna":"Consota","codigo_del_barrio":"11009","nombre":"La Divisa","nombre_popular":"La Divisa","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"10","comuna":"Consota","codigo_del_barrio":"11008","nombre":"El Rosal","nombre_popular":"El Rosal","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"10","comuna":"Consota","codigo_del_barrio":"11007","nombre":"El Futuro","nombre_popular":"El Futuro","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"10","comuna":"Consota","codigo_del_barrio":"11006","nombre":"Dorado II","nombre_popular":"Dorado II","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"10","comuna":"Consota","codigo_del_barrio":"11005","nombre":"Dorado I","nombre_popular":"Dorado I","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"10","comuna":"Consota","codigo_del_barrio":"11004","nombre":"Bella Sardi","nombre_popular":"Bella Sardi","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"10","comuna":"Consota","codigo_del_barrio":"11003","nombre":"Antonio Jose Valencia","nombre_popular":"Padre Valencia","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"10","comuna":"Consota","codigo_del_barrio":"11002","nombre":"Antonio Jose de Sucre","nombre_popular":"Las Mercedes","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"10","comuna":"Consota","codigo_del_barrio":"11001","nombre":"Aguas Claras","nombre_popular":"Aguas Claras","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"9","comuna":"Cuba","codigo_del_barrio":"10910","nombre":"San Fernando","nombre_popular":"San Fernando","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"9","comuna":"Cuba","codigo_del_barrio":"10908","nombre":"Rafael Uribe I","nombre_popular":"Rafael Uribe I","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"9","comuna":"Cuba","codigo_del_barrio":"10907","nombre":"La Union","nombre_popular":"La Union","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"9","comuna":"Cuba","codigo_del_barrio":"10906","nombre":"La Playita","nombre_popular":"La Playita","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"9","comuna":"Cuba","codigo_del_barrio":"10905","nombre":"La Independencia *1","nombre_popular":"La Independencia *1","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"9","comuna":"Cuba","codigo_del_barrio":"10904","nombre":"Cuba","nombre_popular":"Cuba","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"9","comuna":"Cuba","codigo_del_barrio":"10903","nombre":"Cortes","nombre_popular":"Cortes","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"9","comuna":"Cuba","codigo_del_barrio":"10902","nombre":"Brisas Del Consota","nombre_popular":"Brisas Del Consota","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"9","comuna":"Cuba","codigo_del_barrio":"10901","nombre":"Barberos","nombre_popular":"Barberos","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"18","comuna":"Del Cafe","codigo_del_barrio":"11816","nombre":"Villa Los Comunales","nombre_popular":"Villa Los Comunales","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"18","comuna":"Del Cafe","codigo_del_barrio":"11815","nombre":"Villa Del Cafe","nombre_popular":"Villa Del Cafe","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"18","comuna":"Del Cafe","codigo_del_barrio":"11814","nombre":"Sector B","nombre_popular":"Sector B","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"18","comuna":"Del Cafe","codigo_del_barrio":"11813","nombre":"Rincon Del Cafe","nombre_popular":"Rincon Del Cafe","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"18","comuna":"Del Cafe","codigo_del_barrio":"11812","nombre":"Paz Verde","nombre_popular":"Paz Verde","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"18","comuna":"Del Cafe","codigo_del_barrio":"11811","nombre":"Nuevo Horizonte","nombre_popular":"Nuevo Horizonte","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"18","comuna":"Del Cafe","codigo_del_barrio":"11810","nombre":"Malaga *1","nombre_popular":"Malaga *1","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"18","comuna":"Del Cafe","codigo_del_barrio":"11809","nombre":"Horizontes","nombre_popular":"Horizontes","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"18","comuna":"Del Cafe","codigo_del_barrio":"11808","nombre":"Ciudadela Comfamiliar Boquia","nombre_popular":"Ciudadela Comfamiliar Boquia","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"18","comuna":"Del Cafe","codigo_del_barrio":"11808","nombre":"Comfamiliar Boquia","nombre_popular":"Comfamiliar Boquia","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"18","comuna":"Del Cafe","codigo_del_barrio":"11808","nombre":"Alameda del Cafe","nombre_popular":"Alameda del Cafe","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"18","comuna":"Del Cafe","codigo_del_barrio":"11808","nombre":"Luis Alberto Duque","nombre_popular":"Luis Alberto Duque","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"18","comuna":"Del Cafe","codigo_del_barrio":"11808","nombre":"Portal de Llano Grande","nombre_popular":"Portal de Llano Grande","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"18","comuna":"Del Cafe","codigo_del_barrio":"11807","nombre":"Ciudad Boquia *1","nombre_popular":"Ciudad Boquia *1","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"18","comuna":"Del Cafe","codigo_del_barrio":"11806","nombre":"Carlos Enrique Soto","nombre_popular":"Carlos Enrique Soto","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"18","comuna":"Del Cafe","codigo_del_barrio":"11805","nombre":"Antonio Ricaurte","nombre_popular":"Sector B","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"18","comuna":"Del Cafe","codigo_del_barrio":"11804","nombre":"Altos de Los Angeles","nombre_popular":"Altos de Los Angeles","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"18","comuna":"Del Cafe","codigo_del_barrio":"11803","nombre":"Altos de Llano Grande II *2","nombre_popular":"Altos de Llano Grande II *2","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"18","comuna":"Del Cafe","codigo_del_barrio":"11802","nombre":"Mirador de Llano Grande","nombre_popular":"Mirador de Llano Grande","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"18","comuna":"Del Cafe","codigo_del_barrio":"11801","nombre":"Alamos Del Cafe","nombre_popular":"Alamos Del Cafe","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10827","nombre":"Villas Del Jardin III","nombre_popular":"Villas Del Jardin III","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10826","nombre":"Villas Del Jardin II","nombre_popular":"Villas Del Jardin II","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10825","nombre":"Villas Del Jardin I","nombre_popular":"Villas Del Jardin I","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10824","nombre":"Sector 30 de Agosto","nombre_popular":"Av. 30 de Agosto","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10823","nombre":"Rincon de Las Quintas","nombre_popular":"Rincon de Las Quintas","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10822","nombre":"Portal de Los Cedros","nombre_popular":"Portal de Los Cedros","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10821","nombre":"Niza II","nombre_popular":"Niza II","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10820","nombre":"Niza I","nombre_popular":"Niza I","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10819","nombre":"Mayorca","nombre_popular":"Mayorca","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10818","nombre":"Maraya","nombre_popular":"Maraya","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10818","nombre":"Maraya","nombre_popular":"Maraya","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10818","nombre":"Maraya","nombre_popular":"Maraya","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10818","nombre":"Conjunto Residencial Tisu","nombre_popular":"Conjunto Residencial Tisu","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10817","nombre":"Los Quimbayas","nombre_popular":"Los Quimbayas","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10816","nombre":"Los Cedros","nombre_popular":"Los Cedros","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10815","nombre":"Los Arrayanes","nombre_popular":"Los Arrayanes","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10814","nombre":"Los Andes","nombre_popular":"Los Andes","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10813","nombre":"Las Mangas","nombre_popular":"Las Mangas","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10812","nombre":"La Elvira","nombre_popular":"La Elvira","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10811","nombre":"Jardin III","nombre_popular":"Jardin III","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10810","nombre":"Jardin II","nombre_popular":"Jardin II","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10809","nombre":"Jardin I","nombre_popular":"Jardin I","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10808","nombre":"Jardin de Velez Y Velez","nombre_popular":"Jardin de Velez Y Velez","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10807","nombre":"Cedritos","nombre_popular":"Cedritos","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10806","nombre":"Caminos de Maraya","nombre_popular":"Caminos de Maraya","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10805","nombre":"Brasilia","nombre_popular":"Brasilia","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10805","nombre":"Brasilia","nombre_popular":"Brasilia","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10804","nombre":"Bosques de Santa Elena I","nombre_popular":"Bosques de Santa Elena I","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10803","nombre":"Balcones Condominio","nombre_popular":"Balcones Condominio","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10802","nombre":"Altos de Tananbi","nombre_popular":"Altos de Tananbi","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10802","nombre":"Jardines de Tanambi","nombre_popular":"Jardines de Tanambi","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10802","nombre":"Andalucia","nombre_popular":"Andalucia","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10802","nombre":"Arco Iris de la Colina","nombre_popular":"Arco Iris de la Colina","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10802","nombre":"La Castellana","nombre_popular":"La Castellana","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10802","nombre":"Paseo de la Castellana","nombre_popular":"Paseo de la Castellana","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"8","comuna":"El Jardin","codigo_del_barrio":"10801","nombre":"Alcazar de Maraya","nombre_popular":"Alcazar de Maraya","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11539","nombre":"Terranova","nombre_popular":"Terranova","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11547","nombre":"Vista Hermosa","nombre_popular":"Vista Hermosa","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11546","nombre":"Villa Navarra","nombre_popular":"Villa Navarra","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11545","nombre":"Villa Ligia III","nombre_popular":"Villa Ligia III","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11544","nombre":"Villa Ligia","nombre_popular":"Villa Ligia","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11543","nombre":"Villa Elisa","nombre_popular":"Villa Elisa","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11542","nombre":"Villa Del Sur","nombre_popular":"Villa Del Sur","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11541","nombre":"Villa Del Bosque","nombre_popular":"Villa Del Bosque","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11540","nombre":"Torres de La Acuarela","nombre_popular":"Torres de La Acuarela","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11538","nombre":"Sauces V","nombre_popular":"Sauces V","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11537","nombre":"Sauces IV","nombre_popular":"Sauces IV","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11536","nombre":"Sauces III","nombre_popular":"Sauces III","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11535","nombre":"Sauces II","nombre_popular":"Sauces II","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11534","nombre":"Sauces I","nombre_popular":"Sauces I","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11533","nombre":"Santafe","nombre_popular":"Santafe","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11532","nombre":"San Felipe","nombre_popular":"San Felipe","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11531","nombre":"Quintas de Los Sauces","nombre_popular":"Quintas de Los Sauces","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11530","nombre":"Quintas de La Acuarela II","nombre_popular":"Quintas de La Acuarela II","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11529","nombre":"Quintas de La Acuarela I","nombre_popular":"Quintas de La Acuarela I","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11528","nombre":"Pueblito Paisa","nombre_popular":"Pueblito Paisa","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11527","nombre":"Portal de Las Mercedes","nombre_popular":"Portal de Las Mercedes","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11526","nombre":"Olimpia","nombre_popular":"Olimpia","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11525","nombre":"Nueva Colombia","nombre_popular":"Nueva Colombia","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11524","nombre":"Montelibano","nombre_popular":"Montelibano","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11524","nombre":"Porto Alegre","nombre_popular":"Porto Alegre","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11524","nombre":"Porto Alegre Etp 2","nombre_popular":"Porto Alegre Etp 2","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11524","nombre":"Ciudadela Villa de Leyva","nombre_popular":"Ciudadela Villa de Leyva","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11524","nombre":"Guadacanal","nombre_popular":"Guadacanal","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11523","nombre":"Mirador de Panorama III","nombre_popular":"Mirador de Panorama III","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11522","nombre":"Mirador de Panorama II","nombre_popular":"Mirador de Panorama II","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11521","nombre":"Mirador de Panorama I","nombre_popular":"Mirador de Panorama I","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11520","nombre":"Los Prados","nombre_popular":"Sauces IV","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11519","nombre":"Los Pinos","nombre_popular":"Los Pinos","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11518","nombre":"Los Cristales","nombre_popular":"Los Cristales","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11517","nombre":"Libertador II","nombre_popular":"Libertador II","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11516","nombre":"Libertador","nombre_popular":"Libertador","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11515","nombre":"La Nueva Villa","nombre_popular":"La Nueva Villa","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11514","nombre":"La Idalia","nombre_popular":"La Idalia","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11513","nombre":"La Habana","nombre_popular":"La Habana","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11512","nombre":"La Floresta","nombre_popular":"La Floresta","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11511","nombre":"La Bretana","nombre_popular":"La Bretana","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11510","nombre":"La Acuarela","nombre_popular":"La Acuarela","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11509","nombre":"Jaime Pardo Leal","nombre_popular":"Jaime Pardo Leal","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11508","nombre":"Hacienda Cuba","nombre_popular":"Hacienda Cuba","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11507","nombre":"Guadalupe","nombre_popular":"Guadalupe","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11506","nombre":"Even-Ezer","nombre_popular":"Even-Ezer","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11505","nombre":"El Acuario","nombre_popular":"El Acuario","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11504","nombre":"Cinco de Octubre","nombre_popular":"Cinco de Octubre","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11503","nombre":"Altos de Panorama","nombre_popular":"Altos de Panorama","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11502","nombre":"Alejandria","nombre_popular":"Alejandria","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"15","comuna":"El Oso","codigo_del_barrio":"11501","nombre":"Alameda","nombre_popular":"Alameda","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"19","comuna":"El Poblado","codigo_del_barrio":"11911","nombre":"Villa Del Prado","nombre_popular":"Villa Del Prado","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"19","comuna":"El Poblado","codigo_del_barrio":"11910","nombre":"Villa Del Palmar","nombre_popular":"Villa Del Palmar","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"19","comuna":"El Poblado","codigo_del_barrio":"11909","nombre":"Samaria II","nombre_popular":"Samaria II","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"19","comuna":"El Poblado","codigo_del_barrio":"11908","nombre":"Samaria I","nombre_popular":"Samaria I","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"19","comuna":"El Poblado","codigo_del_barrio":"11908","nombre":"Portal de San Jacinto","nombre_popular":"Portal de San Jacinto","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"19","comuna":"El Poblado","codigo_del_barrio":"11907","nombre":"Rocio Bajo","nombre_popular":"Rocio Bajo","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"19","comuna":"El Poblado","codigo_del_barrio":"11906","nombre":"Poblado II","nombre_popular":"Poblado II","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"19","comuna":"El Poblado","codigo_del_barrio":"11905","nombre":"Poblado I","nombre_popular":"Poblado I","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"19","comuna":"El Poblado","codigo_del_barrio":"11904","nombre":"Hamburgo","nombre_popular":"Hamburgo","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"19","comuna":"El Poblado","codigo_del_barrio":"11903","nombre":"Cachipay","nombre_popular":"Cachipay","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"19","comuna":"El Poblado","codigo_del_barrio":"11902","nombre":"Barajas","nombre_popular":"Barajas","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"19","comuna":"El Poblado","codigo_del_barrio":"11901","nombre":"Balcones de Villa Del Prado","nombre_popular":"Balcones de Villa Del Prado","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"17","comuna":"El Rocio","codigo_del_barrio":"11702","nombre":"Rocio Alto *3","nombre_popular":"Rocio Alto *3","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"17","comuna":"El Rocio","codigo_del_barrio":"11701","nombre":"Caracol La Curva *4","nombre_popular":"Caracol La Curva *4","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"12","comuna":"Ferrocarril","codigo_del_barrio":"11215","nombre":"Nueva Esperanza","nombre_popular":"Nueva Esperanza","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"12","comuna":"Ferrocarril","codigo_del_barrio":"11214","nombre":"El Plumón Bajo","nombre_popular":"El Plumon Bajo","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"12","comuna":"Ferrocarril","codigo_del_barrio":"11213","nombre":"El Plumón Alto","nombre_popular":"El Plumon Alto","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"12","comuna":"Ferrocarril","codigo_del_barrio":"11212","nombre":"El Plumón","nombre_popular":"El Plumon","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"12","comuna":"Ferrocarril","codigo_del_barrio":"11211","nombre":"Torres de San Mateo","nombre_popular":"Torres de San Mateo","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"12","comuna":"Ferrocarril","codigo_del_barrio":"11210","nombre":"Simon Bolivar","nombre_popular":"Simon Bolivar","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"12","comuna":"Ferrocarril","codigo_del_barrio":"11209","nombre":"Catalan","nombre_popular":"Portal de La Villa","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"12","comuna":"Ferrocarril","codigo_del_barrio":"11209","nombre":"Portal de La Villa","nombre_popular":"Portal de La Villa","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"12","comuna":"Ferrocarril","codigo_del_barrio":"11209","nombre":"Portal de La Villa","nombre_popular":"Portal de La Villa","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"12","comuna":"Ferrocarril","codigo_del_barrio":"11208","nombre":"Nacederos","nombre_popular":"Nacederos","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"12","comuna":"Ferrocarril","codigo_del_barrio":"11207","nombre":"Matecana","nombre_popular":"Matecana","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"12","comuna":"Ferrocarril","codigo_del_barrio":"11206","nombre":"La Libertad","nombre_popular":"La Libertad","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"12","comuna":"Ferrocarril","codigo_del_barrio":"11205","nombre":"La Hacienda","nombre_popular":"La Hacienda","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"12","comuna":"Ferrocarril","codigo_del_barrio":"11204","nombre":"Jose Hilario Lopez II","nombre_popular":"Jose Hilario Lopez II","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"12","comuna":"Ferrocarril","codigo_del_barrio":"11203","nombre":"Jose Hilario Lopez I","nombre_popular":"Jose Hilario Lopez I","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"12","comuna":"Ferrocarril","codigo_del_barrio":"11202","nombre":"Gabriel Trujillo","nombre_popular":"Gabriel Trujillo","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"12","comuna":"Ferrocarril","codigo_del_barrio":"11201","nombre":"Sureste de la Sierra","nombre_popular":"Sureste de la Sierra","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11139","nombre":"Obelisco de la VIlla","nombre_popular":"Obelisco de la VIlla","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11139","nombre":"Villas de La Madrid","nombre_popular":"Villas de La Madrid","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11139","nombre":"Villasol Parque Residencial","nombre_popular":"Villasol Parque Residencial","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11139","nombre":"Serrezuela","nombre_popular":"Serrezuela","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11138","nombre":"Villa Ilusion","nombre_popular":"Villa Ilusion","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11137","nombre":"Villa Alicia","nombre_popular":"Villa Alicia","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11136","nombre":"Toluca","nombre_popular":"Toluca","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11135","nombre":"Santa Monica","nombre_popular":"Santa Monica","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11134","nombre":"Santa Cruz de Gamma","nombre_popular":"Santa Cruz de Gamma","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11133","nombre":"San Felipe","nombre_popular":"San Felipe","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11132","nombre":"Samanes de Belmonte","nombre_popular":"Samanes de Belmonte","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11131","nombre":"Rincon de La Villa","nombre_popular":"Rincon de La Villa","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11130","nombre":"Rincon de La Palma","nombre_popular":"Rincon de La Palma","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11129","nombre":"Reserva de La Villa","nombre_popular":"Reserva de La Villa","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11128","nombre":"Pinar de Gamma","nombre_popular":"Pinar de Gamma","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11127","nombre":"Pinar de Belmonte","nombre_popular":"Pinar de Belmonte","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11126","nombre":"Olimpico II","nombre_popular":"Olimpico II","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11125","nombre":"Olimpico I","nombre_popular":"Olimpico I","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11124","nombre":"Multifamiliar La Villa","nombre_popular":"Multifamiliar La Villa","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11123","nombre":"Mirador de La Cien","nombre_popular":"Mirador de La Cien","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11122","nombre":"Los Nogales","nombre_popular":"Los Nogales","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11121","nombre":"Los Corales","nombre_popular":"Los Corales","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11121","nombre":"Coral Plaza","nombre_popular":"Coral Plaza","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11120","nombre":"Los Arrevoles","nombre_popular":"Los Arrevoles","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11119","nombre":"La Villa","nombre_popular":"La Villa","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11118","nombre":"La Glorieta","nombre_popular":"La Glorieta","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11117","nombre":"Jardines de La Villa","nombre_popular":"Jardines de La Villa","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11116","nombre":"Gamma V","nombre_popular":"Gamma V","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11116","nombre":"Gamma V","nombre_popular":"Gamma V","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11116","nombre":"Senderos de Unicentro","nombre_popular":"Senderos de Unicentro","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11115","nombre":"Bosques de Cantabria","nombre_popular":"Bosques de Cantabria","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11115","nombre":"Gamma IV","nombre_popular":"Gamma IV","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11115","nombre":"Rincon de Unicentro","nombre_popular":"Rincon de Unicentro","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11114","nombre":"Gamma III","nombre_popular":"Gamma III","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11113","nombre":"Gamma II","nombre_popular":"Gamma II","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11112","nombre":"Fegove","nombre_popular":"Fegove","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11111","nombre":"El Pizamo","nombre_popular":"El Pizamo","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11111","nombre":"El Palmar","nombre_popular":"El Palmar","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11111","nombre":"El Palmar","nombre_popular":"El Palmar","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11111","nombre":"Olivar de los Vientos II","nombre_popular":"Olivar de los Vientos II","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11111","nombre":"Olivar de los Vientos","nombre_popular":"Olivar de los Vientos","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11111","nombre":"Olivar de los Vientos","nombre_popular":"Olivar de los Vientos","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11111","nombre":"La Italia","nombre_popular":"La Italia","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11109","nombre":"El Campin III","nombre_popular":"El Campin III","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11108","nombre":"El Campin I-II","nombre_popular":"El Campin I-II","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11107","nombre":"Colores de La Villa","nombre_popular":"Colores de La Villa","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11107","nombre":"Alegrias de la Villa","nombre_popular":"Alegrias de la Villa","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11107","nombre":"Rivera Campestre","nombre_popular":"Rivera Campestre","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11107","nombre":"San Sebastian","nombre_popular":"San Sebastian","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11106","nombre":"Canaveral II","nombre_popular":"Canaveral II","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11106","nombre":"Canaveral II","nombre_popular":"Canaveral II","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11106","nombre":"Canaveral","nombre_popular":"Canaveral","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11105","nombre":"Belmonte","nombre_popular":"Belmonte","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11105","nombre":"Belmonte B","nombre_popular":"Belmonte B","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11104","nombre":"Altos de Belmonte","nombre_popular":"Altos de Belmonte","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11103","nombre":"Alhambra","nombre_popular":"Alhambra","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11102","nombre":"Alfa","nombre_popular":"Alfa","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"11","comuna":"Olimpica","codigo_del_barrio":"11101","nombre":"Alcazares","nombre_popular":"Alcazares","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"5","comuna":"Oriente","codigo_del_barrio":"10521","nombre":"Simon Bolivar","nombre_popular":"Simon Bolivar","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"5","comuna":"Oriente","codigo_del_barrio":"10520","nombre":"Santander","nombre_popular":"Santander","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"5","comuna":"Oriente","codigo_del_barrio":"10519","nombre":"San Gregorio","nombre_popular":"San Gregorio","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"5","comuna":"Oriente","codigo_del_barrio":"10518","nombre":"San Francisco","nombre_popular":"San Francisco","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"5","comuna":"Oriente","codigo_del_barrio":"10517","nombre":"Pimpollo - Libare *2","nombre_popular":"Pimpollo - Libare *2","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"5","comuna":"Oriente","codigo_del_barrio":"10516","nombre":"Paz Del Rio","nombre_popular":"Paz Del Rio","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"5","comuna":"Oriente","codigo_del_barrio":"10515","nombre":"Ormaza","nombre_popular":"Ormaza","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"5","comuna":"Oriente","codigo_del_barrio":"10514","nombre":"La Rivera","nombre_popular":"La Rivera","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"5","comuna":"Oriente","codigo_del_barrio":"10513","nombre":"La Pupi","nombre_popular":"La Pupi","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"5","comuna":"Oriente","codigo_del_barrio":"10512","nombre":"Kennedy","nombre_popular":"Kennedy","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"5","comuna":"Oriente","codigo_del_barrio":"10511","nombre":"Hernando Velez Marulanda","nombre_popular":"Hernando Velez Marulanda","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"5","comuna":"Oriente","codigo_del_barrio":"10510","nombre":"El Pizamo","nombre_popular":"El Pizamo","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"5","comuna":"Oriente","codigo_del_barrio":"10509","nombre":"Chico Restrepo","nombre_popular":"Chico Restrepo","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"5","comuna":"Oriente","codigo_del_barrio":"10508","nombre":"Cesar Nader Nader","nombre_popular":"Cesar Nader Nader","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"5","comuna":"Oriente","codigo_del_barrio":"10507","nombre":"Castano Robledo","nombre_popular":"Castano Robledo","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"5","comuna":"Oriente","codigo_del_barrio":"10506","nombre":"Brisas Del Otun","nombre_popular":"Brisas Del Otun","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"5","comuna":"Oriente","codigo_del_barrio":"10505","nombre":"Arboleda Del Rio","nombre_popular":"Arboleda Del Rio","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"5","comuna":"Oriente","codigo_del_barrio":"10504","nombre":"Antonio Narino","nombre_popular":"Antonio Narino","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"5","comuna":"Oriente","codigo_del_barrio":"10503","nombre":"Altos Del Otun *2, *3","nombre_popular":"Altos Del Otun *2, *3","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"5","comuna":"Oriente","codigo_del_barrio":"10502","nombre":"Alfonso Lopez","nombre_popular":"Alfonso Lopez","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"5","comuna":"Oriente","codigo_del_barrio":"10501","nombre":"20 de Julio","nombre_popular":"20 de Julio","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"14","comuna":"Perla Del Otun","codigo_del_barrio":"11420","nombre":"Villa Rocio","nombre_popular":"Villa Rocio","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"14","comuna":"Perla Del Otun","codigo_del_barrio":"11419","nombre":"Villa Maria","nombre_popular":"Villa Maria","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"14","comuna":"Perla Del Otun","codigo_del_barrio":"11418","nombre":"Villa Kennedy","nombre_popular":"Villa Kennedy","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"14","comuna":"Perla Del Otun","codigo_del_barrio":"11417","nombre":"Sinai","nombre_popular":"Sinai","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"14","comuna":"Perla Del Otun","codigo_del_barrio":"11416","nombre":"Neyra Marquez","nombre_popular":"Neyra Marquez","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"14","comuna":"Perla Del Otun","codigo_del_barrio":"11415","nombre":"Metropolitano","nombre_popular":"Metropolitano","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"14","comuna":"Perla Del Otun","codigo_del_barrio":"11414","nombre":"Los Almendros","nombre_popular":"Los Almendros","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"14","comuna":"Perla Del Otun","codigo_del_barrio":"11413","nombre":"La Policia","nombre_popular":"La Policia","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"14","comuna":"Perla Del Otun","codigo_del_barrio":"11412","nombre":"La Francia","nombre_popular":"La Francia","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"14","comuna":"Perla Del Otun","codigo_del_barrio":"11412","nombre":"La Francia","nombre_popular":"La Francia","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"14","comuna":"Perla Del Otun","codigo_del_barrio":"11411","nombre":"La Albania","nombre_popular":"La Albania","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"14","comuna":"Perla Del Otun","codigo_del_barrio":"11411","nombre":"La Albania","nombre_popular":"La Albania","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"14","comuna":"Perla Del Otun","codigo_del_barrio":"11410","nombre":"Independientes","nombre_popular":"Independientes","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"14","comuna":"Perla Del Otun","codigo_del_barrio":"11409","nombre":"Heroes II","nombre_popular":"Heroes II","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"14","comuna":"Perla Del Otun","codigo_del_barrio":"11408","nombre":"Heroes I","nombre_popular":"Heroes I","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"14","comuna":"Perla Del Otun","codigo_del_barrio":"11407","nombre":"Gaviria Trujillo","nombre_popular":"Gaviria Trujillo","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"14","comuna":"Perla Del Otun","codigo_del_barrio":"11406","nombre":"El Paraiso","nombre_popular":"El Paraiso","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"14","comuna":"Perla Del Otun","codigo_del_barrio":"11405","nombre":"El Bosque","nombre_popular":"Villa del Bosque","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"14","comuna":"Perla Del Otun","codigo_del_barrio":"11404","nombre":"Departamento","nombre_popular":"El Departamento","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"14","comuna":"Perla Del Otun","codigo_del_barrio":"11402","nombre":"Carlos Alberto Benavides","nombre_popular":"Carlos Alberto Benavides","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"14","comuna":"Perla Del Otun","codigo_del_barrio":"11401","nombre":"Aranjuez","nombre_popular":"Aranjuez","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10236","nombre":"Zea","nombre_popular":"Zea","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10235","nombre":"Santa Teresita","nombre_popular":"Santa Teresita","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10234","nombre":"Santa Elena","nombre_popular":"Santa Elena","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10233","nombre":"San Juan de Dios","nombre_popular":"San Juan de Dios","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10232","nombre":"San Juan","nombre_popular":"San Juan","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10231","nombre":"San Jorge","nombre_popular":"San Jorge","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10230","nombre":"San Camilo","nombre_popular":"San Camilo","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10229","nombre":"San Antonio","nombre_popular":"San Antonio","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10228","nombre":"Salvador Allende","nombre_popular":"Salvador Allende","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10227","nombre":"Jaime Salazar Robledo","nombre_popular":"Jaime Salazar Robledo","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10226","nombre":"Salazar Londono","nombre_popular":"Salazar Londono","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10225","nombre":"Risaralda","nombre_popular":"Risaralda","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10224","nombre":"Remigio Antonio Canarte","nombre_popular":"Remigio Antonio Canarte","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10223","nombre":"Primero de Mayo","nombre_popular":"Primero de Mayo","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10222","nombre":"Nuevo Penol","nombre_popular":"Nuevo Penol","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10221","nombre":"Mirasol","nombre_popular":"Mirasol","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10220","nombre":"Los Alcazares","nombre_popular":"Los Alcazares","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10219","nombre":"Las Palmas","nombre_popular":"Las Palmas","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10218","nombre":"La Sirena","nombre_popular":"La Sirena","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10217","nombre":"La Palmera","nombre_popular":"La Palmera","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10216","nombre":"La Esperanza","nombre_popular":"La Esperanza","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10215","nombre":"Jose Marti","nombre_popular":"Jose Marti","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10214","nombre":"Jose Antonio Galan","nombre_popular":"Jose Antonio Galan","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10213","nombre":"Jorge Eliecer Gaitan","nombre_popular":"Jorge Eliecer Gaitan","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10212","nombre":"Gualanday","nombre_popular":"Gualanday","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10211","nombre":"Getsemani","nombre_popular":"Getsemani","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10210","nombre":"Enrique Millan Rubio","nombre_popular":"Enrique Millan Rubio","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10209","nombre":"El Triunfo","nombre_popular":"El Triunfo","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10208","nombre":"El Progreso","nombre_popular":"El Progreso","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10207","nombre":"El Prado","nombre_popular":"El Prado","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10206","nombre":"Constructores","nombre_popular":"Constructores","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10205","nombre":"Colinas Del Triunfo","nombre_popular":"Colinas Del Triunfo","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10204","nombre":"Campina del Otun","nombre_popular":"Campina del Otun","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10203","nombre":"Byron Gaviria","nombre_popular":"Byron Gaviria","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10202","nombre":"Bavaria","nombre_popular":"Bavaria","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"2","comuna":"Rio Otun","codigo_del_barrio":"10201","nombre":"America","nombre_popular":"America","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11341","nombre":"Tinajas","nombre_popular":"Tinajas","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11340","nombre":"EL Nogal Club Residencial","nombre_popular":"EL Nogal Club Residencial","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11340","nombre":"Santa Juana de Las Villas","nombre_popular":"Santa Juana de Las Villas","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11339","nombre":"Santa Clara de Las Villas *4","nombre_popular":"Santa Clara de Las Villas *4","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11338","nombre":"San Marcos","nombre_popular":"San Marcos","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11337","nombre":"San Joaquin","nombre_popular":"San Joaquin","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11336","nombre":"Rafael Uribe III","nombre_popular":"Rafael Uribe III","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11335","nombre":"Rafael Uribe II","nombre_popular":"Rafael Uribe II","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11334","nombre":"Portales de Birmania","nombre_popular":"Portales de Birmania","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11333","nombre":"Portal de San Joaquin II","nombre_popular":"Portal de San Joaquin II","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11332","nombre":"Portal de San Joaquin I","nombre_popular":"Portal de San Joaquin I","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11331","nombre":"Portal de Corales","nombre_popular":"Portal de Corales","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11330","nombre":"Plan Carvajal","nombre_popular":"Plan Carvajal","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11329","nombre":"Perla Del Sur","nombre_popular":"Perla Del Sur","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11328","nombre":"Los Girasoles","nombre_popular":"Los Girasoles","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11327","nombre":"Los Geranios","nombre_popular":"Los Geranios","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11326","nombre":"Los Conquistadores","nombre_popular":"Los Conquistadores","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11325","nombre":"Los Cisnes","nombre_popular":"Los Cisnes","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11324","nombre":"Letras","nombre_popular":"Letras","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11323","nombre":"Leningrado III","nombre_popular":"Leningrado III","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11322","nombre":"Leningrado II","nombre_popular":"Leningrado II","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11321","nombre":"Laureles II","nombre_popular":"Laureles II","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11320","nombre":"Laureles I","nombre_popular":"Laureles I","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11319","nombre":"La Isla","nombre_popular":"La Isla","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11318","nombre":"Jose Maria Cordoba","nombre_popular":"Jose Maria Cordoba","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11317","nombre":"Guayacanes","nombre_popular":"Guayacanes","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11316","nombre":"Gibraltar","nombre_popular":"Gibraltar","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11315","nombre":"El Recreo","nombre_popular":"El Recreo","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11315","nombre":"Alcala del Campo","nombre_popular":"Alcala del Campo","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11314","nombre":"El Eden","nombre_popular":"El Eden","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11313","nombre":"El Crucero","nombre_popular":"El Crucero","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11312","nombre":"El Cardal","nombre_popular":"El Cardal","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11311","nombre":"Coralina","nombre_popular":"Coralina","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11311","nombre":"Bulevar del Bosque","nombre_popular":"Bulevar del Bosque","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11311","nombre":"Bulevar de las Villas","nombre_popular":"Bulevar de las Villas","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11311","nombre":"Bulevar de las Villas","nombre_popular":"Bulevar de las Villas","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11311","nombre":"Bulevar del Cafe","nombre_popular":"Bulevar del Cafe","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11311","nombre":"Quintas de Corazal","nombre_popular":"Quintas de Corazal","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11310","nombre":"Codelmar IV","nombre_popular":"Codelmar IV","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11309","nombre":"Codelmar III","nombre_popular":"Codelmar III","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11308","nombre":"Codelmar II","nombre_popular":"Codelmar II","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11307","nombre":"Codelmar I","nombre_popular":"Codelmar I","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11306","nombre":"Ciudadela Comfamiliar II","nombre_popular":"Ciudadela Comfamiliar II","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11305","nombre":"Ciudadela Comfamiliar I","nombre_popular":"Ciudadela Comfamiliar I","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11304","nombre":"Campo Alegre *3","nombre_popular":"Campo Alegre *3","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11303","nombre":"Bello Horizonte","nombre_popular":"Bello Horizonte","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11302","nombre":"Atenas","nombre_popular":"Atenas","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"13","comuna":"San Joaquin","codigo_del_barrio":"11301","nombre":"Altos de Corales","nombre_popular":"Altos de Corales","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"16","comuna":"San Nicolas","codigo_del_barrio":"11608","nombre":"Villa Nohemy","nombre_popular":"Villa Nohemy","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"16","comuna":"San Nicolas","codigo_del_barrio":"11607","nombre":"Villa Mery","nombre_popular":"Villa Mery","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"16","comuna":"San Nicolas","codigo_del_barrio":"11606","nombre":"San Nicolas","nombre_popular":"San Nicolas","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"16","comuna":"San Nicolas","codigo_del_barrio":"11605","nombre":"San Martin de Loba","nombre_popular":"San Martin de Loba","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"16","comuna":"San Nicolas","codigo_del_barrio":"11604","nombre":"Nuevo Mejico","nombre_popular":"Los Molinos","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"16","comuna":"San Nicolas","codigo_del_barrio":"11603","nombre":"Las Antillas","nombre_popular":"Las Antillas","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"16","comuna":"San Nicolas","codigo_del_barrio":"11602","nombre":"La Dulcera","nombre_popular":"La Dulcera","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"16","comuna":"San Nicolas","codigo_del_barrio":"11601","nombre":"Brisas de Las Americas","nombre_popular":"Brisas de Las Americas","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"6","comuna":"Universidad","codigo_del_barrio":"10624","nombre":"Villa Los Alamos","nombre_popular":"Villa Los Alamos","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"6","comuna":"Universidad","codigo_del_barrio":"10623","nombre":"San Jose Sur","nombre_popular":"San Jose Sur","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"6","comuna":"Universidad","codigo_del_barrio":"10622","nombre":"San Jose","nombre_popular":"San Jose","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"6","comuna":"Universidad","codigo_del_barrio":"10621","nombre":"Quintanar Del Cerro *1, *3","nombre_popular":"Quintanar Del Cerro *1, *3","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"6","comuna":"Universidad","codigo_del_barrio":"10620","nombre":"Puerta de Abacanto","nombre_popular":"Puerta de Abacanto","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"6","comuna":"Universidad","codigo_del_barrio":"10619","nombre":"Popular Modelo","nombre_popular":"Popular Modelo","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"6","comuna":"Universidad","codigo_del_barrio":"10618","nombre":"Pinares de San Martin","nombre_popular":"Pinares de San Martin","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"6","comuna":"Universidad","codigo_del_barrio":"10617","nombre":"Los Rosales","nombre_popular":"Los Rosales","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"6","comuna":"Universidad","codigo_del_barrio":"10616","nombre":"Los Angeles","nombre_popular":"Los Angeles","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"6","comuna":"Universidad","codigo_del_barrio":"10615","nombre":"Los Alpes","nombre_popular":"Los Alpes","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"6","comuna":"Universidad","codigo_del_barrio":"10614","nombre":"Los Alamos","nombre_popular":"Los Alamos","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"6","comuna":"Universidad","codigo_del_barrio":"10613","nombre":"La Sierra","nombre_popular":"La Sierra","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"6","comuna":"Universidad","codigo_del_barrio":"10612","nombre":"La Parcela","nombre_popular":"La Parcela","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"6","comuna":"Universidad","codigo_del_barrio":"10611","nombre":"La Julita","nombre_popular":"La Julita","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"6","comuna":"Universidad","codigo_del_barrio":"10610","nombre":"La Julia","nombre_popular":"La Julia","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"6","comuna":"Universidad","codigo_del_barrio":"10609","nombre":"La Ensenanza","nombre_popular":"La Ensenanza","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"6","comuna":"Universidad","codigo_del_barrio":"10608","nombre":"La Aurora","nombre_popular":"La Aurora","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"6","comuna":"Universidad","codigo_del_barrio":"10607","nombre":"Favi Utp","nombre_popular":"Favi Utp","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"6","comuna":"Universidad","codigo_del_barrio":"10605","nombre":"El Bosque *1, *3","nombre_popular":"El Bosque *1, *3","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"6","comuna":"Universidad","codigo_del_barrio":"10604","nombre":"Ciudad Jardin","nombre_popular":"Ciudad Jardin","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"6","comuna":"Universidad","codigo_del_barrio":"10603","nombre":"Canaan","nombre_popular":"Canaan","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"6","comuna":"Universidad","codigo_del_barrio":"10602","nombre":"Cambulos","nombre_popular":"Cambulos","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"6","comuna":"Universidad","codigo_del_barrio":"10601","nombre":"Altos de Canaan","nombre_popular":"Altos de Canaan","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"1","comuna":"Villa Santana","codigo_del_barrio":"10114","nombre":"Veracruz II","nombre_popular":"Veracruz II","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"1","comuna":"Villa Santana","codigo_del_barrio":"10113","nombre":"Veracruz","nombre_popular":"Veracruz","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"1","comuna":"Villa Santana","codigo_del_barrio":"10112","nombre":"San Vicente","nombre_popular":"San Vicente","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"1","comuna":"Villa Santana","codigo_del_barrio":"10111","nombre":"Nuevo Plan","nombre_popular":"Nuevo Plan","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"1","comuna":"Villa Santana","codigo_del_barrio":"10110","nombre":"Monserrate","nombre_popular":"Monserrate","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"1","comuna":"Villa Santana","codigo_del_barrio":"10109","nombre":"Las Margaritas","nombre_popular":"Las Margaritas","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"1","comuna":"Villa Santana","codigo_del_barrio":"10108","nombre":"Las Brisas","nombre_popular":"Las Brisas","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"1","comuna":"Villa Santana","codigo_del_barrio":"10107","nombre":"La Isla","nombre_popular":"La Isla","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"1","comuna":"Villa Santana","codigo_del_barrio":"10106","nombre":"Intermedio","nombre_popular":"Intermedio","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"1","comuna":"Villa Santana","codigo_del_barrio":"10105","nombre":"El Otono","nombre_popular":"El Otono","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"1","comuna":"Villa Santana","codigo_del_barrio":"10104","nombre":"El Danubio *2, *4","nombre_popular":"El Danubio *2, *4","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"1","comuna":"Villa Santana","codigo_del_barrio":"10103","nombre":"Comfamiliar Villasantana","nombre_popular":"Comfamiliar Villasantana","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"1","comuna":"Villa Santana","codigo_del_barrio":"10102","nombre":"Ciudadela Tokio *2","nombre_popular":"Ciudadela Tokio *2","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"1","comuna":"Villa Santana","codigo_del_barrio":"10101","nombre":"Bellavista","nombre_popular":"Bellavista","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"4","comuna":"Villavicencio","codigo_del_barrio":"10404","nombre":"Villavicencio","nombre_popular":"Villavicencio","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"4","comuna":"Villavicencio","codigo_del_barrio":"10403","nombre":"Los Andes","nombre_popular":"Los Andes","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"4","comuna":"Villavicencio","codigo_del_barrio":"10403","nombre":"Los Andes","nombre_popular":"Los Andes","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"4","comuna":"Villavicencio","codigo_del_barrio":"10402","nombre":"Corocito","nombre_popular":"Corocito","ciudad":"Pereira","departamento":"Risaralda"}
+,{"codigo_de_la_comuna":"4","comuna":"Villavicencio","codigo_del_barrio":"10401","nombre":"Berlin","nombre_popular":"Berlin","ciudad":"Pereira","departamento":"Risaralda"}]

@@ -1,0 +1,81 @@
+name: sos-prod
+
+services:
+  database:
+    image: postgis/postgis:17-3.5-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${SOS_DB_NAME:-sos}
+      POSTGRES_USER: ${SOS_DB_USER:-sos}
+      POSTGRES_PASSWORD: ${SOS_DB_PASSWORD:?Define SOS_DB_PASSWORD in .env.prod}
+    volumes:
+      - sos_postgres_prod:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${SOS_DB_USER:-sos} -d ${SOS_DB_NAME:-sos}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks: [sos-private]
+
+  backend:
+    build:
+      context: ./apps/backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      APP_ENV: production
+      DATABASE_URL: postgresql+asyncpg://${SOS_DB_USER:-sos}:${SOS_DB_PASSWORD:?Define SOS_DB_PASSWORD in .env.prod}@database:5432/${SOS_DB_NAME:-sos}
+      JWT_SECRET: ${SOS_JWT_SECRET:?Define SOS_JWT_SECRET in .env.prod}
+      DATA_ENCRYPTION_KEY: ${SOS_DATA_ENCRYPTION_KEY:?Define SOS_DATA_ENCRYPTION_KEY in .env.prod}
+      ALLOWED_ORIGINS: '["https://${SOS_PUBLIC_DOMAIN:-ayudacolombia.com.co}"]'
+    command: ["sh", "-c", "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000"]
+    depends_on:
+      database:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/v1/health/live', timeout=5)"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=${PROXY_NETWORK_NAME:-proxy-net}"
+      - "traefik.http.routers.sos-api.rule=Host(`${SOS_PUBLIC_DOMAIN:-ayudacolombia.com.co}`) && (Path(`/api`) || PathPrefix(`/api/`))"
+      - "traefik.http.routers.sos-api.entrypoints=websecure"
+      - "traefik.http.routers.sos-api.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.sos-api.priority=100"
+      - "traefik.http.routers.sos-api.middlewares=sos-browser-permissions@docker,secHeaders@file,compress@file"
+      - "traefik.http.services.sos-api.loadbalancer.server.port=8000"
+    networks: [sos-private, proxy-net]
+
+  frontend:
+    build:
+      context: ./apps/frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: /api/v1
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=${PROXY_NETWORK_NAME:-proxy-net}"
+      - "traefik.http.routers.sos-front.rule=Host(`${SOS_PUBLIC_DOMAIN:-ayudacolombia.com.co}`) && !Path(`/api`) && !PathPrefix(`/api/`)"
+      - "traefik.http.routers.sos-front.entrypoints=websecure"
+      - "traefik.http.routers.sos-front.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.sos-front.priority=10"
+      - "traefik.http.routers.sos-front.middlewares=sos-browser-permissions@docker,secHeaders@file,compress@file"
+      - "traefik.http.middlewares.sos-browser-permissions.headers.customresponseheaders.Permissions-Policy=camera=(), microphone=(), geolocation=(self), payment=()"
+      - "traefik.http.services.sos-front.loadbalancer.server.port=8080"
+    networks: [proxy-net]
+
+networks:
+  sos-private:
+    name: sos-private
+  proxy-net:
+    name: ${PROXY_NETWORK_NAME:-proxy-net}
+    external: true
+
+volumes:
+  sos_postgres_prod:

@@ -1,0 +1,18 @@
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: humanitarian-response-domain
+  description: Herramientas abiertas para coordinación humanitaria territorial.
+spec:
+  owner: sos-maintainers
+---
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: sos-system-catalog
+spec:
+  targets:
+    - ./apps/catalog-info.yaml
+    - ./apps/frontend/catalog-info.yaml
+    - ./apps/backend/catalog-info.yaml
+

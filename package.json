@@ -1,0 +1,14 @@
+{
+  "name": "sos-pereira",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": ["apps/frontend"],
+  "scripts": {
+    "dev": "npm --workspace apps/frontend run dev",
+    "build": "npm --workspace apps/frontend run build",
+    "typecheck": "npm --workspace apps/frontend run typecheck",
+    "test": "npm --workspace apps/frontend run test"
+  },
+  "engines": { "node": ">=22" }
+}
+

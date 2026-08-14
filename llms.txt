@@ -1,0 +1,10 @@
+# Ayuda Colombia
+
+Sistema humanitario territorial para visualizar y reportar necesidades, ayudas, afectaciones y centros de atención.
+
+- Frontend: `apps/frontend`, React 19 + Vite + MapLibre.
+- Backend: `apps/backend`, FastAPI y dominios verticales.
+- Contrato: `/api/v1` y OpenAPI autogenerado.
+- Documentación: `docs/` bajo Diátaxis.
+- Datos públicos deben indicar fuente, estado de verificación y hora de actualización.
+- Nunca publicar PII ni ubicaciones exactas de personas vulnerables.

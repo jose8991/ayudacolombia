@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.vite/
+.env
+.env.*
+!.env.example
+!.env.*.example
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.venv/
+*.pyc
+coverage/
+playwright-report/
+.mypy_cache/
+*.tsbuildinfo
+

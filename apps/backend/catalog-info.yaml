@@ -1,0 +1,25 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: sos-pereira-backend
+  description: API de reportes, verificación y coordinación territorial.
+spec:
+  type: service
+  lifecycle: experimental
+  owner: sos-maintainers
+  system: sos-pereira-system
+  providesApis:
+    - sos-pereira-api
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: sos-pereira-api
+spec:
+  type: openapi
+  lifecycle: experimental
+  owner: sos-maintainers
+  system: sos-pereira-system
+  definition: |
+    $text: http://localhost:8000/openapi.json
+

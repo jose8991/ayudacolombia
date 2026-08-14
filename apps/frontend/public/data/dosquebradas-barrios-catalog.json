@@ -1,0 +1,275 @@
+[{"vigencia":"2020","nombre_comuna":"COMUNA 1","id_barrio":"3","nombre_barrio":"LA ESNEDA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 1","id_barrio":"7","nombre_barrio":"LA GRACIELA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 1","id_barrio":"30","nombre_barrio":"LAS VEGAS"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 1","id_barrio":"35","nombre_barrio":"AROMAS DEL CAFÉ"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 1","id_barrio":"66","nombre_barrio":"MINUTO DE DIOS"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 1","id_barrio":"80","nombre_barrio":"OTÚN"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 1","id_barrio":"84","nombre_barrio":"PEDREGALES"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 1","id_barrio":"148","nombre_barrio":"VALLARTA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 1","id_barrio":"153","nombre_barrio":"VILLA ALEXANDRA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 1","id_barrio":"206","nombre_barrio":"EL BALSO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 1","id_barrio":"210","nombre_barrio":"EL DANUBIO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 1","id_barrio":"212","nombre_barrio":"EL ENSUEÑO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 1","id_barrio":"213","nombre_barrio":"EL ENSUEÑO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 1","id_barrio":"245","nombre_barrio":"INQUILINOS - JORGE ELIÉCER GAITÁN"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 1","id_barrio":"251","nombre_barrio":"LA BADEA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"12","nombre_barrio":"LA OKARINA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"21","nombre_barrio":"LA SULTANA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"27","nombre_barrio":"LAS GARZAS"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"33","nombre_barrio":"LOS ABEDULES"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"38","nombre_barrio":"LOS CÁMBULOS"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"42","nombre_barrio":"LOS HÉROES"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"44","nombre_barrio":"LOS LEONES"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"67","nombre_barrio":"MIRADOR DE FRAILES - BLOQUE M"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"77","nombre_barrio":"OLAYA HERRERA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"82","nombre_barrio":"PANORAMA CENTER"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"87","nombre_barrio":"PÍO XII"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"93","nombre_barrio":"PORTAL DEL PARQUE"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"112","nombre_barrio":"ALONSO VALENCIA – LA POPA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"117","nombre_barrio":"SAN GREGORIO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"119","nombre_barrio":"SAN RAFAEL"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"128","nombre_barrio":"SANTIAGO LONDOÑO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"129","nombre_barrio":"SATURNO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"147","nombre_barrio":"VALHER"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"149","nombre_barrio":"VELA I Y II"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"154","nombre_barrio":"VILLA ALQUÍN"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"156","nombre_barrio":"VILLA CLARA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"164","nombre_barrio":"VILLA FANNY"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"166","nombre_barrio":"VILLA LAURA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"169","nombre_barrio":"VILLA MARIELA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"175","nombre_barrio":"VILLAS DE SANTA MÓNICA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"179","nombre_barrio":"CAMILO MEJÍA DUQUE"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"185","nombre_barrio":"CASA DEL POBRE"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"196","nombre_barrio":"COOGEMELA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"201","nombre_barrio":"DIANA TURBAY I Y II"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"208","nombre_barrio":"EL CARMEN"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"214","nombre_barrio":"EL JAPÓN"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"220","nombre_barrio":"EL PARAÍSO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"226","nombre_barrio":"ALTOS DE SANTA MÓNICA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"233","nombre_barrio":"FABIO LEÓN"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"237","nombre_barrio":"ALTOS DEL EDÉN"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"248","nombre_barrio":"ÁLVARO PATIÑO I Y II"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"250","nombre_barrio":"LA AURORA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"252","nombre_barrio":"LA CABAÑA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"260","nombre_barrio":"LA GIRALDA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"261","nombre_barrio":"BOREAL"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 2","id_barrio":"262","nombre_barrio":"MIRADOR DE LA ESTANCIA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 3","id_barrio":"9","nombre_barrio":"LA MACARENA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 3","id_barrio":"24","nombre_barrio":"ARANJUEZ"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 3","id_barrio":"40","nombre_barrio":"LOS CEREZOS"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 3","id_barrio":"51","nombre_barrio":"LOS OLIVOS"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 3","id_barrio":"62","nombre_barrio":"MARACAY"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 3","id_barrio":"94","nombre_barrio":"PORVENIR"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 3","id_barrio":"99","nombre_barrio":"QUINTAS DE EL REFUGIO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 3","id_barrio":"107","nombre_barrio":"QUINTAS DEL CAMPESTRE"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 3","id_barrio":"134","nombre_barrio":"TAIRONA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 3","id_barrio":"137","nombre_barrio":"TAYRONA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 3","id_barrio":"143","nombre_barrio":"TORRES DEL SOL"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 3","id_barrio":"146","nombre_barrio":"BOSQUES DE SAN MARTÍN"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 3","id_barrio":"160","nombre_barrio":"VILLA DEL CAMPESTRE"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 3","id_barrio":"181","nombre_barrio":"CAMPESTRES A, B, C Y D"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 3","id_barrio":"215","nombre_barrio":"ALTOS DE SANTA CLARA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 3","id_barrio":"216","nombre_barrio":"EL LIMONAR"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 3","id_barrio":"218","nombre_barrio":"EL OASIS"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 3","id_barrio":"225","nombre_barrio":"EL REFUGIO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 3","id_barrio":"227","nombre_barrio":"EL REFUGIO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 3","id_barrio":"263","nombre_barrio":"PORTAL DE LA MACARENA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 3","id_barrio":"264","nombre_barrio":"CIUDAD NATURA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 3","id_barrio":"265","nombre_barrio":"PAPIRO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 3","id_barrio":"266","nombre_barrio":"MITACA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 3","id_barrio":"267","nombre_barrio":"MONTE BONITO 1, 2 Y 3"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 4","id_barrio":"55","nombre_barrio":"LUCITANIA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 4","id_barrio":"68","nombre_barrio":"BALCONES DE SEGOVIA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 4","id_barrio":"83","nombre_barrio":"PASADENA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 4","id_barrio":"89","nombre_barrio":"POBLADO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 4","id_barrio":"103","nombre_barrio":"QUINTAS DE SAN SEBASTIÁN"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 4","id_barrio":"104","nombre_barrio":"QUINTAS DE SANTA ISABEL"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 4","id_barrio":"108","nombre_barrio":"QUINTAS DEL SENA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 4","id_barrio":"122","nombre_barrio":"SANTA CLARA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 4","id_barrio":"123","nombre_barrio":"SANTA ISABEL I Y II"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 4","id_barrio":"177","nombre_barrio":"ZIUTAMA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 4","id_barrio":"204","nombre_barrio":"ALTOS DE NAVARRA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"1","nombre_barrio":"AGRUPACIÓN SANTA MÓNICA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"5","nombre_barrio":"LA FLORESTA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"13","nombre_barrio":"APARTAMENTOS DE SANTA MÓNICA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"15","nombre_barrio":"LA PRADERA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"22","nombre_barrio":"LARA BONILLA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"28","nombre_barrio":"LAS PALMITAS"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"29","nombre_barrio":"LAS QUINTAS DE DON ABEL"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"31","nombre_barrio":"LAS VIOLETAS"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"34","nombre_barrio":"LOS ALMENDROS"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"43","nombre_barrio":"LOS LAGOS-PROCASA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"54","nombre_barrio":"LOS ROSALES"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"59","nombre_barrio":"MANDALAY"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"60","nombre_barrio":"MANSARDAS"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"61","nombre_barrio":"MARABEL"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"63","nombre_barrio":"MARU"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"69","nombre_barrio":"MIRADOR DE SANTA MARIA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"70","nombre_barrio":"MIRADOR DE SANTA MÓNICA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"73","nombre_barrio":"MUEBLES PEREIRA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"74","nombre_barrio":"NORMANDÍA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"79","nombre_barrio":"BARLOVENTO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"92","nombre_barrio":"PORTAL DE SANTA MÓNICA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"95","nombre_barrio":"PRADO VERDE"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"105","nombre_barrio":"QUINTAS DE SANTA MÓNICA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"111","nombre_barrio":"RINCÓN DEL LAGO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"120","nombre_barrio":"SAN SIMÓN"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"126","nombre_barrio":"SANTA MÓNICA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"139","nombre_barrio":"TERRANOVA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"141","nombre_barrio":"TOMINEJO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"182","nombre_barrio":"ALTA PRADERA I Y II"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"187","nombre_barrio":"CASTELLAR DE SANTA MÓNICA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"189","nombre_barrio":"CATALINA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"192","nombre_barrio":"COCOLÍ"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"202","nombre_barrio":"DIEGO JARAMILLO CUARTAS"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"205","nombre_barrio":"EL ARCO IRIS"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"221","nombre_barrio":"EL PRADO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"228","nombre_barrio":"EL REMANSO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"243","nombre_barrio":"HORIZONTES"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"253","nombre_barrio":"LA CALLEJA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"254","nombre_barrio":"LA CAMPIÑA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"268","nombre_barrio":"JACARANDA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 5","id_barrio":"269","nombre_barrio":"SENDEROS DE LA PRADERA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 6","id_barrio":"2","nombre_barrio":"ANDALUCÍA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 6","id_barrio":"4","nombre_barrio":"LA ESTACIÓN"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 6","id_barrio":"10","nombre_barrio":"LA MANUELA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 6","id_barrio":"14","nombre_barrio":"LA PILARICA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 6","id_barrio":"16","nombre_barrio":"LA PRIMAVERA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 6","id_barrio":"37","nombre_barrio":"LOS ARRAYANES"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 6","id_barrio":"53","nombre_barrio":"LOS REYES"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 6","id_barrio":"72","nombre_barrio":"MONTANA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 6","id_barrio":"86","nombre_barrio":"PINAR DE PLAYA RICA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 6","id_barrio":"88","nombre_barrio":"PLAYA RICA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 6","id_barrio":"98","nombre_barrio":"QUINTAS DE ARAGÓN"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 6","id_barrio":"106","nombre_barrio":"QUINTAS DEL BOSQUE"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 6","id_barrio":"113","nombre_barrio":"BOMBAY"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 6","id_barrio":"115","nombre_barrio":"SAN FÉLIX"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 6","id_barrio":"132","nombre_barrio":"SOCIEDAD PLAYA RICA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 6","id_barrio":"136","nombre_barrio":"TARENA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 6","id_barrio":"144","nombre_barrio":"TULIPANES"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 6","id_barrio":"151","nombre_barrio":"VERACRUZ"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 6","id_barrio":"157","nombre_barrio":"BUENOS AIRES"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 6","id_barrio":"161","nombre_barrio":"VILLA DEL CAMPO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 6","id_barrio":"163","nombre_barrio":"VILLA DIANA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 6","id_barrio":"165","nombre_barrio":"VILLA HELENA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 6","id_barrio":"170","nombre_barrio":"VILLA MERY"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 6","id_barrio":"171","nombre_barrio":"VILLA PERLA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 6","id_barrio":"173","nombre_barrio":"VILLA TURI"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 6","id_barrio":"178","nombre_barrio":"BULEVAR DEL NORTE"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 6","id_barrio":"199","nombre_barrio":"CORAMUR"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 6","id_barrio":"224","nombre_barrio":"EL RECREO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 6","id_barrio":"234","nombre_barrio":"FÉLIX MONTOYA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 6","id_barrio":"236","nombre_barrio":"GARMA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 6","id_barrio":"242","nombre_barrio":"GUAYACANES"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 6","id_barrio":"244","nombre_barrio":"INDUCENTRO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 7","id_barrio":"26","nombre_barrio":"LAS COLINAS"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 7","id_barrio":"39","nombre_barrio":"LOS CÁMBULOS"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 7","id_barrio":"48","nombre_barrio":"LOS MOLINOS"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 7","id_barrio":"57","nombre_barrio":"BALALAIKA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 7","id_barrio":"65","nombre_barrio":"MILÁN"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 7","id_barrio":"81","nombre_barrio":"PABLO VI"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 7","id_barrio":"85","nombre_barrio":"PINAR DE MILÁN"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 7","id_barrio":"100","nombre_barrio":"QUINTAS DE JARDÍN COLONIAL"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 7","id_barrio":"102","nombre_barrio":"QUINTAS DE MILÁN"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 7","id_barrio":"109","nombre_barrio":"RAFAEL GARCÍA HERREROS"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 7","id_barrio":"110","nombre_barrio":"RESERVAS DE MILÁN"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 7","id_barrio":"121","nombre_barrio":"SANTA BÁRBARA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 7","id_barrio":"125","nombre_barrio":"SANTA LUCÍA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 7","id_barrio":"135","nombre_barrio":"BOSQUES DE MILÁN"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 7","id_barrio":"140","nombre_barrio":"TERRAZAS DE MILÁN"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 7","id_barrio":"142","nombre_barrio":"TORREDALES"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 7","id_barrio":"159","nombre_barrio":"VILLA DE LOS MOLINOS I Y II"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 7","id_barrio":"162","nombre_barrio":"VILLA DEL PILAR I Y II"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 7","id_barrio":"174","nombre_barrio":"VILLALÓN"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 7","id_barrio":"186","nombre_barrio":"CASAS DE MILÁN"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 7","id_barrio":"188","nombre_barrio":"CATALÁN"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 7","id_barrio":"194","nombre_barrio":"COLMENARES"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 7","id_barrio":"195","nombre_barrio":"COLORAMA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 7","id_barrio":"198","nombre_barrio":"COOMNES"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 7","id_barrio":"219","nombre_barrio":"EL PAISAJE"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 7","id_barrio":"223","nombre_barrio":"EL PROGRESO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 7","id_barrio":"238","nombre_barrio":"GIRASOL"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 7","id_barrio":"240","nombre_barrio":"GUADUALES DE MILÁN"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 7","id_barrio":"246","nombre_barrio":"JARDÍN COLONIAL I Y II"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 7","id_barrio":"247","nombre_barrio":"JARDINES DE MILÁN"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 7","id_barrio":"258","nombre_barrio":"LA ESMERALDA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 7","id_barrio":"270","nombre_barrio":"MOLIVENTO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 7","id_barrio":"271","nombre_barrio":"VILLAVENTO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 7","id_barrio":"272","nombre_barrio":"MOLIVENTO DE LAS VILLAS"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 8","id_barrio":"58","nombre_barrio":"MAGLOSA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 8","id_barrio":"71","nombre_barrio":"MODELO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 8","id_barrio":"75","nombre_barrio":"NUEVA GRANADA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 8","id_barrio":"90","nombre_barrio":"BARRO BLANCO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 8","id_barrio":"114","nombre_barrio":"SAN DIEGO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 8","id_barrio":"152","nombre_barrio":"VERSALLES"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 8","id_barrio":"172","nombre_barrio":"VILLA TULA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 8","id_barrio":"217","nombre_barrio":"EL MIRADOR"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 8","id_barrio":"241","nombre_barrio":"GUADUALITO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 8","id_barrio":"259","nombre_barrio":"CERRO AZUL"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 8","id_barrio":"273","nombre_barrio":"TERRACINO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 9","id_barrio":"8","nombre_barrio":"LA INDEPENDENCIA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 9","id_barrio":"11","nombre_barrio":"LA MARIANA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 9","id_barrio":"36","nombre_barrio":"LOS ALPES"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 9","id_barrio":"45","nombre_barrio":"LOS LIBERTADORES"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 9","id_barrio":"56","nombre_barrio":"LUIS CARLOS GALÁN SARMIENTO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 9","id_barrio":"64","nombre_barrio":"MERCURIO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 9","id_barrio":"91","nombre_barrio":"PORTAL DE LOS ALPES"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 9","id_barrio":"97","nombre_barrio":"PUERTO NUEVO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 9","id_barrio":"101","nombre_barrio":"BELLA VISTA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 9","id_barrio":"131","nombre_barrio":"SINAÍ"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 9","id_barrio":"133","nombre_barrio":"SOLIDARIDAD POR COLOMBIA- PUEBLO SOL ALTO – BAJO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 9","id_barrio":"150","nombre_barrio":"VENUS 1 Y 2"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 9","id_barrio":"167","nombre_barrio":"VILLA MARÍA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 9","id_barrio":"176","nombre_barrio":"ZAGUÁN DE LAS VILLAS"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 9","id_barrio":"180","nombre_barrio":"CAMILO TORRES 1, 2 Y 3"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 9","id_barrio":"191","nombre_barrio":"CÉSAR AUGUSTO LÓPEZ ARIAS"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 9","id_barrio":"193","nombre_barrio":"ALTOS DE LA CAPILLA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 9","id_barrio":"203","nombre_barrio":"DIVINO NIÑO JESÚS"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 9","id_barrio":"222","nombre_barrio":"EL PRADO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 9","id_barrio":"230","nombre_barrio":"EL ZAFIRO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 9","id_barrio":"231","nombre_barrio":"EMAÚS"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 9","id_barrio":"249","nombre_barrio":"JÚPITER"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 10","id_barrio":"6","nombre_barrio":"LA FLORESTA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 10","id_barrio":"17","nombre_barrio":"LA ROMELIA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 10","id_barrio":"18","nombre_barrio":"LA ROMELIA ALTA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 10","id_barrio":"19","nombre_barrio":"LA SEMILLA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 10","id_barrio":"23","nombre_barrio":"LARA BONILLA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 10","id_barrio":"25","nombre_barrio":"LAS ACACIAS"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 10","id_barrio":"32","nombre_barrio":"LAURELES"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 10","id_barrio":"41","nombre_barrio":"LOS GUAMOS"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 10","id_barrio":"52","nombre_barrio":"LOS PINOS"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 10","id_barrio":"76","nombre_barrio":"NUEVO BOSQUE"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 10","id_barrio":"124","nombre_barrio":"BOSQUE DE LA ACUARELA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 10","id_barrio":"138","nombre_barrio":"TEJARES DE LA LOMA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 10","id_barrio":"145","nombre_barrio":"URBANIZACIÓN AGUA AZUL"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 10","id_barrio":"155","nombre_barrio":"VILLA CAROLA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 10","id_barrio":"158","nombre_barrio":"VILLA COLOMBIA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 10","id_barrio":"183","nombre_barrio":"CARLOS ARIEL ESCOBAR"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 10","id_barrio":"197","nombre_barrio":"COOMEVIP"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 10","id_barrio":"207","nombre_barrio":"EL BOSQUE CARBONERO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 10","id_barrio":"209","nombre_barrio":"EL CHICÓ"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 10","id_barrio":"229","nombre_barrio":"EL ROSAL"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 10","id_barrio":"232","nombre_barrio":"ESTACIÓN GUTIÉRREZ"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 10","id_barrio":"235","nombre_barrio":"GALAXIA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 10","id_barrio":"274","nombre_barrio":"MULTIFAMILIARES SAN MARCOS"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 10","id_barrio":"275","nombre_barrio":"COLINA DEL BOSQUE"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 11","id_barrio":"20","nombre_barrio":"LA SOLEDAD"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 11","id_barrio":"46","nombre_barrio":"ARTURO LÓPEZ"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 11","id_barrio":"47","nombre_barrio":"LOS MILAGROS"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 11","id_barrio":"49","nombre_barrio":"LOS NARANJOS"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 11","id_barrio":"96","nombre_barrio":"PRIMERO DE AGOSTO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 11","id_barrio":"127","nombre_barrio":"SANTA TERESITA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 11","id_barrio":"130","nombre_barrio":"SIETE DE AGOSTO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 11","id_barrio":"211","nombre_barrio":"EL DIAMANTE"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 11","id_barrio":"255","nombre_barrio":"LA CAPILLA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 11","id_barrio":"257","nombre_barrio":"LA CASTELLANA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 12","id_barrio":"50","nombre_barrio":"LOS NARANJOS 1 MZ. SOBRE LA AVENIDA SIMÓN BOLÍVAR,"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 12","id_barrio":"78","nombre_barrio":"OMNES"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 12","id_barrio":"116","nombre_barrio":"SAN FERNANDO"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 12","id_barrio":"118","nombre_barrio":"SAN NICOLÁS"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 12","id_barrio":"168","nombre_barrio":"BUENOS AIRES 1 MZ. SOBRE LA AVENIDA SIMÓN BOLÍVAR"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 12","id_barrio":"184","nombre_barrio":"CASA DE LA CULTURA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 12","id_barrio":"190","nombre_barrio":"CENTROS ADMINISTRATIVOS"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 12","id_barrio":"200","nombre_barrio":"CRUZ ROJA"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 12","id_barrio":"239","nombre_barrio":"GUADALUPE"}
+,{"vigencia":"2020","nombre_comuna":"COMUNA 12","id_barrio":"256","nombre_barrio":"LA CARMELITA"}]

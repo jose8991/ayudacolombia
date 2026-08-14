@@ -1,0 +1,54 @@
+services:
+  database:
+    image: postgis/postgis:17-3.5-alpine
+    environment:
+      POSTGRES_DB: sos
+      POSTGRES_USER: sos
+      POSTGRES_PASSWORD: sos_local_only
+    volumes:
+      - sos_postgres_local:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sos -d sos"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    networks: [sos-local]
+
+  backend:
+    build:
+      context: ./apps/backend
+      dockerfile: Dockerfile
+    environment:
+      APP_ENV: development
+      DATABASE_URL: postgresql+asyncpg://sos:sos_local_only@database:5432/sos
+      ALLOWED_ORIGINS: '["http://localhost:3000"]'
+    command: ["sh", "-c", "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000"]
+    ports: ["8000:8000"]
+    depends_on:
+      database:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/v1/health/live', timeout=5)"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks: [sos-local]
+
+  frontend:
+    build:
+      context: ./apps/frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: http://localhost:8000/api/v1
+    ports: ["3000:8080"]
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks: [sos-local]
+
+networks:
+  sos-local:
+    name: sos-pereira-local
+
+volumes:
+  sos_postgres_local:

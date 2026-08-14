@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: sos-pereira-frontend
+  description: PWA ciudadana y consola móvil del mapa humanitario.
+spec:
+  type: website
+  lifecycle: experimental
+  owner: sos-maintainers
+  system: sos-pereira-system
+  dependsOn:
+    - component:sos-pereira-backend
+

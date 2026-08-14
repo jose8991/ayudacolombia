@@ -1,0 +1,9 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: sos-pereira-system
+  description: Coordinación de necesidades y oferta humanitaria por territorio.
+spec:
+  owner: sos-maintainers
+  domain: humanitarian-response-domain
+
