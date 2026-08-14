@@ -980,6 +980,14 @@
             "maxItems": 30,
             "title": "Needed Items"
           },
+          "sufficient_items": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 30,
+            "title": "Sufficient Items"
+          },
           "priority": {
             "$ref": "#/components/schemas/PublicationPriority",
             "default": "normal"
@@ -1031,6 +1039,13 @@
             "type": "array",
             "title": "Needed Items"
           },
+          "sufficient_items": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Sufficient Items"
+          },
           "priority": {
             "$ref": "#/components/schemas/PublicationPriority"
           },
@@ -1063,6 +1078,7 @@
           "title",
           "message",
           "needed_items",
+          "sufficient_items",
           "priority",
           "expires_at",
           "status",

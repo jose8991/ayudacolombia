@@ -1253,13 +1253,25 @@ export function HomePage() {
                       <dd>{selectedPoint.schedule}</dd>
                     </div>
                   )}
-                  {selectedPoint.acceptedItems && (
+                  {selectedPoint.acceptedItems && selectedPoint.acceptedItems.length > 0 && (
                     <div>
                       <dt>
-                        <PackageCheck size={16} /> Recibe ahora
+                        <PackageCheck size={16} /> Les hace falta
                       </dt>
                       <dd className="item-chips">
                         {selectedPoint.acceptedItems.map((item) => (
+                          <span key={item}>{item}</span>
+                        ))}
+                      </dd>
+                    </div>
+                  )}
+                  {selectedPoint.sufficientItems && selectedPoint.sufficientItems.length > 0 && (
+                    <div>
+                      <dt>
+                        <PackageCheck size={16} /> Ya tienen suficiente
+                      </dt>
+                      <dd className="item-chips item-chips--enough">
+                        {selectedPoint.sufficientItems.map((item) => (
                           <span key={item}>{item}</span>
                         ))}
                       </dd>

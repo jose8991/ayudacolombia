@@ -47,6 +47,7 @@ class CenterPublication(Base):
     title: Mapped[str] = mapped_column(String(120), nullable=False)
     message: Mapped[str] = mapped_column(Text, nullable=False)
     needed_items: Mapped[list[str]] = mapped_column(JSONB, nullable=False, server_default="[]")
+    sufficient_items: Mapped[list[str]] = mapped_column(JSONB, nullable=False, server_default="[]")
     priority: Mapped[str] = mapped_column(String(16), nullable=False, server_default="normal")
     status: Mapped[str] = mapped_column(String(16), nullable=False, server_default="active")
     published_at: Mapped[datetime] = mapped_column(

@@ -2832,3 +2832,61 @@ input:focus-visible {
     grid-template-columns: 1fr 1fr;
   }
 }
+
+/* Un centro marca lo que le falta y de qué ya tiene suficiente, sin escribir listas. */
+.item-picker {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+  gap: 0.45rem;
+}
+.item-picker legend {
+  padding: 0 0 0.4rem;
+  font-weight: 700;
+}
+.item-picker label {
+  min-height: 48px;
+  padding: 0 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: white;
+  cursor: pointer;
+}
+.item-picker input {
+  width: 24px;
+  height: 24px;
+  min-height: 24px;
+  flex: none;
+  accent-color: var(--color-brand);
+}
+.item-picker label:has(input:checked) {
+  border-color: var(--color-brand);
+  background: #eef6f2;
+  font-weight: 700;
+}
+.item-picker--enough input {
+  accent-color: var(--color-muted);
+}
+.item-picker--enough label:has(input:checked) {
+  border-color: var(--color-muted);
+  background: #f1f3f1;
+}
+.item-picker label:focus-within {
+  outline: 3px solid var(--color-brand-dark);
+  outline-offset: 2px;
+}
+@media (max-width: 420px) {
+  .item-picker {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.item-chips--enough span {
+  border-color: var(--color-border);
+  color: var(--color-muted);
+  text-decoration: line-through;
+}

@@ -28,6 +28,8 @@ export interface HumanitarianMapPoint {
   address?: string;
   schedule?: string;
   acceptedItems?: readonly string[];
+  /** De qué ya tienen suficiente: evita donaciones que estorban. */
+  sufficientItems?: readonly string[];
   /** El servidor marca como envejecido lo que lleva más de un día sin reconfirmarse. */
   isStale?: boolean;
   /** Solo para centros: si ya no reciben gente, el mapa lo marca. */

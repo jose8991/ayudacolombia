@@ -18,6 +18,7 @@ export interface PublicationInput {
   title: string;
   message: string;
   needed_items: string[];
+  sufficient_items: string[];
   priority: 'normal' | 'high' | 'urgent';
 }
 export interface PendingReport {

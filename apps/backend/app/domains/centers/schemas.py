@@ -68,6 +68,8 @@ class CenterPublicationCreate(BaseModel):
     title: str = Field(min_length=3, max_length=120)
     message: str = Field(min_length=3, max_length=800)
     needed_items: list[str] = Field(default_factory=list, max_length=30)
+    # De qué ya tienen suficiente: evita que sigan llegando donaciones que estorban.
+    sufficient_items: list[str] = Field(default_factory=list, max_length=30)
     priority: PublicationPriority = PublicationPriority.NORMAL
     expires_at: datetime | None = None
 
@@ -79,6 +81,7 @@ class CenterPublicationRead(BaseModel):
     title: str
     message: str
     needed_items: list[str]
+    sufficient_items: list[str]
     priority: PublicationPriority
     expires_at: datetime | None
     status: str

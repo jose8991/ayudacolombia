@@ -49,3 +49,47 @@ it('pide solo lo confirmado cuando se solicita', async () => {
 
   expect(String(fetchMock.mock.calls[0][0])).toContain('only_confirmed=true');
 });
+
+it('un centro publica lo que le falta y de qué ya tiene suficiente', async () => {
+  const { loadPublicCenterPoints } = await import('../src/shared/api/public-centers');
+  const fetchMock = vi.fn(async (url: string) =>
+    url.includes('/publications')
+      ? {
+          ok: true,
+          json: async () => [
+            {
+              title: 'Necesitamos agua',
+              message: 'Recibimos hasta las 6 p. m.',
+              needed_items: ['Agua', 'Colchonetas'],
+              sufficient_items: ['Ropa'],
+              priority: 'high',
+              published_at: '2026-08-14T09:00:00-05:00',
+            },
+          ],
+        }
+      : {
+          ok: true,
+          json: async () => [
+            {
+              id: 'c1',
+              name: 'Albergue Parque Olaya Herrera',
+              address: 'Centro, Pereira',
+              latitude: '4.809428',
+              longitude: '-75.696283',
+              status: 'open',
+              accepted_items: ['Alojamiento temporal'],
+              verification_status: 'official',
+              is_stale: false,
+              updated_at: '2026-08-14T09:00:00-05:00',
+            },
+          ],
+        },
+  );
+  vi.stubGlobal('fetch', fetchMock);
+
+  const [center] = await loadPublicCenterPoints('co-ris-pereira');
+
+  expect(center.acceptedItems).toEqual(['Agua', 'Colchonetas']);
+  expect(center.sufficientItems).toEqual(['Ropa']);
+  expect(center.status).toBe('open');
+});

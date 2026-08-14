@@ -1,4 +1,5 @@
 import { type FormEvent, useState } from 'react';
+import { RELIEF_ITEMS } from '../../shared/data/relief-items';
 import { ArrowLeft, CheckCircle2, LogIn, Megaphone, PackagePlus, ShieldCheck } from 'lucide-react';
 import {
   acceptInvitation,
@@ -59,15 +60,22 @@ export function CoordinationPage() {
     setPublished(false);
     const form = event.currentTarget;
     const data = new FormData(form);
-    const items = String(data.get('items'))
-      .split(',')
-      .map((item) => item.trim())
-      .filter(Boolean);
+    const needed = data.getAll('needed').map(String);
+    const sufficient = data.getAll('sufficient').map(String);
+    if (needed.length === 0 && sufficient.length === 0) {
+      setBusy(false);
+      setError('Marque al menos un artículo, en una lista o en la otra.');
+      return;
+    }
+    const title = needed.length
+      ? 'Necesitamos ' + needed.join(', ').toLocaleLowerCase('es')
+      : 'Ya tenemos suficiente ' + sufficient.join(', ').toLocaleLowerCase('es');
     try {
       await publishCenterUpdate(session.access_token, centerId, {
-        title: String(data.get('title')),
+        title,
         message: String(data.get('message')),
-        needed_items: items,
+        needed_items: needed,
+        sufficient_items: sufficient,
         priority: String(data.get('priority')) as 'normal' | 'high' | 'urgent',
       });
       form.reset();
@@ -277,28 +285,33 @@ export function CoordinationPage() {
                     ))}
                   </select>
                 </label>
+                <fieldset className="item-picker">
+                  <legend>¿Qué les hace falta?</legend>
+                  {RELIEF_ITEMS.map((item) => (
+                    <label key={'need-' + item}>
+                      <input name="needed" type="checkbox" value={item} />
+                      <span>{item}</span>
+                    </label>
+                  ))}
+                </fieldset>
+                <fieldset className="item-picker item-picker--enough">
+                  <legend>¿De qué ya tienen suficiente?</legend>
+                  {RELIEF_ITEMS.map((item) => (
+                    <label key={'enough-' + item}>
+                      <input name="sufficient" type="checkbox" value={item} />
+                      <span>{item}</span>
+                    </label>
+                  ))}
+                </fieldset>
                 <label>
-                  ¿Qué necesitan?
-                  <input
-                    maxLength={120}
-                    name="title"
-                    placeholder="Ej. Necesitamos agua y cobijas"
-                    required
-                  />
-                </label>
-                <label>
-                  Mensaje
+                  Cuéntelo en una frase
                   <textarea
                     maxLength={800}
                     name="message"
-                    placeholder="Explique brevemente qué recibirán y hasta qué hora"
+                    placeholder="Ej. Recibimos hasta las 6 p. m. en la entrada principal"
                     required
-                    rows={4}
+                    rows={3}
                   />
-                </label>
-                <label>
-                  Artículos separados por coma
-                  <input name="items" placeholder="Agua, cobijas, alimentos" />
                 </label>
                 <fieldset className="priority-picker">
                   <legend>Prioridad</legend>

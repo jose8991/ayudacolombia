@@ -20,6 +20,7 @@ interface CenterPublication {
   title: string;
   message: string;
   needed_items: string[];
+  sufficient_items?: string[];
   priority: 'normal' | 'high' | 'urgent';
   published_at: string;
 }
@@ -69,6 +70,7 @@ export async function loadPublicCenterPoints(
         address: center.address,
         schedule: center.schedule,
         acceptedItems: latest?.needed_items.length ? latest.needed_items : center.accepted_items,
+        sufficientItems: latest?.sufficient_items ?? [],
         sourceLabel: `Centro registrado: ${center.name}`,
       };
     }),
