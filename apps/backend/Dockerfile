@@ -13,6 +13,7 @@ RUN useradd --no-create-home --shell /bin/false appuser
 COPY --from=builder /install /usr/local
 COPY app/ ./app/
 COPY migrations/ ./migrations/
+COPY data/ ./data/
 COPY alembic.ini ./
 ENV PYTHONPATH=/app PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1
 USER appuser
