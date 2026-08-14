@@ -94,7 +94,7 @@ it('muestra acciones funcionales', () => {
   expect(screen.getByRole('button', { name: /^Quiero ayudar/ })).toBeVisible();
   fireEvent.click(screen.getByRole('button', { name: /^Quiero ayudar/ }));
   fireEvent.click(screen.getByRole('button', { name: /^Ofrecer ayuda/ }));
-  expect(screen.getByRole('heading', { name: 'Dinos lo necesario' })).toBeVisible();
+  expect(screen.getByRole('heading', { name: 'Publica lo que puedes dar' })).toBeVisible();
   expect(screen.getByLabelText(/¿Cuánto y hasta cuándo?/i)).toBeVisible();
 });
 

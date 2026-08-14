@@ -320,9 +320,6 @@ export function HomePage() {
     journeyTriggerRef.current =
       document.activeElement instanceof HTMLElement ? document.activeElement : null;
     setActiveJourney(journey);
-    if (journey === 'help' || journey === 'centers')
-      setLayers(new Set<MapCategory>(['aid-center']));
-    if (journey === 'donate') setLayers(new Set<MapCategory>(['need', 'offer']));
   };
   const showOnMap = (nextLayers: MapCategory[], nextQuery = '') => {
     setMapVisible(true);
@@ -698,9 +695,11 @@ export function HomePage() {
               reportKind &&
               !reviewingReport && (
                 <form className="public-report-form" onSubmit={prepareReport}>
-                  <button className="form-back" onClick={() => setReportKind(null)} type="button">
-                    Cambiar tipo
-                  </button>
+                  {reportKind !== 'need' && reportKind !== 'offer' && (
+                    <button className="form-back" onClick={() => setReportKind(null)} type="button">
+                      Cambiar tipo
+                    </button>
+                  )}
                   <p className="eyebrow">
                     {reportKind === 'need'
                       ? 'Solicitud privada'
@@ -713,12 +712,20 @@ export function HomePage() {
                             : 'Reportar una situación'}
                   </p>
                   <h2 id="journey-title">
-                    {reportKind === 'need' ? 'Dinos 3 cosas' : 'Dinos lo necesario'}
+                    {reportKind === 'need'
+                      ? 'Dinos 3 cosas'
+                      : reportKind === 'offer'
+                        ? 'Publica lo que puedes dar'
+                        : reportKind === 'community-need'
+                          ? 'Cuéntanos qué hace falta'
+                          : reportKind === 'place'
+                            ? 'Informa el lugar'
+                            : 'Cuéntanos qué pasó'}
                   </h2>
                   <p>
                     {reportKind === 'need'
                       ? 'Tu teléfono y tu ubicación exacta no aparecerán en el mapa.'
-                      : 'Nadie más lo ve hasta que lo revisemos. No escribas datos de personas.'}
+                      : 'Se publica de una vez, marcado como "Sin confirmar". No escribas datos de personas.'}
                   </p>
                   {reportKind === 'need' && (
                     <>
