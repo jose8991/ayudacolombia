@@ -229,133 +229,6 @@ export function MapWorkspace({
             </p>
           )}
         </header>
-        {hasLocalBoundaries && (
-          <label className="area-picker">
-            <span>Zona</span>
-            <select
-              aria-label="Seleccionar zona"
-              onChange={(event) => {
-                const area = event.target.value || null;
-                onSelectArea(area);
-                onSelectNeighborhood(null);
-                onQueryChange('');
-                onUpdateTerritoryUrl(region.id, area, null);
-              }}
-              value={selectedArea ?? ''}
-            >
-              <option value="">Todas las zonas</option>
-              {areas.map((area) => (
-                <option key={area} value={area}>
-                  {formatAreaLabel(area)}
-                </option>
-              ))}
-            </select>
-          </label>
-        )}
-        <label className="map-search">
-          <Search aria-hidden="true" size={18} />
-          <span className="sr-only">Buscar lugar o reporte</span>
-          <input
-            onChange={(event) => onQueryChange(event.target.value)}
-            placeholder="Buscar lugar o reporte"
-            type="search"
-            value={query}
-          />
-        </label>
-        <label className="confirmed-only">
-          <input
-            checked={onlyConfirmed}
-            onChange={(event) => {
-              onOnlyConfirmedChange(event.target.checked);
-              setSelectedPointId(null);
-            }}
-            type="checkbox"
-          />
-          <span>Ver solo información confirmada</span>
-        </label>
-        {selectedArea && (
-          <section aria-live="polite" className="area-detail">
-            <button
-              className="area-close"
-              aria-label="Cerrar zona"
-              onClick={() => {
-                onSelectArea(null);
-                onSelectNeighborhood(null);
-                onQueryChange('');
-                onUpdateTerritoryUrl(region.id, null, null);
-              }}
-              type="button"
-            >
-              <X size={16} />
-            </button>
-            <p className="eyebrow">
-              {region.name} / {formatAreaLabel(selectedArea)}
-            </p>
-            <h3>
-              {selectedNeighborhood
-                ? (selectedArea.startsWith('rural:') ? 'Sector ' : 'Barrio ') + selectedNeighborhood
-                : formatAreaLabel(selectedArea)}
-            </h3>
-            {selectedNeighborhood && (
-              <button
-                className="area-back"
-                onClick={() => {
-                  onSelectNeighborhood(null);
-                  onQueryChange('');
-                  onUpdateTerritoryUrl(region.id, selectedArea, null);
-                }}
-                type="button"
-              >
-                Volver a la zona
-              </button>
-            )}
-            <p>Los colores resumen la urgencia de los reportes visibles.</p>
-            <details className="neighborhood-list">
-              <summary>
-                Ver {areaNeighborhoods.length}{' '}
-                {selectedArea.startsWith('rural:') ? 'sectores' : 'barrios'}
-              </summary>
-              <div>
-                {areaNeighborhoods.map((item) => (
-                  <button
-                    key={item.comuna + '-' + item.codigo_del_barrio + '-' + item.nombre}
-                    aria-pressed={selectedNeighborhood === item.nombre}
-                    onClick={() => {
-                      onSelectNeighborhood(item.nombre);
-                      onQueryChange(item.nombre);
-                      onUpdateTerritoryUrl(region.id, selectedArea, item.nombre);
-                    }}
-                    type="button"
-                  >
-                    {item.nombre}
-                  </button>
-                ))}
-              </div>
-            </details>
-            <button
-              className="share-area"
-              onClick={() => {
-                navigator.clipboard?.writeText(window.location.href).then(() => {
-                  setLinkCopied(true);
-                  window.setTimeout(() => setLinkCopied(false), 1800);
-                });
-              }}
-              type="button"
-            >
-              <Share2 size={16} /> {linkCopied ? 'Enlace copiado' : 'Copiar enlace'}
-            </button>
-            <small>
-              Catálogo oficial de Datos Abiertos Colombia. Toca un barrio o sector para filtrar el
-              mapa.
-            </small>
-          </section>
-        )}
-        <details className="layer-panel">
-          <summary>
-            Qué mostrar <span>{layers.size === 1 ? '1 tipo' : layers.size + ' tipos'}</span>
-          </summary>
-          <MapFilters value={layers} onToggle={onToggleLayer} counts={counts} />
-        </details>
         {selectedPoint && (
           <section
             aria-live="polite"
@@ -439,6 +312,133 @@ export function MapWorkspace({
             </small>
           </section>
         )}
+        {selectedArea && (
+          <section aria-live="polite" className="area-detail">
+            <button
+              className="area-close"
+              aria-label="Cerrar zona"
+              onClick={() => {
+                onSelectArea(null);
+                onSelectNeighborhood(null);
+                onQueryChange('');
+                onUpdateTerritoryUrl(region.id, null, null);
+              }}
+              type="button"
+            >
+              <X size={16} />
+            </button>
+            <p className="eyebrow">
+              {region.name} / {formatAreaLabel(selectedArea)}
+            </p>
+            <h3>
+              {selectedNeighborhood
+                ? (selectedArea.startsWith('rural:') ? 'Sector ' : 'Barrio ') + selectedNeighborhood
+                : formatAreaLabel(selectedArea)}
+            </h3>
+            {selectedNeighborhood && (
+              <button
+                className="area-back"
+                onClick={() => {
+                  onSelectNeighborhood(null);
+                  onQueryChange('');
+                  onUpdateTerritoryUrl(region.id, selectedArea, null);
+                }}
+                type="button"
+              >
+                Volver a la zona
+              </button>
+            )}
+            <p>Los colores resumen la urgencia de los reportes visibles.</p>
+            <details className="neighborhood-list">
+              <summary>
+                Ver {areaNeighborhoods.length}{' '}
+                {selectedArea.startsWith('rural:') ? 'sectores' : 'barrios'}
+              </summary>
+              <div>
+                {areaNeighborhoods.map((item) => (
+                  <button
+                    key={item.comuna + '-' + item.codigo_del_barrio + '-' + item.nombre}
+                    aria-pressed={selectedNeighborhood === item.nombre}
+                    onClick={() => {
+                      onSelectNeighborhood(item.nombre);
+                      onQueryChange(item.nombre);
+                      onUpdateTerritoryUrl(region.id, selectedArea, item.nombre);
+                    }}
+                    type="button"
+                  >
+                    {item.nombre}
+                  </button>
+                ))}
+              </div>
+            </details>
+            <button
+              className="share-area"
+              onClick={() => {
+                navigator.clipboard?.writeText(window.location.href).then(() => {
+                  setLinkCopied(true);
+                  window.setTimeout(() => setLinkCopied(false), 1800);
+                });
+              }}
+              type="button"
+            >
+              <Share2 size={16} /> {linkCopied ? 'Enlace copiado' : 'Copiar enlace'}
+            </button>
+            <small>
+              Catálogo oficial de Datos Abiertos Colombia. Toca un barrio o sector para filtrar el
+              mapa.
+            </small>
+          </section>
+        )}
+        {hasLocalBoundaries && (
+          <label className="area-picker">
+            <span>Zona</span>
+            <select
+              aria-label="Seleccionar zona"
+              onChange={(event) => {
+                const area = event.target.value || null;
+                onSelectArea(area);
+                onSelectNeighborhood(null);
+                onQueryChange('');
+                onUpdateTerritoryUrl(region.id, area, null);
+              }}
+              value={selectedArea ?? ''}
+            >
+              <option value="">Todas las zonas</option>
+              {areas.map((area) => (
+                <option key={area} value={area}>
+                  {formatAreaLabel(area)}
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
+        <label className="map-search">
+          <Search aria-hidden="true" size={18} />
+          <span className="sr-only">Buscar lugar o reporte</span>
+          <input
+            onChange={(event) => onQueryChange(event.target.value)}
+            placeholder="Buscar lugar o reporte"
+            type="search"
+            value={query}
+          />
+        </label>
+        <label className="confirmed-only">
+          <input
+            checked={onlyConfirmed}
+            onChange={(event) => {
+              onOnlyConfirmedChange(event.target.checked);
+              setSelectedPointId(null);
+            }}
+            type="checkbox"
+          />
+          <span>Ver solo información confirmada</span>
+        </label>
+        <details className="layer-panel">
+          <summary>
+            Qué mostrar <span>{layers.size === 1 ? '1 tipo' : layers.size + ' tipos'}</span>
+          </summary>
+          <MapFilters value={layers} onToggle={onToggleLayer} counts={counts} />
+        </details>
         <div className="result-list" aria-label="Elementos visibles">
           {visiblePoints.map((point) => (
             <button

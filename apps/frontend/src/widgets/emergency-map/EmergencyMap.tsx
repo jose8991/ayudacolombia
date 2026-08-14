@@ -672,6 +672,17 @@ export function EmergencyMap({
           duration: 650,
         });
     }
+    if (selectedArea && !selectedArea.startsWith('rural:')) {
+      const areaFeature = boundaryDataRef.current?.features.find(
+        (item) => item.properties?.NOMBRE === selectedArea,
+      );
+      if (areaFeature)
+        map.fitBounds(boundsForGeometry(areaFeature.geometry), {
+          padding: 60,
+          maxZoom: 14,
+          duration: 650,
+        });
+    }
     const areaFilter =
       selectedArea && region.id !== 'co-ris-dosquebradas'
         ? (['==', ['get', 'COMUNA'], selectedArea] as maplibregl.FilterSpecification)
