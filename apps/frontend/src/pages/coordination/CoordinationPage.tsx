@@ -1,7 +1,15 @@
 import { type FormEvent, useState } from 'react';
 import { RELIEF_ITEMS } from '../../shared/data/relief-items';
 import { VALIDITY_OPTIONS, expiresAt } from '../../shared/format/expiry';
-import { ArrowLeft, CheckCircle2, LogIn, Megaphone, PackagePlus, ShieldCheck } from 'lucide-react';
+import {
+  ArrowLeft,
+  CheckCircle2,
+  LogIn,
+  Megaphone,
+  PackagePlus,
+  Phone,
+  ShieldCheck,
+} from 'lucide-react';
 import {
   acceptInvitation,
   inviteCenterOperator,
@@ -394,6 +402,27 @@ export function CoordinationPage() {
                     {report.neighborhood_code || 'Sin barrio indicado'} · {report.severity} ·{' '}
                     {report.tracking_code}
                   </small>
+                  {report.contact && (
+                    <p className="moderation-contact">
+                      <a href={'tel:' + report.contact.replace(/[^+\d]/g, '')}>
+                        <Phone size={16} /> Llamar a {report.contact}
+                      </a>
+                      <a
+                        href={
+                          'https://wa.me/' +
+                          report.contact.replace(/[^\d]/g, '') +
+                          '?text=' +
+                          encodeURIComponent(
+                            'Hola, escribimos de Ayuda Colombia por tu publicación.',
+                          )
+                        }
+                        rel="noreferrer"
+                        target="_blank"
+                      >
+                        WhatsApp
+                      </a>
+                    </p>
+                  )}
                   <div>
                     <button
                       disabled={busy}

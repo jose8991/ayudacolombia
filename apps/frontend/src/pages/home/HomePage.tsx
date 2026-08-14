@@ -885,7 +885,7 @@ export function HomePage() {
                           ? 'Para poder llamarte. No aparece en el mapa.'
                           : reportKind === 'community-need'
                             ? 'Opcional. Para confirmar el aviso. No aparece en el mapa.'
-                            : 'Opcional. Para poder llamarte y coordinar. No aparece en el mapa.'}
+                            : 'Para que te puedan llamar. No aparece en el mapa.'}
                       </span>
                       <input
                         autoComplete="tel"
@@ -894,7 +894,7 @@ export function HomePage() {
                         minLength={5}
                         name="contact"
                         placeholder="Ej. 300 123 4567"
-                        required={reportKind === 'need'}
+                        required={reportKind === 'need' || reportKind === 'offer'}
                         type="tel"
                       />
                     </label>

@@ -221,13 +221,13 @@ it('mantiene accesibles los recorridos principales', async () => {
   }
 });
 
-it('permite a quien se ofrece dejar un teléfono privado y opcional', () => {
+it('exige un teléfono a quien se ofrece: una oferta sin contacto no se puede coordinar', () => {
   renderHome();
   fireEvent.click(screen.getByRole('button', { name: /^Quiero ayudar/ }));
   fireEvent.click(screen.getByRole('button', { name: /^Ofrecer ayuda/ }));
   const phone = screen.getByLabelText(/Tu teléfono/i);
   expect(phone).toBeVisible();
-  expect(phone).not.toBeRequired();
+  expect(phone).toBeRequired();
   expect(screen.getByText(/No aparece en el mapa/i)).toBeVisible();
 });
 

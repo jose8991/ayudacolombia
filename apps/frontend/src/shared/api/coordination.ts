@@ -32,6 +32,8 @@ export interface PendingReport {
   neighborhood_code: string | null;
   severity: string;
   observed_at: string;
+  /** Privado: solo llega a quien tiene permiso de lectura sensible. */
+  contact: string | null;
 }
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
