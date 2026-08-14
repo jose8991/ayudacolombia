@@ -25,7 +25,7 @@ cerrada cuando tiene implementación, prueba, documentación y validación de de
 | 9 | Migraciones y contratos en CI | Pendiente | Ciclo upgrade/downgrade/upgrade en PostgreSQL y detección de drift OpenAPI. |
 | 10 | Documentación y ownership | Pendiente | CONTRIBUTING, ownership, `llms-full.txt` y aduana documental. |
 | 11 | Política de tratamiento de datos | Bloqueado por información | TIMELIBER S.A.S. debe aportar NIT, domicilio, dirección, teléfono, retención y revisión jurídica. |
-| 12 | Repositorio Git canónico | Parcial | Repositorio restaurado en `main` con historial propio. Falta un remoto: el código vive en un solo disco. |
+| 12 | Repositorio Git canónico | Cerrado | Repositorio restaurado en `main` y publicado en `github.com/jose8991/ayudacolombia`. Falta CI. |
 | 13 | Caducidad de la información | Cerrado | `is_stale` se calcula al leer con una ventana de 24 h; la interfaz muestra el tiempo transcurrido y advierte antes de desplazarse. |
 
 ## Evidencia del último corte
