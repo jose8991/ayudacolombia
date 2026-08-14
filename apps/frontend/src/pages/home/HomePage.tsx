@@ -12,8 +12,9 @@ import {
   TriangleAlert,
   X,
 } from 'lucide-react';
-import { DEMO_REGIONS, type MapCategory } from '../../entities/incident';
+import { DEMO_REGIONS, type HumanitarianMapPoint, type MapCategory } from '../../entities/incident';
 import { MapFilters } from '../../features/map-filter';
+import { matchesQuery } from '../../features/map-filter/search';
 import { MapLegend } from '../../features/map-legend';
 import { NationalOverview } from '../../features/national-overview/NationalOverview';
 import { AppHeader } from '../../widgets/app-header';
@@ -223,11 +224,7 @@ export function HomePage() {
   const visiblePoints = useMemo(() => {
     const matching = regionPoints.filter(
       (point) =>
-        layers.has(point.category) &&
-        (!normalizedQuery ||
-          [point.title, point.neighborhood, point.description, point.address ?? ''].some((value) =>
-            value.toLocaleLowerCase('es').includes(normalizedQuery),
-          )),
+        layers.has(point.category) && (!normalizedQuery || matchesQuery(point, normalizedQuery)),
     );
     if (!userPosition) return matching;
     // Lo más cerca primero. Lo que no tiene ubicación exacta va al final, no se descarta.
@@ -567,13 +564,13 @@ export function HomePage() {
                 <h2 id="journey-title">¿Qué buscas?</h2>
                 <p>Busca un lugar cerca o pide ayuda.</p>
                 <div className="journey-options">
-                  <button onClick={() => showOnMap(['aid-center'], 'alimentos')} type="button">
+                  <button onClick={() => showOnMap(['aid-center'], 'comida')} type="button">
                     Agua o comida
                   </button>
                   <button onClick={() => showOnMap(['aid-center'], 'salud')} type="button">
                     Atención en salud
                   </button>
-                  <button onClick={() => showOnMap(['aid-center'], 'alojamiento')} type="button">
+                  <button onClick={() => showOnMap(['aid-center'], 'dormir')} type="button">
                     Dónde dormir
                   </button>
                   <button

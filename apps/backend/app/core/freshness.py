@@ -1,9 +1,14 @@
 from datetime import UTC, datetime, timedelta
 
-# En una emergencia la información envejece rápido: un albergue puede llenarse o cerrar
-# en horas. Pasado este plazo sin reconfirmar, la publicación se marca como envejecida
-# para que nadie se desplace confiando en un dato viejo.
-STALE_AFTER = timedelta(hours=24)
+# Un aviso que sale en todas las fichas deja de ser un aviso. Con 24 horas, y sin nadie
+# reconfirmando en terreno, el mapa entero aparecía "posiblemente desactualizado" y la
+# advertencia se volvía ruido.
+#
+# El umbral responde a qué tan rápido cambia el hecho. Que un albergue EXISTA cambia en
+# días; que tenga cupo cambia en horas. Aquí se marca lo primero, y para lo segundo la
+# interfaz muestra siempre el tiempo transcurrido —"actualizado hace 2 días"— para que
+# cada quien juzgue. La advertencia fuerte queda para lo que casi seguro ya no es cierto.
+STALE_AFTER = timedelta(hours=72)
 
 
 def is_stale(last_confirmed_at: datetime | None, now: datetime | None = None) -> bool:

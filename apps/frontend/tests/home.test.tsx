@@ -305,3 +305,10 @@ it('lleva una oferta hasta la revisión con dos toques y una frase', () => {
   expect(screen.getByRole('heading', { name: 'Revisa y envía' })).toBeVisible();
   expect(screen.getByText('Ofrezco transporte')).toBeVisible();
 });
+
+it('los atajos de Necesito ayuda buscan por tema, no por una palabra exacta', () => {
+  renderHome();
+  fireEvent.click(screen.getByRole('button', { name: /^Necesito ayuda/ }));
+  fireEvent.click(screen.getByRole('button', { name: 'Dónde dormir' }));
+  expect(screen.getByRole('searchbox')).toHaveValue('dormir');
+});

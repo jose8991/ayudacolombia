@@ -15,7 +15,7 @@ def test_publications_older_than_the_window_are_stale() -> None:
     now = datetime.now(UTC)
 
     assert is_stale(now - STALE_AFTER - timedelta(minutes=1), now) is True
-    assert is_stale(now - timedelta(days=4), now) is True
+    assert is_stale(now - timedelta(days=5), now) is True
 
 
 def test_missing_confirmation_counts_as_stale() -> None:
@@ -51,4 +51,5 @@ def test_center_reports_its_own_freshness() -> None:
 
     assert _center(now, now - timedelta(days=5)).is_stale is False
     assert _center(None, now).is_stale is False
-    assert _center(now - timedelta(days=2), now).is_stale is True
+    assert _center(now - timedelta(days=2), now).is_stale is False
+    assert _center(now - timedelta(days=4), now).is_stale is True
