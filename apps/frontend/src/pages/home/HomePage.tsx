@@ -396,6 +396,7 @@ export function HomePage() {
             description: reportDraft.description,
             neighborhood_code: reportDraft.neighborhood || null,
             severity: reportDraft.severity,
+            contact: reportDraft.contact || null,
             coordinates: position
               ? { longitude: position.coords.longitude, latitude: position.coords.latitude }
               : null,
@@ -765,9 +766,14 @@ export function HomePage() {
                       rows={3}
                     />
                   </label>
-                  {reportKind === 'need' && (
+                  {(reportKind === 'need' || reportKind === 'offer') && (
                     <label>
-                      Tu teléfono <span>Para poder llamarte. No aparece en el mapa.</span>
+                      Tu teléfono{' '}
+                      <span>
+                        {reportKind === 'need'
+                          ? 'Para poder llamarte. No aparece en el mapa.'
+                          : 'Opcional. Para poder llamarte y coordinar. No aparece en el mapa.'}
+                      </span>
                       <input
                         autoComplete="tel"
                         defaultValue={reportDraft?.contact}
@@ -775,7 +781,7 @@ export function HomePage() {
                         minLength={5}
                         name="contact"
                         placeholder="Ej. 300 123 4567"
-                        required
+                        required={reportKind === 'need'}
                         type="tel"
                       />
                     </label>
@@ -847,7 +853,7 @@ export function HomePage() {
                         <dd>{reportDraft.description}</dd>
                       </div>
                     )}
-                    {reportKind === 'need' && (
+                    {reportDraft.contact && (
                       <div>
                         <dt>Tu teléfono</dt>
                         <dd>{reportDraft.contact}</dd>
@@ -857,7 +863,9 @@ export function HomePage() {
                   <p className="privacy-reminder">
                     {reportKind === 'need'
                       ? 'Tu teléfono y tu ubicación quedan privados.'
-                      : 'Lo revisamos antes de publicarlo.'}
+                      : reportDraft.contact
+                        ? 'Tu teléfono queda privado. Lo revisamos antes de publicarlo.'
+                        : 'Lo revisamos antes de publicarlo.'}
                   </p>
                   {reportStatus === 'error' && (
                     <p className="form-error" role="alert">

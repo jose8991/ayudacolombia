@@ -1718,6 +1718,19 @@
             "format": "date-time",
             "title": "Observed At"
           },
+          "contact": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160,
+                "minLength": 5
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Contact"
+          },
           "privacy_authorized": {
             "type": "boolean",
             "const": true,
@@ -1819,6 +1832,19 @@
             "type": "string",
             "format": "date-time",
             "title": "Observed At"
+          },
+          "contact": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160,
+                "minLength": 5
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Contact"
           },
           "privacy_authorized": {
             "type": "boolean",

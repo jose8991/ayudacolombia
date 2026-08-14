@@ -2,7 +2,7 @@ import uuid
 from datetime import datetime
 from decimal import Decimal
 
-from sqlalchemy import DateTime, Numeric, String, Text, func
+from sqlalchemy import DateTime, LargeBinary, Numeric, String, Text, func
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -31,6 +31,7 @@ class CitizenReport(Base):
         String(24), nullable=False, server_default="reported", index=True
     )
     moderation_note: Mapped[str | None] = mapped_column(String(300))
+    contact_ciphertext: Mapped[bytes | None] = mapped_column(LargeBinary)
     privacy_policy_version: Mapped[str] = mapped_column(String(32), nullable=False)
     privacy_accepted_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
     created_at: Mapped[datetime] = mapped_column(

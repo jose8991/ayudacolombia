@@ -4,6 +4,7 @@ from datetime import UTC, datetime
 from typing import Protocol
 from uuid import UUID
 
+from app.core.encryption import decrypt_sensitive, encrypt_sensitive
 from app.domains.identity.policy import evaluate_access
 from app.domains.identity.schemas import Actor, Permission, ResourceContext, Role
 
@@ -64,6 +65,7 @@ class ReportService:
             verification_status="reported",
             privacy_policy_version=payload.privacy_policy_version,
             privacy_accepted_at=datetime.now(UTC),
+            contact_ciphertext=encrypt_sensitive(payload.contact) if payload.contact else None,
         )
         return self.to_report_read(await self.repository.add(report))
 
@@ -122,6 +124,11 @@ class ReportService:
             observed_at=report.observed_at,
             verification_status=report.verification_status,
             created_at=report.created_at,
+            contact=(
+                decrypt_sensitive(report.contact_ciphertext)
+                if report.contact_ciphertext
+                else None
+            ),
             privacy_authorized=True,
             privacy_policy_version=report.privacy_policy_version,
         )

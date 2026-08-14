@@ -228,3 +228,13 @@ it('mantiene accesibles los recorridos principales', async () => {
     fireEvent.click(screen.getByRole('button', { name: /^Volver/ }));
   }
 });
+
+it('permite a quien se ofrece dejar un teléfono privado y opcional', () => {
+  renderHome();
+  fireEvent.click(screen.getByRole('button', { name: /^Quiero ayudar/ }));
+  fireEvent.click(screen.getByRole('button', { name: /^Ofrecer ayuda/ }));
+  const phone = screen.getByLabelText(/Tu teléfono/i);
+  expect(phone).toBeVisible();
+  expect(phone).not.toBeRequired();
+  expect(screen.getByText(/No aparece en el mapa/i)).toBeVisible();
+});

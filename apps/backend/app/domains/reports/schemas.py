@@ -48,6 +48,7 @@ class ReportCreate(BaseModel):
     severity: Severity
     coordinates: Coordinates | None = None
     observed_at: datetime
+    contact: Annotated[str | None, Field(min_length=5, max_length=160)] = None
     privacy_authorized: Literal[True]
     privacy_policy_version: Annotated[str, Field(min_length=1, max_length=32)]
 

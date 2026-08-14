@@ -6,6 +6,7 @@ from httpx import ASGITransport, AsyncClient
 
 from app.domains.abuse.deps import enforce_public_submission_limit
 from app.domains.reports.router import get_report_repository
+from app.domains.reports.schemas import PublicReportRead
 from app.main import app
 
 
@@ -209,3 +210,56 @@ async def test_public_feed_excludes_pending_and_generalizes_coordinates(
     assert hidden.json() == []
     assert visible.json()[0]["coordinates"] == {"longitude": -75.695, "latitude": 4.814}
     assert "tracking_code" not in visible.json()[0]
+
+
+async def test_offer_contact_is_stored_encrypted_and_never_published(
+    fake_report_repository,
+) -> None:
+    contact = "+57 300 987 6543"
+    payload = {
+        "territory_id": "co-ris-pereira",
+        "category": "offer",
+        "title": "Ofrezco transporte",
+        "description": "Camioneta disponible para llevar donaciones.",
+        "neighborhood_code": "Centro",
+        "severity": "medium",
+        "coordinates": None,
+        "observed_at": "2026-08-13T05:40:00-05:00",
+        "contact": contact,
+        "privacy_authorized": True,
+        "privacy_policy_version": "2026-08-13",
+    }
+    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as client:
+        created = await client.post(
+            "/api/v1/reports", json=payload, headers={"Idempotency-Key": "offer-contact-0001"}
+        )
+        code = created.json()["tracking_code"]
+        stored = fake_report_repository.reports[code]
+        stored.verification_status = "verified"
+        public = await client.get("/api/v1/reports/public?territory_id=co-ris-pereira")
+
+    assert created.status_code == 201
+    assert stored.contact_ciphertext is not None
+    assert contact.encode() not in stored.contact_ciphertext
+    assert "contact" not in PublicReportRead.model_fields
+    assert all("987" not in str(item) for item in public.json())
+
+
+async def test_report_without_contact_stays_empty() -> None:
+    payload = {
+        "territory_id": "co-ris-pereira",
+        "category": "damage",
+        "title": "Vía cerrada",
+        "description": "Derrumbe sobre la calzada.",
+        "severity": "high",
+        "coordinates": None,
+        "observed_at": "2026-08-13T05:40:00-05:00",
+        "privacy_authorized": True,
+        "privacy_policy_version": "2026-08-13",
+    }
+    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as client:
+        response = await client.post(
+            "/api/v1/reports", json=payload, headers={"Idempotency-Key": "report-no-contact-0001"}
+        )
+    assert response.status_code == 201
+    assert response.json()["contact"] is None
