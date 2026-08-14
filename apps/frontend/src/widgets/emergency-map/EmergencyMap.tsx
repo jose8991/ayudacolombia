@@ -528,9 +528,10 @@ export function EmergencyMap({
     // Los grupos se dibujan como elementos reales: MapLibre solo pinta texto si el estilo
     // declara un juego de glifos, y este no lo hace. Así además se puede decir de qué es
     // cada grupo y el objetivo táctil no depende del zoom.
+    // Se copia la referencia: en la limpieza podría apuntar ya a otro mapa.
+    const markers = clusterMarkersRef.current;
     const syncClusters = () => {
       if (!map.getLayer('clusters')) return;
-      const markers = clusterMarkersRef.current;
       const seen = new Set<number>();
       for (const feature of map.queryRenderedFeatures({ layers: ['clusters'] })) {
         if (feature.geometry.type !== 'Point') continue;
@@ -572,8 +573,8 @@ export function EmergencyMap({
 
     mapRef.current = map;
     return () => {
-      for (const marker of clusterMarkersRef.current.values()) marker.remove();
-      clusterMarkersRef.current.clear();
+      for (const marker of markers.values()) marker.remove();
+      markers.clear();
       map.remove();
       mapRef.current = null;
     };

@@ -34,6 +34,7 @@ import {
 } from '../../shared/offline/secure-submission-outbox';
 import { loadTrackingCode, saveTrackingCode } from '../../shared/offline/last-tracking-code';
 import { formatFreshness } from '../../shared/format/freshness';
+import { useBodyScrollLock } from '../../shared/hooks/use-body-scroll-lock';
 import { distanceInMeters, formatDistance } from '../../shared/format/distance';
 import { linesForTerritory } from '../../shared/data/emergency-lines';
 const EmergencyMap = lazy(() =>
@@ -99,7 +100,7 @@ export function HomePage() {
   const [savedCode, setSavedCode] = useState(() => loadTrackingCode());
   const [lookupStatus, setLookupStatus] = useState<string | null>(null);
   const [outboxNotice, setOutboxNotice] = useState<string | null>(null);
-  const [mapReady, setMapReady] = useState(false);
+  const [mapReady, setMapReady] = useState(() => !('IntersectionObserver' in window));
   const [mapVisible, setMapVisible] = useState(true);
   const mapStageRef = useRef<HTMLDivElement>(null);
   const journeyPanelRef = useRef<HTMLElement>(null);
@@ -278,7 +279,8 @@ export function HomePage() {
   const toggleLayer = (category: MapCategory) =>
     setLayers((current) => {
       const next = new Set(current);
-      next.has(category) ? next.delete(category) : next.add(category);
+      if (next.has(category)) next.delete(category);
+      else next.add(category);
       return next;
     });
   const updateTerritoryUrl = (
@@ -288,8 +290,10 @@ export function HomePage() {
   ) => {
     const params = new URLSearchParams(window.location.search);
     params.set('region', nextRegion);
-    area ? params.set('comuna', area) : params.delete('comuna');
-    neighborhood ? params.set('barrio', neighborhood) : params.delete('barrio');
+    if (area) params.set('comuna', area);
+    else params.delete('comuna');
+    if (neighborhood) params.set('barrio', neighborhood);
+    else params.delete('barrio');
     window.history.pushState({}, '', window.location.pathname + '?' + params.toString());
   };
   const changeRegion = (nextRegion: string) => {
@@ -336,10 +340,8 @@ export function HomePage() {
     if (!mapVisible) return;
     const target = mapStageRef.current;
     if (!target) return;
-    if (!('IntersectionObserver' in window)) {
-      setMapReady(true);
-      return;
-    }
+    // Sin IntersectionObserver el mapa ya arrancó listo desde el estado inicial.
+    if (!('IntersectionObserver' in window)) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -352,10 +354,9 @@ export function HomePage() {
     observer.observe(target);
     return () => observer.disconnect();
   }, [mapVisible]);
+  useBodyScrollLock(activeJourney !== null);
   useEffect(() => {
     if (!activeJourney) return;
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
     const panel = journeyPanelRef.current;
     const selector =
       'button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), summary, a[href]';
@@ -381,10 +382,7 @@ export function HomePage() {
       }
     };
     window.addEventListener('keydown', onKeyDown);
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener('keydown', onKeyDown);
-    };
+    return () => window.removeEventListener('keydown', onKeyDown);
   }, [activeJourney]);
   const prepareReport = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();

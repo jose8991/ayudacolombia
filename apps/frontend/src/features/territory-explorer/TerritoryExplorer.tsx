@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { useBodyScrollLock } from '../../shared/hooks/use-body-scroll-lock';
 import { ChevronDown, MapPinned, Search, X } from 'lucide-react';
 import type { HumanitarianRegion } from '../../entities/incident';
 
@@ -46,10 +47,10 @@ export function TerritoryExplorer({ regions, selected, onSelect, onOverview }: P
     closeExplorer();
   }
 
+  useBodyScrollLock(open);
+
   useEffect(() => {
     if (!open) return;
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         closeExplorer();
@@ -74,7 +75,6 @@ export function TerritoryExplorer({ regions, selected, onSelect, onOverview }: P
     };
     window.addEventListener('keydown', onKeyDown);
     return () => {
-      document.body.style.overflow = previousOverflow;
       window.removeEventListener('keydown', onKeyDown);
     };
   }, [open]);

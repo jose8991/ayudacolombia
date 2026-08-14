@@ -28,8 +28,6 @@ export function NationalOverview({
     [regions],
   );
   const scoped = department ? regions.filter((region) => region.department === department) : [];
-  const needs = active.reduce((sum, region) => sum + (region.activeNeeds ?? 0), 0);
-  const centers = active.reduce((sum, region) => sum + (region.openCenters ?? 0), 0);
   const loading = (
     <div className="national-map map-loading" role="status">
       Cargando mapa…
