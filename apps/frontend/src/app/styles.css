@@ -949,23 +949,6 @@ input:focus-visible {
   border-radius: 999px;
   background: linear-gradient(90deg, #d9e3df, #f2c94c, #e98532, #cf3f36);
 }
-.map-freshness {
-  position: absolute;
-  z-index: 2;
-  top: 0.75rem;
-  left: 0.75rem;
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  margin: 0;
-  padding: 0.55rem 0.7rem;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.94);
-  box-shadow: 0 6px 18px rgba(22, 50, 41, 0.1);
-  color: var(--color-brand-dark);
-  font-size: 0.72rem;
-  font-weight: 700;
-}
 .data-notice {
   margin: 0;
   padding: 0.7rem 1rem;
@@ -1873,9 +1856,6 @@ input:focus-visible {
     min-width: 0;
     flex: 1;
   }
-  .map-freshness {
-    display: none;
-  }
   .journey-panel {
     width: calc(100% - 1rem);
     margin: 0.5rem auto;
@@ -2092,9 +2072,6 @@ input:focus-visible {
     text-align: left;
   }
   .map-guide span {
-    display: none;
-  }
-  .map-freshness {
     display: none;
   }
   .area-detail,

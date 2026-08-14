@@ -1461,9 +1461,6 @@ export function HomePage() {
               </button>
             )}
             <MapLegend showAreaScale={hasLocalBoundaries} />
-            <p className="map-freshness">
-              <ShieldCheck size={15} /> Fuentes y hora visibles en cada ficha
-            </p>
           </div>
         </section>
       )}
