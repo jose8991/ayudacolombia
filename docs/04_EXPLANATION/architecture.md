@@ -2,7 +2,7 @@
 
 ## Decisión
 
-Ayuda Colombia se implementa como dos componentes desplegables: una aplicación web responsiva de consulta/reporte y una API stateless. PostgreSQL/PostGIS es la fuente de verdad; el mapa nunca lo es. El soporte offline y la instalación como PWA aún no están implementados.
+Ayuda Colombia se implementa como dos componentes desplegables: una aplicación web responsiva de consulta/reporte y una API stateless. PostgreSQL/PostGIS es la fuente de verdad; el mapa nunca lo es. La consulta funciona sin señal mediante un trabajador de servicio, y la aplicación se puede instalar desde el navegador.
 
 ```mermaid
 flowchart LR
@@ -16,7 +16,7 @@ flowchart LR
 
 ## Fronteras
 
-- `frontend`: presenta datos y no decide la veracidad de un reporte. Actualmente requiere conexión para enviar; la cola offline es deuda prioritaria.
+- `frontend`: presenta datos y no decide la veracidad de un reporte. Consultar funciona sin señal; los envíos que no salen quedan en una cola cifrada y se reintentan al volver la conexión.
 - `backend`: valida contratos, autorización, estado de verificación y auditoría.
 - `PostGIS`: asigna territorialmente los puntos y ejecuta consultas espaciales.
 - proveedores cartográficos: solo visualización, búsqueda o rutas; no son autoridad sobre barrios.
