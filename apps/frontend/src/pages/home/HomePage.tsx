@@ -41,6 +41,14 @@ const EmergencyMap = lazy(() =>
 );
 
 const INITIAL_LAYERS = new Set<MapCategory>(['aid-center']);
+const OFFER_KINDS = [
+  'Transporte',
+  'Comida',
+  'Agua',
+  'Alojamiento',
+  'Tiempo y manos',
+  'Otra cosa',
+] as const;
 const PRIVACY_POLICY_VERSION = '2026-08-13';
 const CATEGORY_LABELS: Record<MapCategory, string> = {
   need: 'Necesidad',
@@ -614,6 +622,16 @@ export function HomePage() {
                 <h2 id="journey-title">¿Cómo quieres ayudar?</h2>
                 <p>Mira qué falta, qué ya se ofrece o publica tu ayuda.</p>
                 <div className="journey-options">
+                  <button
+                    onClick={() => {
+                      setReportKind('offer');
+                      setActiveJourney('report');
+                    }}
+                    type="button"
+                  >
+                    <strong>Ofrecer ayuda</strong>
+                    <small>Publica lo que puedes dar. Son dos toques.</small>
+                  </button>
                   <button onClick={() => showOnMap(['aid-center'])} type="button">
                     <strong>Llevar algo ahora</strong>
                     <small>Mira dónde recibirlo. No pedimos ningún dato.</small>
@@ -623,16 +641,6 @@ export function HomePage() {
                   </button>
                   <button onClick={() => showOnMap(['offer'])} type="button">
                     Ver ayudas ofrecidas
-                  </button>
-                  <button
-                    onClick={() => {
-                      setReportKind('offer');
-                      setActiveJourney('report');
-                    }}
-                    type="button"
-                  >
-                    <strong>Ofrecer ayuda</strong>
-                    <small>Publica lo que puedes aportar</small>
                   </button>
                 </div>
                 {publicDataLoaded && counts.need === 0 && (
@@ -745,7 +753,26 @@ export function HomePage() {
                       <input name="category" type="hidden" value={reportKind} />
                     )
                   )}
-                  {reportKind !== 'need' && (
+                  {reportKind === 'offer' && (
+                    <fieldset className="offer-kinds">
+                      <legend>¿Qué puedes dar?</legend>
+                      {OFFER_KINDS.map((kind) => (
+                        <label key={kind}>
+                          <input
+                            defaultChecked={
+                              reportDraft?.title === 'Ofrezco ' + kind.toLocaleLowerCase('es')
+                            }
+                            name="title"
+                            required
+                            type="radio"
+                            value={'Ofrezco ' + kind.toLocaleLowerCase('es')}
+                          />
+                          <span>{kind}</span>
+                        </label>
+                      ))}
+                    </fieldset>
+                  )}
+                  {(reportKind === 'place' || reportKind === 'damage') && (
                     <label>
                       {reportKind === 'place' ? 'Nombre del lugar' : 'Resumen'}
                       <input
@@ -754,11 +781,9 @@ export function HomePage() {
                         minLength={3}
                         name="title"
                         placeholder={
-                          reportKind === 'offer'
-                            ? 'Ej. Ofrezco transporte'
-                            : reportKind === 'place'
-                              ? 'Ej. Albergue La Esperanza'
-                              : 'Ej. Vía bloqueada cerca del parque'
+                          reportKind === 'place'
+                            ? 'Ej. Albergue La Esperanza'
+                            : 'Ej. Vía bloqueada cerca del parque'
                         }
                         required
                       />
@@ -791,7 +816,7 @@ export function HomePage() {
                     {reportKind === 'need'
                       ? '¿Qué está pasando?'
                       : reportKind === 'offer'
-                        ? '¿Qué ofreces y hasta cuándo?'
+                        ? '¿Cuánto y hasta cuándo?'
                         : reportKind === 'place'
                           ? '¿Qué recibe o entrega este lugar?'
                           : '¿Qué pasó y cuándo lo viste?'}{' '}
@@ -895,6 +920,12 @@ export function HomePage() {
                       <dt>Barrio</dt>
                       <dd>{reportDraft.neighborhood || 'No indicado'}</dd>
                     </div>
+                    {reportKind === 'offer' && reportDraft.title && (
+                      <div>
+                        <dt>Ofreces</dt>
+                        <dd>{reportDraft.title}</dd>
+                      </div>
+                    )}
                     {reportDraft.description && (
                       <div>
                         <dt>Lo que contaste</dt>

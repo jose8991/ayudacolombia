@@ -2785,3 +2785,50 @@ input:focus-visible {
   height: 22px;
   flex: none;
 }
+
+/* Ofrecer ayuda: se toca lo que se puede dar en vez de escribirlo. */
+.offer-kinds {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: 0.5rem;
+}
+.offer-kinds legend {
+  padding: 0 0 0.4rem;
+  font-weight: 700;
+}
+.offer-kinds label {
+  min-height: 56px;
+  padding: 0 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+.offer-kinds input {
+  width: 24px;
+  height: 24px;
+  min-height: 24px;
+  flex: none;
+  accent-color: var(--color-brand);
+}
+.offer-kinds label:has(input:checked) {
+  border-color: var(--color-brand);
+  box-shadow: inset 0 0 0 1px var(--color-brand);
+  background: #eef6f2;
+}
+.offer-kinds label:focus-within {
+  outline: 3px solid var(--color-brand-dark);
+  outline-offset: 2px;
+}
+@media (max-width: 420px) {
+  .offer-kinds {
+    grid-template-columns: 1fr 1fr;
+  }
+}

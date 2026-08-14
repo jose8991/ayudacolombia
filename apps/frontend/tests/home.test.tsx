@@ -94,7 +94,7 @@ it('muestra acciones funcionales', () => {
   fireEvent.click(screen.getByRole('button', { name: /^Quiero ayudar/ }));
   fireEvent.click(screen.getByRole('button', { name: /^Ofrecer ayuda/ }));
   expect(screen.getByRole('heading', { name: 'Dinos lo necesario' })).toBeVisible();
-  expect(screen.getByLabelText(/¿Qué ofreces y hasta cuándo?/i)).toBeVisible();
+  expect(screen.getByLabelText(/¿Cuánto y hasta cuándo?/i)).toBeVisible();
 });
 
 it('permite cambiar a Dosquebradas desde el filtro de municipio', async () => {
@@ -276,4 +276,32 @@ it('explica en el mapa qué significa cada símbolo y cada nivel', async () => {
   expect(leyenda.getByText('Sin confirmar')).toBeVisible();
   expect(leyenda.getByText('Ya no recibe gente')).toBeVisible();
   expect(leyenda.getByText('Puede estar desactualizado')).toBeVisible();
+});
+
+it('ofrecer ayuda es tocar lo que se puede dar, no escribir un resumen', () => {
+  renderHome();
+  fireEvent.click(screen.getByRole('button', { name: /^Quiero ayudar/ }));
+  const opciones = within(screen.getByRole('dialog')).getAllByRole('button');
+  expect(opciones[1]).toHaveTextContent('Ofrecer ayuda');
+
+  fireEvent.click(screen.getByRole('button', { name: /^Ofrecer ayuda/ }));
+  expect(screen.getByRole('group', { name: '¿Qué puedes dar?' })).toBeVisible();
+  for (const opcion of ['Transporte', 'Comida', 'Agua', 'Alojamiento']) {
+    expect(screen.getByRole('radio', { name: opcion })).toBeVisible();
+  }
+  expect(screen.queryByLabelText('Resumen')).not.toBeInTheDocument();
+});
+
+it('lleva una oferta hasta la revisión con dos toques y una frase', () => {
+  renderHome();
+  fireEvent.click(screen.getByRole('button', { name: /^Quiero ayudar/ }));
+  fireEvent.click(screen.getByRole('button', { name: /^Ofrecer ayuda/ }));
+  fireEvent.click(screen.getByRole('radio', { name: 'Transporte' }));
+  fireEvent.change(screen.getByLabelText(/¿Cuánto y hasta cuándo?/i), {
+    target: { value: 'Camioneta disponible hoy hasta las 6' },
+  });
+  fireEvent.click(screen.getByRole('checkbox', { name: /Acepto que TIMELIBER S\.A\.S\./i }));
+  fireEvent.click(screen.getByRole('button', { name: 'Ver y enviar' }));
+  expect(screen.getByRole('heading', { name: 'Revisa y envía' })).toBeVisible();
+  expect(screen.getByText('Ofrezco transporte')).toBeVisible();
 });
