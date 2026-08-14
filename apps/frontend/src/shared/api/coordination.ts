@@ -34,6 +34,7 @@ export interface PendingReport {
   observed_at: string;
   /** Privado: solo llega a quien tiene permiso de lectura sensible. */
   contact: string | null;
+  contacted_at: string | null;
 }
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
@@ -66,6 +67,13 @@ export function publishCenterUpdate(
     method: 'POST',
     headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
     body: JSON.stringify(input),
+  });
+}
+
+export function markReportContacted(token: string, reportId: string): Promise<PendingReport> {
+  return request(`/reports/moderation/${reportId}/contacted`, {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${token}` },
   });
 }
 

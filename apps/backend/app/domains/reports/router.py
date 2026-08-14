@@ -69,6 +69,15 @@ async def moderate_report(
     return await service.moderate(report_id, payload, actor)
 
 
+@router.post("/moderation/{report_id}/contacted", response_model=ReportRead)
+async def mark_report_contacted(
+    report_id: UUID,
+    actor: Annotated[Actor, Depends(get_current_actor)],
+    service: Annotated[ReportService, Depends(get_report_service)],
+) -> ReportRead:
+    return await service.mark_contacted(report_id, actor)
+
+
 @router.get("/{code}/status", response_model=ReportStatusRead)
 async def report_status(
     code: str, service: Annotated[ReportService, Depends(get_report_service)]

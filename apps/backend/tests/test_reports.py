@@ -25,6 +25,17 @@ class FakeReportRepository:
     async def get_by_tracking_code(self, code):
         return self.reports.get(code.upper())
 
+    async def get(self, report_id):
+        return next(
+            (report for report in self.reports.values() if report.id == report_id), None
+        )
+
+    async def mark_contacted(self, report):
+        from datetime import UTC, datetime
+
+        report.contacted_at = datetime.now(UTC)
+        return report
+
     async def get_by_idempotency_key(self, key_hash):
         return next(
             (report for report in self.reports.values() if report.idempotency_key_hash == key_hash),
@@ -305,3 +316,28 @@ async def test_every_report_is_public_with_its_level_visible(
     ]
     assert all(item["verification_status"] == "reported" for item in default.json())
     assert confirmed.json() == []
+
+
+async def test_marking_contacted_requires_an_authorized_session(fake_report_repository) -> None:
+    payload = {
+        "territory_id": "co-ris-pereira",
+        "category": "offer",
+        "title": "Ofrezco transporte",
+        "description": "Camioneta disponible desde hoy.",
+        "severity": "medium",
+        "coordinates": None,
+        "observed_at": "2026-08-14T09:00:00-05:00",
+        "contact": "+57 300 111 2233",
+        "privacy_authorized": True,
+        "privacy_policy_version": "2026-08-13",
+    }
+    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as client:
+        created = await client.post(
+            "/api/v1/reports", json=payload, headers={"Idempotency-Key": "contacted-flag-0001"}
+        )
+        report_id = created.json()["id"]
+        response = await client.post(f"/api/v1/reports/moderation/{report_id}/contacted")
+
+    assert created.status_code == 201
+    assert created.json()["contacted_at"] is None
+    assert response.status_code == 401

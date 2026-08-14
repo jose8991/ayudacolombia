@@ -32,6 +32,8 @@ class CitizenReport(Base):
     )
     moderation_note: Mapped[str | None] = mapped_column(String(300))
     contact_ciphertext: Mapped[bytes | None] = mapped_column(LargeBinary)
+    # Evita que dos personas del equipo llamen a la misma persona por separado.
+    contacted_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     privacy_policy_version: Mapped[str] = mapped_column(String(32), nullable=False)
     privacy_accepted_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
     created_at: Mapped[datetime] = mapped_column(

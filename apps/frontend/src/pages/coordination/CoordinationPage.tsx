@@ -1,5 +1,6 @@
 import { type FormEvent, useState } from 'react';
 import { RELIEF_ITEMS } from '../../shared/data/relief-items';
+import { formatFreshness } from '../../shared/format/freshness';
 import { VALIDITY_OPTIONS, expiresAt } from '../../shared/format/expiry';
 import {
   ArrowLeft,
@@ -15,6 +16,7 @@ import {
   inviteCenterOperator,
   loadManagedCenters,
   loadPendingReports,
+  markReportContacted,
   login,
   moderateReport,
   publishCenterUpdate,
@@ -107,6 +109,20 @@ export function CoordinationPage() {
       setReports((current) => current.filter((report) => report.id !== reportId));
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : 'No fue posible revisar el reporte');
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function handleContacted(reportId: string) {
+    if (!session) return;
+    setBusy(true);
+    setError('');
+    try {
+      const updated = await markReportContacted(session.access_token, reportId);
+      setReports((current) => current.map((report) => (report.id === reportId ? updated : report)));
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : 'No fue posible marcar el contacto');
     } finally {
       setBusy(false);
     }
@@ -402,6 +418,11 @@ export function CoordinationPage() {
                     {report.neighborhood_code || 'Sin barrio indicado'} · {report.severity} ·{' '}
                     {report.tracking_code}
                   </small>
+                  {report.contacted_at && (
+                    <p className="already-contacted" role="status">
+                      Ya lo contactaron {formatFreshness(report.contacted_at)}
+                    </p>
+                  )}
                   {report.contact && (
                     <p className="moderation-contact">
                       <a href={'tel:' + report.contact.replace(/[^+\d]/g, '')}>
@@ -421,6 +442,15 @@ export function CoordinationPage() {
                       >
                         WhatsApp
                       </a>
+                      {!report.contacted_at && (
+                        <button
+                          disabled={busy}
+                          onClick={() => void handleContacted(report.id)}
+                          type="button"
+                        >
+                          Ya lo contacté
+                        </button>
+                      )}
                     </p>
                   )}
                   <div>

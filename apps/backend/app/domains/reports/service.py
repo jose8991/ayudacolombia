@@ -38,6 +38,7 @@ class ReportRepositoryPort(Protocol):
     async def moderate(
         self, report: CitizenReport, verification_status: str, note: str | None
     ) -> CitizenReport: ...
+    async def mark_contacted(self, report: CitizenReport) -> CitizenReport: ...
 
 
 class ReportService:
@@ -103,6 +104,16 @@ class ReportService:
             )
         )
 
+    async def mark_contacted(self, report_id: UUID, actor: Actor) -> ReportRead:
+        report = await self.repository.get(report_id)
+        if report is None:
+            raise ReportNotFoundError
+        if not evaluate_access(
+            actor, Permission.REPORT_VERIFY, ResourceContext(territory_id=report.territory_id)
+        ).allowed:
+            raise ReportAccessDeniedError
+        return self.to_report_read(await self.repository.mark_contacted(report))
+
     async def get_status(self, code: str) -> ReportStatusRead:
         report = await self.repository.get_by_tracking_code(code)
         if report is None:
@@ -129,6 +140,7 @@ class ReportService:
             observed_at=report.observed_at,
             verification_status=report.verification_status,
             created_at=report.created_at,
+            contacted_at=report.contacted_at,
             contact=(
                 decrypt_sensitive(report.contact_ciphertext)
                 if report.contact_ciphertext

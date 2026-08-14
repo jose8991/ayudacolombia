@@ -58,6 +58,7 @@ class ReportRead(ReportCreate):
     tracking_code: str
     verification_status: VerificationStatus
     created_at: datetime
+    contacted_at: datetime | None = None
 
 
 class PublicReportRead(BaseModel):

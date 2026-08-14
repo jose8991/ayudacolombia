@@ -691,6 +691,54 @@
         }
       }
     },
+    "/api/v1/reports/moderation/{report_id}/contacted": {
+      "post": {
+        "tags": [
+          "reports"
+        ],
+        "summary": "Mark Report Contacted",
+        "operationId": "mark_report_contacted_api_v1_reports_moderation__report_id__contacted_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "report_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Report Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReportRead"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/reports/{code}/status": {
       "get": {
         "tags": [
@@ -1911,6 +1959,18 @@
             "type": "string",
             "format": "date-time",
             "title": "Created At"
+          },
+          "contacted_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Contacted At"
           }
         },
         "type": "object",

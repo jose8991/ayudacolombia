@@ -1,3 +1,4 @@
+from datetime import UTC, datetime
 from uuid import UUID
 
 from sqlalchemy import select
@@ -60,6 +61,12 @@ class ReportRepository:
             .limit(500)
         )
         return list(result.all())
+
+    async def mark_contacted(self, report: CitizenReport) -> CitizenReport:
+        report.contacted_at = datetime.now(UTC)
+        await self.session.commit()
+        await self.session.refresh(report)
+        return report
 
     async def moderate(
         self, report: CitizenReport, verification_status: str, note: str | None

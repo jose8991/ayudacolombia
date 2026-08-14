@@ -2869,3 +2869,19 @@ input:focus-visible {
   font-weight: 800;
   text-decoration: none;
 }
+.moderation-contact button {
+  min-height: 44px;
+  padding: 0 0.8rem;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: white;
+  color: var(--color-ink);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+.already-contacted {
+  margin: 0.5rem 0 0;
+  font-weight: 700;
+  color: var(--color-brand-dark);
+}
