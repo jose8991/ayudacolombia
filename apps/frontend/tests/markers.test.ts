@@ -1,6 +1,7 @@
 import { expect, it } from 'vitest';
 import type { HumanitarianMapPoint } from '../src/entities/incident';
 import {
+  describeCluster,
   isAged,
   isBlocked,
   markerIconName,
@@ -52,4 +53,26 @@ it('un rumor y un dato oficial de la misma categoría usan marcadores distintos'
   expect(markerIconName({ ...base, verificationStatus: 'reported' })).not.toBe(
     markerIconName(base),
   );
+});
+
+it('un grupo dice cuántos son y de qué tipo', () => {
+  const resumen = describeCluster({ point_count: 12, centers: 5, needs: 4, offers: 0, damages: 3 });
+
+  expect(resumen.count).toBe(12);
+  expect(resumen.label).toBe('Grupo de 12 puntos: 5 albergues, 4 necesidades, 3 daños');
+  expect(resumen.gradient).toContain('conic-gradient');
+  expect(resumen.gradient).not.toContain('#2767b2');
+});
+
+it('usa el singular cuando hay uno solo', () => {
+  const resumen = describeCluster({ point_count: 2, centers: 1, needs: 1, offers: 0, damages: 0 });
+
+  expect(resumen.label).toBe('Grupo de 2 puntos: 1 albergue, 1 necesidad');
+});
+
+it('no se rompe si el grupo llega sin desglose', () => {
+  const resumen = describeCluster({ point_count: 4 });
+
+  expect(resumen.label).toBe('Grupo de 4 puntos');
+  expect(resumen.gradient).toContain('conic-gradient');
 });

@@ -13,7 +13,7 @@ import type { HumanitarianMapPoint, MapCategory } from '../../entities/incident'
 
 export type TrustLevel = 'official' | 'verified' | 'reported';
 
-const CATEGORY_COLORS: Record<MapCategory, string> = {
+export const CATEGORY_COLORS: Record<MapCategory, string> = {
   need: '#d8483e',
   offer: '#2767b2',
   'aid-center': '#168267',
@@ -228,4 +228,58 @@ export function buildMarkerImages(): MarkerImage[] {
     }
   }
   return images;
+}
+
+export interface ClusterSummary {
+  count: number;
+  /** Nombre accesible: dice cuántos son y de qué tipo. */
+  label: string;
+  /** Anillo proporcional por categoría, para saber de qué es el grupo sin abrirlo. */
+  gradient: string;
+}
+
+const CLUSTER_PARTS: readonly { property: string; singular: string; plural: string }[] = [
+  { property: 'centers', singular: 'albergue', plural: 'albergues' },
+  { property: 'needs', singular: 'necesidad', plural: 'necesidades' },
+  { property: 'offers', singular: 'ayuda ofrecida', plural: 'ayudas ofrecidas' },
+  { property: 'damages', singular: 'daño', plural: 'daños' },
+];
+
+const CLUSTER_COLORS: Record<string, string> = {
+  centers: CATEGORY_COLORS['aid-center'],
+  needs: CATEGORY_COLORS.need,
+  offers: CATEGORY_COLORS.offer,
+  damages: CATEGORY_COLORS.damage,
+};
+
+/**
+ * Un círculo con "12" no dice si son doce albergues o doce derrumbes. El anillo reparte
+ * el borde por categoría y el nombre accesible lo dice con palabras.
+ */
+export function describeCluster(properties: Record<string, unknown>): ClusterSummary {
+  const amounts = CLUSTER_PARTS.map((part) => ({
+    ...part,
+    amount: Number(properties[part.property] ?? 0),
+  }));
+  const total = amounts.reduce((sum, item) => sum + item.amount, 0);
+  const count = Number(properties.point_count ?? total);
+
+  const described = amounts
+    .filter((item) => item.amount > 0)
+    .map((item) => `${item.amount} ${item.amount === 1 ? item.singular : item.plural}`);
+  const label = described.length
+    ? `Grupo de ${count} puntos: ${described.join(', ')}`
+    : `Grupo de ${count} puntos`;
+
+  if (total === 0) return { count, label, gradient: `conic-gradient(${INK} 0turn 1turn)` };
+
+  let cursor = 0;
+  const stops = amounts
+    .filter((item) => item.amount > 0)
+    .map((item) => {
+      const start = cursor;
+      cursor += item.amount / total;
+      return `${CLUSTER_COLORS[item.property]} ${start}turn ${cursor}turn`;
+    });
+  return { count, label, gradient: `conic-gradient(${stops.join(', ')})` };
 }

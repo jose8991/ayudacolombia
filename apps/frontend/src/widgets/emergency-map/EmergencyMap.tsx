@@ -1,11 +1,12 @@
 import { useEffect, useRef } from 'react';
-import maplibregl, { type GeoJSONSource, type Map } from 'maplibre-gl';
+import maplibregl, { type GeoJSONSource, type Map as MapLibreMap } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import type { FeatureCollection, MultiPolygon, Polygon } from 'geojson';
 import type { HumanitarianMapPoint, HumanitarianRegion } from '../../entities/incident';
 import {
   MARKER_PIXEL_RATIO,
   buildMarkerImages,
+  describeCluster,
   isAged,
   isBlocked,
   markerIconName,
@@ -159,10 +160,11 @@ export function EmergencyMap({
   onSelectNeighborhood,
 }: EmergencyMapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const mapRef = useRef<Map | null>(null);
+  const mapRef = useRef<MapLibreMap | null>(null);
   const boundaryDataRef = useRef<BoundaryCollection | null>(null);
   const neighborhoodDataRef = useRef<BoundaryCollection | null>(null);
   const ruralDataRef = useRef<BoundaryCollection | null>(null);
+  const clusterMarkersRef = useRef(new Map<number, maplibregl.Marker>());
   const visiblePoints = points;
 
   useEffect(() => {
@@ -459,6 +461,12 @@ export function EmergencyMap({
         cluster: true,
         clusterMaxZoom: 14,
         clusterRadius: 48,
+        clusterProperties: {
+          centers: ['+', ['case', ['==', ['get', 'category'], 'aid-center'], 1, 0]],
+          needs: ['+', ['case', ['==', ['get', 'category'], 'need'], 1, 0]],
+          offers: ['+', ['case', ['==', ['get', 'category'], 'offer'], 1, 0]],
+          damages: ['+', ['case', ['==', ['get', 'category'], 'damage'], 1, 0]],
+        },
       });
       map.addLayer({
         id: 'clusters',
@@ -466,19 +474,9 @@ export function EmergencyMap({
         source: SOURCE_ID,
         filter: ['has', 'point_count'],
         paint: {
-          'circle-color': ['step', ['get', 'point_count'], '#315b50', 10, '#23483f', 50, '#17332a'],
-          'circle-radius': ['step', ['get', 'point_count'], 20, 10, 25, 50, 31],
-          'circle-stroke-color': '#fff',
-          'circle-stroke-width': 3,
+          'circle-radius': ['step', ['get', 'point_count'], 22, 10, 26, 50, 30],
+          'circle-opacity': 0,
         },
-      });
-      map.addLayer({
-        id: 'cluster-count',
-        type: 'symbol',
-        source: SOURCE_ID,
-        filter: ['has', 'point_count'],
-        layout: { 'text-field': ['get', 'point_count_abbreviated'], 'text-size': 13 },
-        paint: { 'text-color': '#fff' },
       });
       for (const image of buildMarkerImages()) {
         if (!map.hasImage(image.name))
@@ -527,8 +525,55 @@ export function EmergencyMap({
         map.getCanvas().style.cursor = '';
       });
     });
+    // Los grupos se dibujan como elementos reales: MapLibre solo pinta texto si el estilo
+    // declara un juego de glifos, y este no lo hace. Así además se puede decir de qué es
+    // cada grupo y el objetivo táctil no depende del zoom.
+    const syncClusters = () => {
+      if (!map.getLayer('clusters')) return;
+      const markers = clusterMarkersRef.current;
+      const seen = new Set<number>();
+      for (const feature of map.queryRenderedFeatures({ layers: ['clusters'] })) {
+        if (feature.geometry.type !== 'Point') continue;
+        const properties = (feature.properties ?? {}) as Record<string, unknown>;
+        const clusterId = Number(properties.cluster_id);
+        if (!Number.isFinite(clusterId)) continue;
+        seen.add(clusterId);
+        const summary = describeCluster(properties);
+        const position = feature.geometry.coordinates as [number, number];
+        const existing = markers.get(clusterId);
+        if (existing) {
+          existing.setLngLat(position);
+          continue;
+        }
+        const element = document.createElement('button');
+        element.type = 'button';
+        element.className = 'cluster-marker';
+        element.style.setProperty('--cluster-ring', summary.gradient);
+        element.setAttribute('aria-label', summary.label);
+        element.title = summary.label;
+        element.textContent = String(summary.count);
+        element.addEventListener('click', async (event) => {
+          event.stopPropagation();
+          const source = map.getSource(SOURCE_ID) as GeoJSONSource | undefined;
+          if (!source) return;
+          const zoom = await source.getClusterExpansionZoom(clusterId);
+          map.easeTo({ center: position, zoom });
+        });
+        markers.set(clusterId, new maplibregl.Marker({ element }).setLngLat(position).addTo(map));
+      }
+      for (const [clusterId, marker] of markers) {
+        if (seen.has(clusterId)) continue;
+        marker.remove();
+        markers.delete(clusterId);
+      }
+    };
+    map.on('idle', syncClusters);
+    map.on('moveend', syncClusters);
+
     mapRef.current = map;
     return () => {
+      for (const marker of clusterMarkersRef.current.values()) marker.remove();
+      clusterMarkersRef.current.clear();
       map.remove();
       mapRef.current = null;
     };

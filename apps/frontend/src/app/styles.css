@@ -2734,3 +2734,29 @@ input:focus-visible {
     grid-template-columns: 1fr;
   }
 }
+
+/* Grupo de puntos: el anillo reparte el borde por categoría y el número siempre se lee. */
+.cluster-marker {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background:
+    linear-gradient(var(--color-ink), var(--color-ink)) content-box,
+    var(--cluster-ring, conic-gradient(var(--color-ink) 0turn 1turn)) border-box;
+  border: 6px solid transparent;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 800;
+  font-size: 0.95rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(22, 50, 41, 0.35);
+}
+.cluster-marker:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 2px;
+}
