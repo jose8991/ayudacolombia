@@ -20,6 +20,7 @@ export interface PublicationInput {
   needed_items: string[];
   sufficient_items: string[];
   priority: 'normal' | 'high' | 'urgent';
+  expires_at: string;
 }
 export interface PendingReport {
   id: string;

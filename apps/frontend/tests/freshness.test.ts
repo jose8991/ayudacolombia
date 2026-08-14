@@ -16,3 +16,18 @@ it('dice el tiempo transcurrido en lenguaje corriente', () => {
 it('no muestra tiempos negativos si el reloj del dispositivo va atrasado', () => {
   expect(formatFreshness(ago(-60 * 60_000), now)).toBe('hace un momento');
 });
+
+it('traduce la vigencia elegida a una fecha concreta', async () => {
+  const { VALIDITY_OPTIONS, expiresAt } = await import('../src/shared/format/expiry');
+
+  expect(VALIDITY_OPTIONS[0].label).toBe('Un día');
+  expect(expiresAt('24', now)).toBe(new Date(now + 24 * 3_600_000).toISOString());
+  expect(expiresAt('168', now)).toBe(new Date(now + 168 * 3_600_000).toISOString());
+});
+
+it('ante un valor inservible deja la publicación vigente un día, no para siempre', async () => {
+  const { expiresAt } = await import('../src/shared/format/expiry');
+
+  expect(expiresAt('', now)).toBe(new Date(now + 24 * 3_600_000).toISOString());
+  expect(expiresAt('-5', now)).toBe(new Date(now + 24 * 3_600_000).toISOString());
+});

@@ -1,4 +1,4 @@
-from sqlalchemy import select
+from sqlalchemy import func, or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.domains.identity.schemas import Actor, Role
@@ -48,9 +48,18 @@ class CenterRepository:
         return await self.session.get(AidCenter, center_id)
 
     async def list_publications(self, center_id: object) -> list[CenterPublication]:
+        # Una publicación vencida deja de mostrarse sola: "necesitamos agua" de hace tres
+        # días no puede seguir siendo la verdad del centro.
         result = await self.session.scalars(
             select(CenterPublication)
-            .where(CenterPublication.center_id == center_id, CenterPublication.status == "active")
+            .where(
+                CenterPublication.center_id == center_id,
+                CenterPublication.status == "active",
+                or_(
+                    CenterPublication.expires_at.is_(None),
+                    CenterPublication.expires_at > func.now(),
+                ),
+            )
             .order_by(CenterPublication.published_at.desc())
             .limit(20)
         )

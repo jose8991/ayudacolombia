@@ -1,5 +1,6 @@
 import { type FormEvent, useState } from 'react';
 import { RELIEF_ITEMS } from '../../shared/data/relief-items';
+import { VALIDITY_OPTIONS, expiresAt } from '../../shared/format/expiry';
 import { ArrowLeft, CheckCircle2, LogIn, Megaphone, PackagePlus, ShieldCheck } from 'lucide-react';
 import {
   acceptInvitation,
@@ -77,6 +78,7 @@ export function CoordinationPage() {
         needed_items: needed,
         sufficient_items: sufficient,
         priority: String(data.get('priority')) as 'normal' | 'high' | 'urgent',
+        expires_at: expiresAt(String(data.get('validity'))),
       });
       form.reset();
       setCenterId(centerId);
@@ -313,6 +315,20 @@ export function CoordinationPage() {
                     rows={3}
                   />
                 </label>
+                <fieldset className="priority-picker">
+                  <legend>¿Hasta cuándo vale?</legend>
+                  {VALIDITY_OPTIONS.map((option, index) => (
+                    <label key={option.value}>
+                      <input
+                        defaultChecked={index === 0}
+                        name="validity"
+                        type="radio"
+                        value={option.value}
+                      />{' '}
+                      {option.label}
+                    </label>
+                  ))}
+                </fieldset>
                 <fieldset className="priority-picker">
                   <legend>Prioridad</legend>
                   <label>
