@@ -408,7 +408,6 @@ input:focus-visible {
 .map-workspace {
   display: grid;
   grid-template-columns: minmax(290px, 350px) 1fr;
-  height: calc(100dvh - 188px);
   min-height: 570px;
   margin: 0;
   background: white;
@@ -885,6 +884,23 @@ input:focus-visible {
 .trust-badge--official,
 .trust-badge--verified {
   color: var(--color-brand);
+}
+/*
+ * En escritorio el área del mapa ocupa lo que sobra de la ventana. Antes se restaba una
+ * altura fija de 188 px, que asumía un encabezado y una barra de acciones invariables:
+ * bastaba con que el nombre de un municipio saltara de línea para cortar el mapa o
+ * dejar un hueco. Ahora la columna reparte el espacio y no hay número que mantener.
+ */
+@media (min-width: 901px) {
+  #main-content {
+    display: flex;
+    flex-direction: column;
+    height: 100dvh;
+  }
+  .map-workspace {
+    flex: 1;
+    min-height: 0;
+  }
 }
 .map-stage {
   position: relative;
@@ -1789,10 +1805,17 @@ input:focus-visible {
     padding: 0 0.65rem;
   }
   .map-workspace {
+    display: flex;
+    flex-direction: column;
     grid-template-columns: 1fr;
     height: auto;
   }
+  .map-stage {
+    order: 1;
+    min-height: 46dvh;
+  }
   .map-sidebar {
+    order: 2;
     max-height: none;
     border-right: 0;
   }

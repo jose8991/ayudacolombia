@@ -53,17 +53,18 @@ export function HomePrimaryActions({
         <div className="situation-metrics">
           {counts.need > 0 && (
             <span>
-              <strong>{counts.need}</strong> necesidades
+              <strong>{counts.need}</strong> {counts.need === 1 ? 'necesidad' : 'necesidades'}
             </span>
           )}
           {counts['aid-center'] > 0 && (
             <span>
-              <strong>{counts['aid-center']}</strong> centros
+              <strong>{counts['aid-center']}</strong>{' '}
+              {counts['aid-center'] === 1 ? 'centro' : 'centros'}
             </span>
           )}
           {counts.damage > 0 && (
             <span>
-              <strong>{counts.damage}</strong> afectaciones
+              <strong>{counts.damage}</strong> {counts.damage === 1 ? 'afectación' : 'afectaciones'}
             </span>
           )}
         </div>

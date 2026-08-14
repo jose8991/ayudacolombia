@@ -58,3 +58,11 @@ it('los botones de artículos caben en dos columnas en un teléfono angosto', ()
 it('no deja CSS de la leyenda que ya no existe', () => {
   expect(css).not.toMatch(/\.map-legend(?!-panel)/);
 });
+
+it('no calcula el alto del mapa restando una altura fija inventada', () => {
+  // Un número mágico se rompe en cuanto el encabezado cambia de alto.
+  expect(css).not.toMatch(/\.map-workspace\s*\{[^}]*calc\(100dvh - \d+px\)/);
+  expect(css).toMatch(
+    /@media \(min-width: 901px\)[\s\S]*?#main-content\s*\{[^}]*flex-direction:\s*column/,
+  );
+});

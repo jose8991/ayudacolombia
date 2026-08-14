@@ -54,7 +54,7 @@ export async function loadPublicCenterPoints(
         regionId,
         category: 'aid-center' as const,
         title: center.name,
-        neighborhood: center.name,
+        neighborhood: center.address,
         description: latest ? latest.message : statusText,
         severity:
           latest?.priority === 'urgent'

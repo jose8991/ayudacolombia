@@ -1,7 +1,6 @@
 interface MapLegendProps {
   /** El color del área solo aparece donde hay comunas y barrios cargados. */
   showAreaScale: boolean;
-  defaultOpen: boolean;
 }
 
 // Los dos primeros van en color fuerte; los otros dos, apagados, son contexto.
@@ -32,9 +31,9 @@ function Glyph({ glyph }: { glyph: GlyphName }) {
   );
 }
 
-export function MapLegend({ showAreaScale, defaultOpen }: MapLegendProps) {
+export function MapLegend({ showAreaScale }: MapLegendProps) {
   return (
-    <details className="map-legend-panel" open={defaultOpen}>
+    <details className="map-legend-panel">
       <summary>Qué significa cada símbolo</summary>
       <div className="legend-groups">
         <section>

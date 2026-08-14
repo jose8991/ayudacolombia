@@ -81,10 +81,11 @@ it('muestra el mapa desde el inicio en una pantalla de escritorio', async () => 
 it('permite cambiar lo que muestra el mapa', async () => {
   renderHome();
   fireEvent.click(screen.getByText('Qué mostrar'));
-  const needs = screen.getByRole('button', { name: /^Necesidades/i, pressed: false });
-  expect(needs).toHaveAttribute('aria-pressed', 'false');
-  fireEvent.click(needs);
+  // Todas las capas empiezan encendidas: si el contador anuncia algo, el mapa lo muestra.
+  const needs = screen.getByRole('button', { name: /^Necesidades/i });
   expect(needs).toHaveAttribute('aria-pressed', 'true');
+  fireEvent.click(needs);
+  expect(needs).toHaveAttribute('aria-pressed', 'false');
 });
 
 it('muestra acciones funcionales', () => {

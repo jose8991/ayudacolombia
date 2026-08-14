@@ -43,7 +43,7 @@ const EmergencyMap = lazy(() =>
   import('../../widgets/emergency-map').then((module) => ({ default: module.EmergencyMap })),
 );
 
-const INITIAL_LAYERS = new Set<MapCategory>(['aid-center']);
+const INITIAL_LAYERS = new Set<MapCategory>(['aid-center', 'need', 'offer', 'damage']);
 const OFFER_KINDS = [
   'Transporte',
   'Comida',
@@ -1460,13 +1460,7 @@ export function HomePage() {
                 Ver el mapa
               </button>
             )}
-            <MapLegend
-              defaultOpen={
-                typeof window.matchMedia === 'function' &&
-                window.matchMedia('(min-width: 901px)').matches
-              }
-              showAreaScale={hasLocalBoundaries}
-            />
+            <MapLegend showAreaScale={hasLocalBoundaries} />
             <p className="map-freshness">
               <ShieldCheck size={15} /> Fuentes y hora visibles en cada ficha
             </p>
