@@ -25,10 +25,10 @@ interface CenterPublication {
 
 export async function loadPublicCenterPoints(
   regionId: string,
-  includeCommunity = false,
+  onlyConfirmed = false,
 ): Promise<HumanitarianMapPoint[]> {
   const params = new URLSearchParams({ territory_id: regionId });
-  if (includeCommunity) params.set('include_community', 'true');
+  if (!onlyConfirmed) params.set('include_community', 'true');
   const response = await fetch(`${API_URL}/centers?${params.toString()}`);
   if (!response.ok) throw new Error('No fue posible consultar los centros');
   const centers = (await response.json()) as PublicCenter[];

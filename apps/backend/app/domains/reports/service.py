@@ -31,7 +31,9 @@ class ReportRepositoryPort(Protocol):
     async def get_by_idempotency_key(self, key_hash: str) -> CitizenReport | None: ...
     async def get(self, report_id: UUID) -> CitizenReport | None: ...
     async def list_pending(self, territory_ids: set[str] | None) -> list[CitizenReport]: ...
-    async def list_public(self, territory_id: str) -> list[CitizenReport]: ...
+    async def list_public(
+        self, territory_id: str, only_confirmed: bool = False
+    ) -> list[CitizenReport]: ...
     async def moderate(
         self, report: CitizenReport, verification_status: str, note: str | None
     ) -> CitizenReport: ...
@@ -69,8 +71,10 @@ class ReportService:
         )
         return self.to_report_read(await self.repository.add(report))
 
-    async def list_public(self, territory_id: str) -> list[PublicReportRead]:
-        reports = await self.repository.list_public(territory_id)
+    async def list_public(
+        self, territory_id: str, only_confirmed: bool = False
+    ) -> list[PublicReportRead]:
+        reports = await self.repository.list_public(territory_id, only_confirmed)
         return [self.to_public_report_read(item) for item in reports]
 
     async def list_pending(self, actor: Actor) -> list[ReportRead]:

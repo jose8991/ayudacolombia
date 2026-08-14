@@ -42,12 +42,19 @@ class ReportRepository:
         )
         return list(result.all())
 
-    async def list_public(self, territory_id: str) -> list[CitizenReport]:
+    async def list_public(
+        self, territory_id: str, only_confirmed: bool = False
+    ) -> list[CitizenReport]:
+        # Todo reporte publicado se muestra con su nivel a la vista: confirmado, revisado o
+        # sin confirmar. Quien consulta puede pedir únicamente lo confirmado.
+        visible_statuses = (
+            ["verified", "official"] if only_confirmed else ["verified", "official", "reported"]
+        )
         result = await self.session.scalars(
             select(CitizenReport)
             .where(
                 CitizenReport.territory_id == territory_id,
-                CitizenReport.verification_status.in_(["verified", "official"]),
+                CitizenReport.verification_status.in_(visible_statuses),
             )
             .order_by(CitizenReport.updated_at.desc())
             .limit(500)

@@ -133,15 +133,13 @@ it('explica claramente la diferencia entre información oficial y comunitaria', 
   expect(screen.getByText(/Mira la hora antes de ir/i)).toBeVisible();
 });
 
-it('mantiene ocultos los avisos comunitarios hasta que la persona los solicite', () => {
+it('muestra todo con su nivel y permite quedarse solo con lo confirmado', () => {
   renderHome();
   openCentersMap();
-  expect(
-    screen.queryByText(/Estás viendo información comunitaria sin confirmar/i),
-  ).not.toBeInTheDocument();
   fireEvent.click(screen.getByText('De dónde viene la información'));
-  fireEvent.click(screen.getByRole('checkbox', { name: /Mostrar avisos de la comunidad/i }));
-  expect(screen.getByText(/Estás viendo información comunitaria sin confirmar/i)).toBeVisible();
+  expect(screen.getByText(/incluido lo que aún no está confirmado/i)).toBeVisible();
+  fireEvent.click(screen.getByRole('checkbox', { name: /Ver solo información confirmada/i }));
+  expect(screen.queryByText(/incluido lo que aún no está confirmado/i)).not.toBeInTheDocument();
 });
 
 it('muestra acciones con una explicación clara', () => {
@@ -237,4 +235,17 @@ it('permite a quien se ofrece dejar un teléfono privado y opcional', () => {
   expect(phone).toBeVisible();
   expect(phone).not.toBeRequired();
   expect(screen.getByText(/No aparece en el mapa/i)).toBeVisible();
+});
+
+it('recuerda el código de seguimiento para no exigir memoria', () => {
+  localStorage.setItem(
+    'sos.last-tracking-code',
+    JSON.stringify({ code: 'SOS-ABC1234567', kind: 'report' }),
+  );
+  renderHome();
+  fireEvent.click(screen.getByRole('button', { name: /^Reportar/ }));
+  fireEvent.click(screen.getByText('Ver cómo va lo que enviaste'));
+  expect(screen.getByText('SOS-ABC1234567')).toBeVisible();
+  expect(screen.getByLabelText('Código')).toHaveValue('SOS-ABC1234567');
+  localStorage.clear();
 });

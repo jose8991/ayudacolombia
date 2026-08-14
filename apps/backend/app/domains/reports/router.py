@@ -46,8 +46,9 @@ async def create_report(
 async def public_reports(
     territory_id: Annotated[str, Query(min_length=3, max_length=80)],
     service: Annotated[ReportService, Depends(get_report_service)],
+    only_confirmed: bool = False,
 ) -> list[PublicReportRead]:
-    return await service.list_public(territory_id)
+    return await service.list_public(territory_id, only_confirmed)
 
 
 @router.get("/moderation/pending", response_model=list[ReportRead])

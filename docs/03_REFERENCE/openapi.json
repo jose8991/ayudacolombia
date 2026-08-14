@@ -563,6 +563,16 @@
               "maxLength": 80,
               "title": "Territory Id"
             }
+          },
+          {
+            "name": "only_confirmed",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Only Confirmed"
+            }
           }
         ],
         "responses": {

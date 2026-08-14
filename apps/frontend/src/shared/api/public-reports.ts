@@ -10,16 +10,19 @@ interface PublicReport {
   severity: HumanitarianMapPoint['severity'];
   coordinates: { longitude: number; latitude: number } | null;
   observed_at: string;
-  verification_status: 'verified' | 'official';
+  verification_status: 'reported' | 'verified' | 'official';
 }
 
 const mapCategory = (category: PublicReport['category']): MapCategory =>
   category === 'shelter' ? 'aid-center' : category;
 
-export async function loadPublicReportPoints(territoryId: string): Promise<HumanitarianMapPoint[]> {
-  const response = await fetch(
-    '/api/v1/reports/public?territory_id=' + encodeURIComponent(territoryId),
-  );
+export async function loadPublicReportPoints(
+  territoryId: string,
+  onlyConfirmed = false,
+): Promise<HumanitarianMapPoint[]> {
+  const params = new URLSearchParams({ territory_id: territoryId });
+  if (onlyConfirmed) params.set('only_confirmed', 'true');
+  const response = await fetch('/api/v1/reports/public?' + params.toString());
   if (!response.ok) throw new Error('No fue posible cargar la información verificada');
   const reports = (await response.json()) as PublicReport[];
   return reports

@@ -31,6 +31,7 @@ import {
   loadPendingSubmission,
   savePendingSubmission,
 } from '../../shared/offline/secure-submission-outbox';
+import { loadTrackingCode, saveTrackingCode } from '../../shared/offline/last-tracking-code';
 const EmergencyMap = lazy(() =>
   import('../../widgets/emergency-map').then((module) => ({ default: module.EmergencyMap })),
 );
@@ -71,7 +72,7 @@ export function HomePage() {
   );
   const [linkCopied, setLinkCopied] = useState(false);
   const [codeCopied, setCodeCopied] = useState(false);
-  const [showCommunityReports, setShowCommunityReports] = useState(false);
+  const [onlyConfirmed, setOnlyConfirmed] = useState(false);
   const [activeJourney, setActiveJourney] = useState<HelpJourney | null>(null);
   const [reportKind, setReportKind] = useState<'need' | 'offer' | 'place' | 'damage' | null>(null);
   const [reportDraft, setReportDraft] = useState<Record<string, string> | null>(null);
@@ -82,6 +83,7 @@ export function HomePage() {
   const [locationNotice, setLocationNotice] = useState<string | null>(null);
   const [useLocation, setUseLocation] = useState(false);
   const [reportCode, setReportCode] = useState<string | null>(null);
+  const [savedCode, setSavedCode] = useState(() => loadTrackingCode());
   const [lookupStatus, setLookupStatus] = useState<string | null>(null);
   const [outboxNotice, setOutboxNotice] = useState<string | null>(null);
   const [mapReady, setMapReady] = useState(false);
@@ -123,8 +125,8 @@ export function HomePage() {
   });
   const neighborhoods = neighborhoodsQuery.data ?? [];
   const centersQuery = useQuery({
-    queryKey: ['public-centers', region.id, showCommunityReports],
-    queryFn: () => loadPublicCenterPoints(region.id, showCommunityReports),
+    queryKey: ['public-centers', region.id, onlyConfirmed],
+    queryFn: () => loadPublicCenterPoints(region.id, onlyConfirmed),
     enabled:
       mapVisible ||
       activeJourney === 'help' ||
@@ -132,8 +134,8 @@ export function HomePage() {
       activeJourney === 'centers',
   });
   const reportsQuery = useQuery({
-    queryKey: ['public-reports', region.id],
-    queryFn: () => loadPublicReportPoints(region.id),
+    queryKey: ['public-reports', region.id, onlyConfirmed],
+    queryFn: () => loadPublicReportPoints(region.id, onlyConfirmed),
     enabled:
       mapVisible ||
       activeJourney === 'help' ||
@@ -150,6 +152,8 @@ export function HomePage() {
         const receipt = await submissionMutation.mutateAsync(pending);
         clearPendingSubmission();
         setReportCode(receipt.tracking_code);
+        saveTrackingCode(receipt.tracking_code, pending.kind);
+        setSavedCode({ code: receipt.tracking_code, kind: pending.kind });
         setReportStatus('sent');
         setOutboxNotice(`Información enviada. Guarda el código ${receipt.tracking_code}.`);
       } catch {
@@ -189,14 +193,6 @@ export function HomePage() {
     () => [...publicCenterPoints, ...publicReportPoints],
     [publicCenterPoints, publicReportPoints],
   );
-  const trustedPoints = useMemo(
-    () =>
-      regionPoints.filter(
-        (point) =>
-          point.verificationStatus === 'official' || point.verificationStatus === 'verified',
-      ),
-    [regionPoints],
-  );
   const areaNeighborhoods = useMemo(
     () =>
       selectedArea
@@ -214,26 +210,25 @@ export function HomePage() {
     () =>
       regionPoints.filter(
         (point) =>
-          (showCommunityReports || point.verificationStatus !== 'reported') &&
           layers.has(point.category) &&
           (!normalizedQuery ||
             [point.title, point.neighborhood, point.description, point.address ?? ''].some(
               (value) => value.toLocaleLowerCase('es').includes(normalizedQuery),
             )),
       ),
-    [regionPoints, showCommunityReports, layers, normalizedQuery],
+    [regionPoints, layers, normalizedQuery],
   );
   const selectedPoint = visiblePoints.find((point) => point.id === selectedPointId);
   const counts = useMemo(
     () =>
-      trustedPoints.reduce(
+      regionPoints.reduce(
         (total, point) => {
           total[point.category] += 1;
           return total;
         },
         { need: 0, offer: 0, 'aid-center': 0, damage: 0 },
       ),
-    [trustedPoints],
+    [regionPoints],
   );
   const toggleLayer = (category: MapCategory) =>
     setLayers((current) => {
@@ -413,6 +408,8 @@ export function HomePage() {
         const receipt = await submissionMutation.mutateAsync(submission);
         clearPendingSubmission();
         setReportCode(receipt.tracking_code);
+        saveTrackingCode(receipt.tracking_code, submission.kind);
+        setSavedCode({ code: receipt.tracking_code, kind: submission.kind });
         setReportStatus('sent');
         setUseLocation(false);
       } catch {
@@ -555,7 +552,7 @@ export function HomePage() {
                 </p>
                 {publicDataLoaded && counts['aid-center'] === 0 && (
                   <p className="journey-notice">
-                    Todavía no hay centros confirmados aquí. Puedes pedir ayuda.
+                    Todavía no hay centros publicados aquí. Puedes pedir ayuda.
                   </p>
                 )}
               </>
@@ -589,7 +586,7 @@ export function HomePage() {
                 </div>
                 {publicDataLoaded && counts.need === 0 && (
                   <p className="journey-notice">
-                    Todavía no hay necesidades confirmadas. Puedes ofrecer tu ayuda y la revisamos.
+                    Todavía no hay necesidades publicadas. Puedes ofrecer tu ayuda.
                   </p>
                 )}
               </>
@@ -894,11 +891,18 @@ export function HomePage() {
               )}
             {activeJourney === 'report' && reportStatus !== 'sent' && (
               <details className="status-lookup">
-                <summary>Ya tengo un código</summary>
+                <summary>
+                  {savedCode ? 'Ver cómo va lo que enviaste' : 'Ya tengo un código'}
+                </summary>
+                {savedCode && (
+                  <p className="saved-code">
+                    Tu último código: <strong>{savedCode.code}</strong>
+                  </p>
+                )}
                 <form onSubmit={lookupReport}>
                   <label>
                     ¿Qué enviaste?
-                    <select name="statusType">
+                    <select defaultValue={savedCode?.kind ?? 'need'} name="statusType">
                       <option value="need">Pedí ayuda</option>
                       <option value="report">Reporté algo</option>
                     </select>
@@ -907,6 +911,7 @@ export function HomePage() {
                     Código
                     <input
                       autoCapitalize="characters"
+                      defaultValue={savedCode?.code}
                       name="trackingCode"
                       placeholder="SOS-XXXXXXXXXX"
                       required
@@ -1039,21 +1044,22 @@ export function HomePage() {
               </div>
               <label className="community-layer-toggle">
                 <input
-                  checked={showCommunityReports}
+                  checked={onlyConfirmed}
                   onChange={(event) => {
-                    setShowCommunityReports(event.target.checked);
+                    setOnlyConfirmed(event.target.checked);
                     setSelectedPointId(null);
                   }}
                   type="checkbox"
                 />
                 <span>
-                  <strong>Mostrar avisos de la comunidad</strong>
-                  <small>Sin confirmar. Verifica antes de ir.</small>
+                  <strong>Ver solo información confirmada</strong>
+                  <small>Oculta lo que la comunidad reportó y aún no hemos revisado.</small>
                 </span>
               </label>
-              {showCommunityReports && (
+              {!onlyConfirmed && (
                 <p className="community-warning" role="status">
-                  <TriangleAlert size={16} /> Estás viendo información comunitaria sin confirmar.
+                  <TriangleAlert size={16} /> Estás viendo todo, incluido lo que aún no está
+                  confirmado. Cada ficha dice su nivel.
                 </p>
               )}
             </details>
@@ -1229,7 +1235,7 @@ export function HomePage() {
                   <p>
                     {query
                       ? 'No encontramos nada con esa búsqueda.'
-                      : 'Todavía no hay nada confirmado aquí.'}
+                      : 'Todavía no hay nada publicado aquí.'}
                   </p>
                   {!query && (
                     <p className="emergency-hint">
@@ -1247,9 +1253,9 @@ export function HomePage() {
                       Limpiar búsqueda
                     </button>
                   ) : (
-                    !showCommunityReports && (
-                      <button onClick={() => setShowCommunityReports(true)} type="button">
-                        Ver avisos de la comunidad
+                    onlyConfirmed && (
+                      <button onClick={() => setOnlyConfirmed(false)} type="button">
+                        Ver también lo que falta por confirmar
                       </button>
                     )
                   )}

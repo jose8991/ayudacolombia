@@ -31,12 +31,14 @@ class FakeReportRepository:
             None,
         )
 
-    async def list_public(self, territory_id):
+    async def list_public(self, territory_id, only_confirmed=False):
+        allowed = (
+            {"verified", "official"} if only_confirmed else {"verified", "official", "reported"}
+        )
         return [
             report
             for report in self.reports.values()
-            if report.territory_id == territory_id
-            and report.verification_status in {"verified", "official"}
+            if report.territory_id == territory_id and report.verification_status in allowed
         ]
 
 
@@ -183,7 +185,7 @@ async def test_pending_reports_require_an_authorized_session() -> None:
     assert response.status_code == 401
 
 
-async def test_public_feed_excludes_pending_and_generalizes_coordinates(
+async def test_public_feed_generalizes_coordinates_and_can_filter_to_confirmed(
     fake_report_repository,
 ) -> None:
     payload = {
@@ -202,12 +204,16 @@ async def test_public_feed_excludes_pending_and_generalizes_coordinates(
         created = await client.post(
             "/api/v1/reports", json=payload, headers={"Idempotency-Key": "report-test-key-0005"}
         )
-        hidden = await client.get("/api/v1/reports/public?territory_id=co-ris-pereira")
+        unconfirmed = await client.get("/api/v1/reports/public?territory_id=co-ris-pereira")
+        confirmed_only = await client.get(
+            "/api/v1/reports/public?territory_id=co-ris-pereira&only_confirmed=true"
+        )
         report = fake_report_repository.reports[created.json()["tracking_code"]]
         report.verification_status = "verified"
         visible = await client.get("/api/v1/reports/public?territory_id=co-ris-pereira")
 
-    assert hidden.json() == []
+    assert unconfirmed.json()[0]["verification_status"] == "reported"
+    assert confirmed_only.json() == []
     assert visible.json()[0]["coordinates"] == {"longitude": -75.695, "latitude": 4.814}
     assert "tracking_code" not in visible.json()[0]
 
@@ -263,3 +269,39 @@ async def test_report_without_contact_stays_empty() -> None:
         )
     assert response.status_code == 201
     assert response.json()["contact"] is None
+
+
+async def test_every_report_is_public_with_its_level_visible(
+    fake_report_repository,
+) -> None:
+    base = {
+        "territory_id": "co-ris-pereira",
+        "description": "Disponible desde hoy en la mañana.",
+        "severity": "medium",
+        "coordinates": {"longitude": -75.69, "latitude": 4.81},
+        "observed_at": "2026-08-13T05:40:00-05:00",
+        "privacy_authorized": True,
+        "privacy_policy_version": "2026-08-13",
+    }
+    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as client:
+        await client.post(
+            "/api/v1/reports",
+            json={**base, "category": "offer", "title": "Ofrezco camioneta"},
+            headers={"Idempotency-Key": "visible-offer-000001"},
+        )
+        await client.post(
+            "/api/v1/reports",
+            json={**base, "category": "damage", "title": "Vía con derrumbe"},
+            headers={"Idempotency-Key": "hidden-damage-000001"},
+        )
+        default = await client.get("/api/v1/reports/public?territory_id=co-ris-pereira")
+        confirmed = await client.get(
+            "/api/v1/reports/public?territory_id=co-ris-pereira&only_confirmed=true"
+        )
+
+    assert sorted(item["title"] for item in default.json()) == [
+        "Ofrezco camioneta",
+        "Vía con derrumbe",
+    ]
+    assert all(item["verification_status"] == "reported" for item in default.json())
+    assert confirmed.json() == []
