@@ -19,6 +19,8 @@ import type {
 import { MapFilters } from '../../features/map-filter';
 import { matchesQuery } from '../../features/map-filter/search';
 import { MapLegend } from '../../features/map-legend';
+import { PlaceDetail } from './PlaceDetail';
+import { ResultList } from './ResultList';
 import { formatAreaLabel, loadNeighborhoods } from '../../shared/api/neighborhoods';
 import { formatFreshness } from '../../shared/format/freshness';
 import { distanceInMeters, formatDistance } from '../../shared/format/distance';
@@ -230,87 +232,11 @@ export function MapWorkspace({
           )}
         </header>
         {selectedPoint && (
-          <section
-            aria-live="polite"
-            className={'place-detail place-detail--' + selectedPoint.category}
-          >
-            <button
-              aria-label="Cerrar detalles"
-              className="detail-close"
-              onClick={() => setSelectedPointId(null)}
-              type="button"
-            >
-              <X size={18} />
-            </button>
-            <p className="eyebrow">{CATEGORY_LABELS[selectedPoint.category]}</p>
-            <h3>{selectedPoint.title}</h3>
-            <span className={'trust-badge trust-badge--' + selectedPoint.verificationStatus}>
-              <ShieldCheck size={14} /> {STATUS_LABELS[selectedPoint.verificationStatus]}
-            </span>
-            <dl>
-              <div>
-                <dt>
-                  <MapPin size={16} /> Ubicación
-                </dt>
-                <dd>{selectedPoint.address ?? selectedPoint.neighborhood}</dd>
-              </div>
-              {selectedPoint.schedule && (
-                <div>
-                  <dt>
-                    <Clock3 size={16} /> Horario
-                  </dt>
-                  <dd>{selectedPoint.schedule}</dd>
-                </div>
-              )}
-              {selectedPoint.acceptedItems && selectedPoint.acceptedItems.length > 0 && (
-                <div>
-                  <dt>
-                    <PackageCheck size={16} /> Les hace falta
-                  </dt>
-                  <dd className="item-chips">
-                    {selectedPoint.acceptedItems.map((item) => (
-                      <span key={item}>{item}</span>
-                    ))}
-                  </dd>
-                </div>
-              )}
-              {selectedPoint.sufficientItems && selectedPoint.sufficientItems.length > 0 && (
-                <div>
-                  <dt>
-                    <PackageCheck size={16} /> Ya tienen suficiente
-                  </dt>
-                  <dd className="item-chips item-chips--enough">
-                    {selectedPoint.sufficientItems.map((item) => (
-                      <span key={item}>{item}</span>
-                    ))}
-                  </dd>
-                </div>
-              )}
-            </dl>
-            {directionsUrl ? (
-              <a
-                className="directions-button"
-                href={directionsUrl}
-                rel="noreferrer"
-                target="_blank"
-              >
-                <Navigation size={18} /> Cómo llegar
-              </a>
-            ) : (
-              <p className="no-exact-location">
-                Quien lo reportó no compartió la ubicación exacta. Guíate por el barrio.
-              </p>
-            )}
-            {selectedPoint.isStale && (
-              <p className="stale-warning" role="status">
-                <TriangleAlert size={16} /> Puede estar desactualizado. Confirma antes de ir.
-              </p>
-            )}
-            <small>
-              {selectedPoint.sourceLabel ?? 'Fuente ciudadana'} · actualizado{' '}
-              {formatFreshness(selectedPoint.observedAt)}
-            </small>
-          </section>
+          <PlaceDetail
+            directionsUrl={directionsUrl}
+            onClose={() => setSelectedPointId(null)}
+            point={selectedPoint}
+          />
         )}
         {selectedArea && (
           <section aria-live="polite" className="area-detail">
@@ -438,70 +364,19 @@ export function MapWorkspace({
           </summary>
           <MapFilters value={layers} onToggle={onToggleLayer} counts={counts} />
         </details>
-        <div className="result-list" aria-label="Elementos visibles">
-          {visiblePoints.map((point) => (
-            <button
-              aria-pressed={selectedPointId === point.id}
-              className={'result-card result-card--' + point.category}
-              key={point.id}
-              onClick={() => setSelectedPointId(point.id)}
-              type="button"
-            >
-              <div>
-                <span>{CATEGORY_LABELS[point.category]}</span>
-                <span className={'trust-badge trust-badge--' + point.verificationStatus}>
-                  <ShieldCheck size={13} /> {STATUS_LABELS[point.verificationStatus]}
-                </span>
-              </div>
-              <h3>{point.title}</h3>
-              <p>
-                {point.neighborhood}
-                {distanceTo(point) && (
-                  <strong className="card-distance"> · {distanceTo(point)}</strong>
-                )}
-              </p>
-              {!point.coordinates && (
-                <small className="no-exact-location">Sin punto exacto en el mapa</small>
-              )}
-              <small>{point.description}</small>
-              <time dateTime={point.observedAt}>
-                Actualizado {formatFreshness(point.observedAt)}
-                {point.isStale && ' · puede estar desactualizado'}
-              </time>
-            </button>
-          ))}
-          {visiblePoints.length === 0 && (
-            <div className="empty-state">
-              <p>
-                {query
-                  ? 'No encontramos nada con esa búsqueda.'
-                  : 'Todavía no hay nada publicado aquí.'}
-              </p>
-              {!query && (
-                <p className="emergency-hint">
-                  ¿Hay peligro ahora? <a href="tel:123">Llama al 123</a>.
-                </p>
-              )}
-              {query ? (
-                <button
-                  onClick={() => {
-                    onQueryChange('');
-                    onSelectNeighborhood(null);
-                  }}
-                  type="button"
-                >
-                  Limpiar búsqueda
-                </button>
-              ) : (
-                onlyConfirmed && (
-                  <button onClick={() => onOnlyConfirmedChange(false)} type="button">
-                    Ver también lo que falta por confirmar
-                  </button>
-                )
-              )}
-            </div>
-          )}
-        </div>
+        <ResultList
+          distanceTo={distanceTo}
+          onClearQuery={() => {
+            onQueryChange('');
+            onSelectNeighborhood(null);
+          }}
+          onSelectPoint={setSelectedPointId}
+          onShowUnconfirmed={() => onOnlyConfirmedChange(false)}
+          onlyConfirmed={onlyConfirmed}
+          query={query}
+          selectedPointId={selectedPointId}
+          visiblePoints={visiblePoints}
+        />
       </aside>
       <div className="map-stage" ref={mapStageRef}>
         <div className="map-guide" role="status">
