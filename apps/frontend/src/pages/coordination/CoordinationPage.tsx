@@ -1,5 +1,7 @@
 import { type FormEvent, useState } from 'react';
 import { RELIEF_ITEMS } from '../../shared/data/relief-items';
+import { ModerationList } from './ModerationList';
+import { InviteOperator } from './InviteOperator';
 import { formatFreshness } from '../../shared/format/freshness';
 import { VALIDITY_OPTIONS, expiresAt } from '../../shared/format/expiry';
 import {
@@ -390,144 +392,20 @@ export function CoordinationPage() {
         )}
       </section>
       {session && canModerate && (
-        <section className="coordination-card moderation-card">
-          <div className="coordination-intro">
-            <p className="eyebrow">Revisión territorial</p>
-            <h2>Reportes pendientes</h2>
-            <p>Verifica la fuente antes de publicar. Las coordenadas son información sensible.</p>
-          </div>
-          <div className="moderation-list">
-            {reports.length === 0 ? (
-              <p className="form-empty">No hay reportes pendientes en tus territorios.</p>
-            ) : (
-              reports.map((report) => (
-                <article className="moderation-item" key={report.id}>
-                  <header>
-                    <span>
-                      {report.territory_id === 'co-ris-pereira'
-                        ? 'Pereira'
-                        : report.territory_id === 'co-ris-dosquebradas'
-                          ? 'Dosquebradas'
-                          : report.territory_id}
-                    </span>
-                    <strong>{report.category}</strong>
-                  </header>
-                  <h3>{report.title}</h3>
-                  <p>{report.description}</p>
-                  <small>
-                    {report.neighborhood_code || 'Sin barrio indicado'} · {report.severity} ·{' '}
-                    {report.tracking_code}
-                  </small>
-                  {report.contacted_at && (
-                    <p className="already-contacted" role="status">
-                      Ya lo contactaron {formatFreshness(report.contacted_at)}
-                    </p>
-                  )}
-                  {report.contact && (
-                    <p className="moderation-contact">
-                      <a href={'tel:' + report.contact.replace(/[^+\d]/g, '')}>
-                        <Phone size={16} /> Llamar a {report.contact}
-                      </a>
-                      <a
-                        href={
-                          'https://wa.me/' +
-                          report.contact.replace(/[^\d]/g, '') +
-                          '?text=' +
-                          encodeURIComponent(
-                            'Hola, escribimos de Ayuda Colombia por tu publicación.',
-                          )
-                        }
-                        rel="noreferrer"
-                        target="_blank"
-                      >
-                        WhatsApp
-                      </a>
-                      {!report.contacted_at && (
-                        <button
-                          disabled={busy}
-                          onClick={() => void handleContacted(report.id)}
-                          type="button"
-                        >
-                          Ya lo contacté
-                        </button>
-                      )}
-                    </p>
-                  )}
-                  <div>
-                    <button
-                      disabled={busy}
-                      onClick={() => handleModerate(report.id, 'rejected')}
-                      type="button"
-                    >
-                      Descartar
-                    </button>
-                    <button
-                      className="verify-action"
-                      disabled={busy}
-                      onClick={() => handleModerate(report.id, 'verified')}
-                      type="button"
-                    >
-                      Marcar verificado
-                    </button>
-                  </div>
-                </article>
-              ))
-            )}
-          </div>
-        </section>
+        <ModerationList
+          busy={busy}
+          onContacted={(id) => void handleContacted(id)}
+          onModerate={handleModerate}
+          reports={reports}
+        />
       )}
       {session?.actor.roles.includes('administrator') && (
-        <section className="coordination-card">
-          <div className="coordination-intro">
-            <p className="eyebrow">Usuarios y accesos</p>
-            <h2>Dar acceso a un responsable</h2>
-            <p>Elige el lugar y genera un enlace. La persona creará su propia contraseña.</p>
-          </div>
-          <form className="simple-form" onSubmit={handleInvite}>
-            <label>
-              Centro o albergue
-              <select name="centerId" required>
-                <option value="">Selecciona un lugar</option>
-                {centers.map((center) => (
-                  <option key={center.id} value={center.id}>
-                    {center.name}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label>
-              Nombre de la persona
-              <input
-                autoComplete="name"
-                maxLength={160}
-                minLength={2}
-                name="displayName"
-                required
-              />
-            </label>
-            <label>
-              Correo
-              <input autoComplete="email" name="email" required type="email" />
-            </label>
-            <button
-              className="primary-submit"
-              disabled={busy || centers.length === 0}
-              type="submit"
-            >
-              {busy ? 'Generando…' : 'Generar invitación'}
-            </button>
-            {inviteLink && (
-              <div className="invite-result" role="status">
-                <strong>Invitación lista por 24 horas</strong>
-                <p>Comparte este enlace únicamente con la persona autorizada.</p>
-                <input aria-label="Enlace de invitación" readOnly value={inviteLink} />
-                <button onClick={() => navigator.clipboard?.writeText(inviteLink)} type="button">
-                  Copiar enlace
-                </button>
-              </div>
-            )}
-          </form>
-        </section>
+        <InviteOperator
+          busy={busy}
+          centers={centers}
+          invitation={inviteLink}
+          onInvite={handleInvite}
+        />
       )}
     </main>
   );
