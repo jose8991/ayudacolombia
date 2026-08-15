@@ -20,7 +20,8 @@
     "maplibre-gl": "^5.7.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "zod": "^4.0.17"
+    "zod": "^4.0.17",
+    "@timeliber/kit": "*"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

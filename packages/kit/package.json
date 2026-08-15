@@ -1,0 +1,23 @@
+{
+  "name": "@timeliber/kit",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Piezas reutilizables extraídas de Ayuda Colombia: mapa, cola cifrada, tiempo y PWA.",
+  "license": "MIT",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./pwa/service-worker.js": "./src/pwa/service-worker.js",
+    "./pwa/generate-icons.mjs": "./src/pwa/generate-icons.mjs"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
+  }
+}

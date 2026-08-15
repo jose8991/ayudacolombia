@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { distanceInMeters, formatDistance } from '../src/shared/format/distance';
+import { distanceInMeters, formatDistance } from '@timeliber/kit';
 
 const PARQUE_OLAYA_HERRERA = [-75.696283, 4.809428] as const;
 const ESTADIO_MORA_MORA = [-75.67088, 4.806989] as const;

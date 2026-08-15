@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { useBodyScrollLock } from '../../shared/hooks/use-body-scroll-lock';
+import { useBodyScrollLock } from '@timeliber/kit';
 import { ChevronDown, MapPinned, Search, X } from 'lucide-react';
 import type { HumanitarianRegion } from '../../entities/incident';
 

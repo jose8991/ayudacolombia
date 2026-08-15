@@ -1,6 +1,6 @@
 import { Phone, ShieldCheck } from 'lucide-react';
 import type { PendingReport } from '../../shared/api/coordination';
-import { formatFreshness } from '../../shared/format/freshness';
+import { formatFreshness } from '@timeliber/kit';
 
 interface ModerationListProps {
   reports: PendingReport[];

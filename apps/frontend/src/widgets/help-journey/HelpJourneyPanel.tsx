@@ -10,7 +10,7 @@ import {
   savePendingSubmission,
 } from '../../shared/offline/secure-submission-outbox';
 import { saveTrackingCode, type SavedTrackingCode } from '../../shared/offline/last-tracking-code';
-import { useBodyScrollLock } from '../../shared/hooks/use-body-scroll-lock';
+import { useBodyScrollLock } from '@timeliber/kit';
 import type { HelpJourney } from '../home-primary-actions';
 import { JourneyMenus } from './JourneyMenus';
 import { ReportForm } from './ReportForm';

@@ -2,8 +2,8 @@ import { type FormEvent, useState } from 'react';
 import { RELIEF_ITEMS } from '../../shared/data/relief-items';
 import { ModerationList } from './ModerationList';
 import { InviteOperator } from './InviteOperator';
-import { formatFreshness } from '../../shared/format/freshness';
-import { VALIDITY_OPTIONS, expiresAt } from '../../shared/format/expiry';
+import { formatFreshness } from '@timeliber/kit';
+import { VALIDITY_OPTIONS, expiresAt } from '@timeliber/kit';
 import {
   ArrowLeft,
   CheckCircle2,

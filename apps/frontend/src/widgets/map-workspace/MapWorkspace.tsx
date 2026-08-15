@@ -22,8 +22,8 @@ import { MapLegend } from '../../features/map-legend';
 import { PlaceDetail } from './PlaceDetail';
 import { ResultList } from './ResultList';
 import { formatAreaLabel, loadNeighborhoods } from '../../shared/api/neighborhoods';
-import { formatFreshness } from '../../shared/format/freshness';
-import { distanceInMeters, formatDistance } from '../../shared/format/distance';
+import { formatFreshness } from '@timeliber/kit';
+import { distanceInMeters, formatDistance } from '@timeliber/kit';
 
 const EmergencyMap = lazy(() =>
   import('../emergency-map').then((module) => ({ default: module.EmergencyMap })),

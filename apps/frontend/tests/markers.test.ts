@@ -23,9 +23,9 @@ const base: HumanitarianMapPoint = {
 };
 
 it('distingue los tres niveles de confianza', () => {
-  expect(trustLevelOf(base)).toBe('official');
-  expect(trustLevelOf({ ...base, verificationStatus: 'verified' })).toBe('verified');
-  expect(trustLevelOf({ ...base, verificationStatus: 'reported' })).toBe('reported');
+  expect(trustLevelOf(base)).toBe('high');
+  expect(trustLevelOf({ ...base, verificationStatus: 'verified' })).toBe('medium');
+  expect(trustLevelOf({ ...base, verificationStatus: 'reported' })).toBe('low');
 });
 
 it('marca como envejecido lo que el servidor reporta viejo', () => {
@@ -45,8 +45,8 @@ it('el Coliseo Mayor lleno no se dibuja igual que un albergue abierto', () => {
   const abierto = markerIconName({ ...base, status: 'open' });
   const lleno = markerIconName({ ...base, status: 'almost_full', isStale: true });
 
-  expect(abierto).toBe('sos-aid-center-official-new-free');
-  expect(lleno).toBe('sos-aid-center-official-old-blocked');
+  expect(abierto).toBe('marker-aid-center-high-new-free');
+  expect(lleno).toBe('marker-aid-center-high-old-blocked');
   expect(abierto).not.toBe(lleno);
 });
 

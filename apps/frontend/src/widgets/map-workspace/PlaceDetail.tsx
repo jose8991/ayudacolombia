@@ -8,7 +8,7 @@ import {
   X,
 } from 'lucide-react';
 import type { HumanitarianMapPoint, MapCategory } from '../../entities/incident';
-import { formatFreshness } from '../../shared/format/freshness';
+import { formatFreshness } from '@timeliber/kit';
 
 const CATEGORY_LABELS: Record<MapCategory, string> = {
   need: 'Necesidad',
