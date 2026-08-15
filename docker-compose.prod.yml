@@ -50,8 +50,8 @@ services:
 
   frontend:
     build:
-      context: ./apps/frontend
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: apps/frontend/Dockerfile
       args:
         VITE_API_URL: /api/v1
     restart: unless-stopped
