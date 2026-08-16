@@ -2,17 +2,8 @@ import { type FormEvent, useState } from 'react';
 import { RELIEF_ITEMS } from '../../shared/data/relief-items';
 import { ModerationList } from './ModerationList';
 import { InviteOperator } from './InviteOperator';
-import { formatFreshness } from '@timeliber/kit';
 import { VALIDITY_OPTIONS, expiresAt } from '@timeliber/kit';
-import {
-  ArrowLeft,
-  CheckCircle2,
-  LogIn,
-  Megaphone,
-  PackagePlus,
-  Phone,
-  ShieldCheck,
-} from 'lucide-react';
+import { ArrowLeft, CheckCircle2, LogIn, Megaphone, PackagePlus, ShieldCheck } from 'lucide-react';
 import {
   acceptInvitation,
   inviteCenterOperator,

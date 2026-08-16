@@ -89,6 +89,7 @@ jobs:
       # El contrato publicado debe corresponder al código; si no, quien lo lea se guía
       # por algo que ya no existe.
       - name: El contrato OpenAPI está al día
-        run: |
-          cd apps/backend && uv run python ../../scripts/generate_openapi.py
-          git diff --exit-code docs/03_REFERENCE/openapi.json
+        working-directory: apps/backend
+        run: uv run python ../../scripts/generate_openapi.py
+      - name: Sin deriva entre el código y el contrato publicado
+        run: git diff --exit-code docs/03_REFERENCE/openapi.json

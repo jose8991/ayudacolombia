@@ -1,16 +1,6 @@
 import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import {
-  Clock3,
-  MapPin,
-  Navigation,
-  PackageCheck,
-  Search,
-  Share2,
-  ShieldCheck,
-  TriangleAlert,
-  X,
-} from 'lucide-react';
+import { Navigation, Search, Share2, X } from 'lucide-react';
 import type {
   HumanitarianMapPoint,
   HumanitarianRegion,
@@ -22,27 +12,11 @@ import { MapLegend } from '../../features/map-legend';
 import { PlaceDetail } from './PlaceDetail';
 import { ResultList } from './ResultList';
 import { formatAreaLabel, loadNeighborhoods } from '../../shared/api/neighborhoods';
-import { formatFreshness } from '@timeliber/kit';
 import { distanceInMeters, formatDistance } from '@timeliber/kit';
 
 const EmergencyMap = lazy(() =>
   import('../emergency-map').then((module) => ({ default: module.EmergencyMap })),
 );
-
-const CATEGORY_LABELS: Record<MapCategory, string> = {
-  need: 'Necesidad',
-  offer: 'Ayuda ofrecida',
-  'aid-center': 'Centro o albergue',
-  damage: 'Daño o acceso',
-};
-
-const STATUS_LABELS = {
-  reported: 'Sin confirmar',
-  verified: 'Revisado',
-  official: 'Confirmado',
-  stale: 'Desactualizado',
-  closed: 'Cerrado',
-} as const;
 
 interface MapWorkspaceProps {
   region: HumanitarianRegion;

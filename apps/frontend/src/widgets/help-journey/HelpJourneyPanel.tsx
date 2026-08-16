@@ -1,15 +1,7 @@
-import { useEffect, useRef, useState, type FormEvent } from 'react';
-import { useMutation } from '@tanstack/react-query';
-import { ArrowLeft, ShieldCheck } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { ArrowLeft } from 'lucide-react';
 import type { HumanitarianRegion, MapCategory } from '../../entities/incident';
-import { linesForTerritory } from '../../shared/data/emergency-lines';
-import { RELIEF_ITEMS } from '../../shared/data/relief-items';
-import { loadSubmissionStatus, submitPublicInformation } from '../../shared/api/submissions';
-import {
-  clearPendingSubmission,
-  savePendingSubmission,
-} from '../../shared/offline/secure-submission-outbox';
-import { saveTrackingCode, type SavedTrackingCode } from '../../shared/offline/last-tracking-code';
+import { type SavedTrackingCode } from '../../shared/offline/last-tracking-code';
 import { useBodyScrollLock } from '@timeliber/kit';
 import type { HelpJourney } from '../home-primary-actions';
 import { JourneyMenus } from './JourneyMenus';

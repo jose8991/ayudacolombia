@@ -1,9 +1,7 @@
 import { useRef, useState, type FormEvent } from 'react';
 import { useMutation } from '@tanstack/react-query';
-import { ShieldCheck } from 'lucide-react';
 import type { HumanitarianRegion } from '../../entities/incident';
-import { RELIEF_ITEMS } from '../../shared/data/relief-items';
-import { loadSubmissionStatus, submitPublicInformation } from '../../shared/api/submissions';
+import { submitPublicInformation } from '../../shared/api/submissions';
 import {
   clearPendingSubmission,
   savePendingSubmission,
@@ -15,15 +13,6 @@ import { buildSubmission } from './build-submission';
 import { ReportReview } from './ReportReview';
 import { ReportSent } from './ReportSent';
 import { StatusLookup } from './StatusLookup';
-
-const OFFER_KINDS = [
-  'Transporte',
-  'Comida',
-  'Agua',
-  'Alojamiento',
-  'Tiempo y manos',
-  'Otra cosa',
-] as const;
 
 interface ReportFormProps {
   kind: ReportKind;

@@ -1,4 +1,4 @@
-import { Phone, ShieldCheck } from 'lucide-react';
+import { Phone } from 'lucide-react';
 import type { PendingReport } from '../../shared/api/coordination';
 import { formatFreshness } from '@timeliber/kit';
 
