@@ -29,8 +29,9 @@ paso 'Construcción y arranque'
 
 paso 'Esperando a que responda'
 for intento in $(seq 1 30); do
-  if curl -fsS -o /dev/null "https://$DOMINIO/health" \
-    && curl -fsS -o /dev/null "https://$DOMINIO/api/v1/health/live"; then
+  # Mientras nginx arranca responde 404 unos segundos; ese ruido no es un problema.
+  if curl -fsS -o /dev/null "https://$DOMINIO/health" 2>/dev/null \
+    && curl -fsS -o /dev/null "https://$DOMINIO/api/v1/health/live" 2>/dev/null; then
     echo "Portada y API responden (intento $intento)."
     break
   fi
