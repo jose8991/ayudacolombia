@@ -1,6 +1,6 @@
 # Plan vivo de preparación para producción
 
-Última actualización: 2026-08-14.
+Última actualización: 2026-08-15.
 
 ## Propósito
 
@@ -26,7 +26,8 @@ cerrada cuando tiene implementación, prueba, documentación y validación de de
 | 10 | Documentación y ownership | Parcial | LICENSE (MIT), CONTRIBUTING y SECURITY publicados. Falta `llms-full.txt`. |
 | 11 | Política de tratamiento de datos | Bloqueado por información | TIMELIBER S.A.S. debe aportar NIT, domicilio, dirección, teléfono, retención y revisión jurídica. |
 | 12 | Repositorio Git canónico | Cerrado | Repositorio restaurado en `main`, publicado en `github.com/jose8991/ayudacolombia` y con aduanas en cada push. |
-| 13 | Caducidad de la información | Cerrado | `is_stale` se calcula al leer con una ventana de 24 h; la interfaz muestra el tiempo transcurrido y advierte antes de desplazarse. |
+| 13 | Caducidad de la información | Cerrado | `is_stale` se calcula al leer con una ventana de 72 h; la interfaz muestra siempre el tiempo transcurrido y advierte antes de desplazarse. |
+| 14 | Operación sin el autor | Cerrado | `scripts/deploy.sh` y `scripts/backup.sh`, respaldo diario por systemd con verificación, y manual en `docs/02_HOW_TO/operar.md`. |
 
 ## Evidencia del último corte
 
