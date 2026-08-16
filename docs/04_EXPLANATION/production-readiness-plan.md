@@ -19,19 +19,21 @@ cerrada cuando tiene implementación, prueba, documentación y validación de de
 | 4 | Mutaciones con TanStack Query | Cerrado | Envíos y consulta de estado fuera de la página y administrados mediante la capa de datos. |
 | 5 | Conectividad degradada segura | Cerrado | Cola AES-GCM por sesión, clave idempotente estable, reintento automático y descarte seguro de datos indescifrables. |
 | 5.1 | Mantenibilidad frontend | En curso | Prettier y aduana de formato activos; encabezado, acciones y catálogo territorial extraídos. Faltan asistente y workspace del mapa para que `HomePage` quede bajo 200 líneas. |
-| 6 | Accesibilidad automatizada | Parcial | axe pasa portada y recorridos; foco global corregido. Faltan navegador real, lector de pantalla y CI. |
+| 6 | Accesibilidad automatizada | Parcial | axe pasa portada y recorridos en cada push. Faltan lector de pantalla y validación de contraste en navegador real. |
 | 7 | Presupuesto de rendimiento | Parcial | Build limita JS inicial a 100 KB gzip, CSS a 12 KB y mapa diferido a 300 KB. Falta Lighthouse móvil reproducible para LCP e INP. |
 | 8 | Observabilidad completa | Parcial | Request ID y logs JSON ya existen; faltan métricas, alertas y trazas. |
-| 9 | Migraciones y contratos en CI | Pendiente | Ciclo upgrade/downgrade/upgrade en PostgreSQL y detección de drift OpenAPI. |
-| 10 | Documentación y ownership | Parcial | LICENSE (MIT), CONTRIBUTING y SECURITY publicados. Falta `llms-full.txt` y la aduana documental en CI. |
+| 9 | Migraciones y contratos en CI | Cerrado | GitHub Actions ejecuta el ciclo upgrade/downgrade/upgrade sobre PostGIS y falla si el contrato OpenAPI se desvía del código. |
+| 10 | Documentación y ownership | Parcial | LICENSE (MIT), CONTRIBUTING y SECURITY publicados. Falta `llms-full.txt`. |
 | 11 | Política de tratamiento de datos | Bloqueado por información | TIMELIBER S.A.S. debe aportar NIT, domicilio, dirección, teléfono, retención y revisión jurídica. |
 | 12 | Repositorio Git canónico | Cerrado | Repositorio restaurado en `main` y publicado en `github.com/jose8991/ayudacolombia`. Falta CI. |
 | 13 | Caducidad de la información | Cerrado | `is_stale` se calcula al leer con una ventana de 24 h; la interfaz muestra el tiempo transcurrido y advierte antes de desplazarse. |
 
 ## Evidencia del último corte
 
-- Frontend: 55 pruebas, axe y presupuestos de build aprobados.
-- Backend: 29 pruebas, Ruff y `mypy --strict` sobre 53 archivos aprobados.
+- Integración continua: formato, ESLint, tipos, pruebas y presupuestos de peso en cada push,
+  más el ciclo de migraciones y la detección de deriva del contrato.
+- Frontend: 79 pruebas, axe y presupuestos de build aprobados.
+- Backend: 30 pruebas, Ruff y `mypy --strict` sobre 53 archivos aprobados.
 - ESLint activo con las reglas oficiales de React Hooks: 0 errores. Quedan 16 avisos de
   complejidad y tamaño de archivo, que son la deuda del bloque 5.1 y se dejan visibles.
 - Tipografía alojada en el propio dominio: ninguna llamada a servicios externos en el arranque.

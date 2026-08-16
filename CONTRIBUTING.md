@@ -42,7 +42,7 @@ uv run mypy --strict app
 uv run pytest -q
 ```
 
-Todo tiene que pasar. El build falla a propósito si el JavaScript inicial supera 100 KB
+Todo tiene que pasar. Lo mismo corre solo en cada push, en GitHub Actions. El build falla a propósito si el JavaScript inicial supera 100 KB
 comprimido: en zona de desastre la gente entra con red mala y batería baja.
 
 Si cambias el contrato de la API, regenera `docs/03_REFERENCE/openapi.json`:

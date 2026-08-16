@@ -1,0 +1,94 @@
+name: Aduanas
+
+# Todo lo que hasta ahora había que recordar ejecutar a mano. Si algo de esto falla, el
+# cambio no debería desplegarse: la aplicación se usa durante emergencias reales.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  frontend:
+    name: Frontend
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Formato
+        run: npm run format:check --workspace=@sos/frontend
+      - name: Reglas de código
+        run: npm run lint --workspace=@sos/frontend
+      - name: Tipos
+        run: npm run typecheck --workspace=@sos/frontend
+      - name: Tipos del paquete compartido
+        run: npm run typecheck --workspace=@timeliber/kit
+      - name: Pruebas
+        run: npm test --workspace=@sos/frontend
+      # El build falla a propósito si el JavaScript inicial pasa de 100 KB comprimido:
+      # en zona de desastre la gente entra con red mala y batería baja.
+      - name: Construcción y presupuesto de peso
+        run: npm run build --workspace=@sos/frontend
+
+  backend:
+    name: Backend
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+      - name: Reglas de código
+        run: uv run ruff check .
+      - name: Tipado estricto
+        run: uv run mypy --strict app
+      - name: Pruebas
+        run: uv run pytest -q
+
+  migraciones:
+    name: Migraciones y contrato
+    runs-on: ubuntu-latest
+    services:
+      database:
+        image: postgis/postgis:17-3.5-alpine
+        env:
+          POSTGRES_DB: sos
+          POSTGRES_USER: sos
+          POSTGRES_PASSWORD: sos
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U sos -d sos"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgresql+asyncpg://sos:sos@localhost:5432/sos
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+      # Una migración que no sabe volver atrás es una vía sin retorno: si algo sale mal
+      # en producción no hay cómo deshacerlo.
+      - name: Subir, bajar y volver a subir
+        working-directory: apps/backend
+        run: |
+          uv run alembic upgrade head
+          uv run alembic downgrade base
+          uv run alembic upgrade head
+      # El contrato publicado debe corresponder al código; si no, quien lo lea se guía
+      # por algo que ya no existe.
+      - name: El contrato OpenAPI está al día
+        run: |
+          cd apps/backend && uv run python ../../scripts/generate_openapi.py
+          git diff --exit-code docs/03_REFERENCE/openapi.json
