@@ -153,31 +153,17 @@ export function MapWorkspace({
     if (!target) return;
     // Sin IntersectionObserver el mapa ya arrancó listo desde el estado inicial.
     if (!('IntersectionObserver' in window)) return;
-
-    // MapLibre cuesta cerca de siete segundos de CPU en un teléfono de gama media, y
-    // mientras tanto los botones no responden. Se espera a que el mapa esté de verdad a
-    // la vista y a que el hilo principal quede libre: primero se puede pedir ayuda,
-    // después aparece el mapa.
-    let idle = 0;
-    const conReposo = 'requestIdleCallback' in window;
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (!entry.isIntersecting) return;
-        observer.disconnect();
-        const arrancar = () => setMapReady(true);
-        idle = conReposo
-          ? window.requestIdleCallback(arrancar, { timeout: 3000 })
-          : window.setTimeout(arrancar, 200);
+        if (entry.isIntersecting) {
+          setMapReady(true);
+          observer.disconnect();
+        }
       },
-      { rootMargin: '0px' },
+      { rootMargin: '250px' },
     );
     observer.observe(target);
-    return () => {
-      observer.disconnect();
-      if (!idle) return;
-      if (conReposo) window.cancelIdleCallback(idle);
-      else window.clearTimeout(idle);
-    };
+    return () => observer.disconnect();
   }, []);
 
   return (
