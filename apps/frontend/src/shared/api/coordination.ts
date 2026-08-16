@@ -103,6 +103,18 @@ export function markReportAttended(
   });
 }
 
+export function markReportEnRoute(
+  token: string,
+  reportId: string,
+  enRoute: boolean,
+): Promise<unknown> {
+  return request(`/reports/${reportId}/en-route`, {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ en_route: enRoute }),
+  });
+}
+
 export function loadManagedCenters(token: string): Promise<ManagedCenter[]> {
   return request('/centers/mine', { headers: { Authorization: `Bearer ${token}` } });
 }

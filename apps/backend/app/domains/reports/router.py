@@ -18,6 +18,7 @@ from .schemas import (
     PublicReportRead,
     ReportAttendance,
     ReportCreate,
+    ReportEnRoute,
     ReportModerationUpdate,
     ReportRead,
     ReportStatusRead,
@@ -128,6 +129,17 @@ async def mark_report_contacted(
     service: Annotated[ReportService, Depends(get_report_service)],
 ) -> ReportRead:
     return await service.mark_contacted(report_id, actor)
+
+
+@router.post("/{report_id}/en-route", response_model=ReportRead)
+async def mark_report_en_route(
+    report_id: UUID,
+    payload: ReportEnRoute,
+    actor: Annotated[Actor, Depends(get_current_actor)],
+    service: Annotated[ReportService, Depends(get_report_service)],
+) -> ReportRead:
+    """Un grupo va para allá. Caduca solo a las seis horas."""
+    return await service.mark_en_route(report_id, payload, actor)
 
 
 @router.post("/{report_id}/attended", response_model=ReportRead)

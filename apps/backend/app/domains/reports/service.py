@@ -5,11 +5,12 @@ from typing import Protocol
 from uuid import UUID
 
 from app.core.encryption import decrypt_sensitive, encrypt_sensitive
-from app.core.freshness import is_stale
+from app.core.freshness import is_en_route, is_stale
 from app.domains.identity.policy import evaluate_access
 from app.domains.identity.schemas import Actor, Permission, ResourceContext, Role
 
 from .exceptions import (
+    ForeignEnRouteError,
     InvalidModerationStatusError,
     ReportAccessDeniedError,
     ReportIdempotencyConflictError,
@@ -21,6 +22,7 @@ from .schemas import (
     PublicReportRead,
     ReportAttendance,
     ReportCreate,
+    ReportEnRoute,
     ReportModerationUpdate,
     ReportRead,
     ReportStatusRead,
@@ -45,6 +47,12 @@ class ReportRepositoryPort(Protocol):
         report: CitizenReport,
         organization_id: UUID | None,
         note: str | None,
+        moment: datetime | None,
+    ) -> CitizenReport: ...
+    async def mark_en_route(
+        self,
+        report: CitizenReport,
+        organization_id: UUID | None,
         moment: datetime | None,
     ) -> CitizenReport: ...
 
@@ -137,6 +145,33 @@ class ReportService:
             raise ReportAccessDeniedError
         return self.to_report_read(await self.repository.mark_contacted(report))
 
+    async def mark_en_route(
+        self, report_id: UUID, payload: ReportEnRoute, actor: Actor
+    ) -> ReportRead:
+        """Anunciar que un grupo va para allá, para que otro no salga al mismo sitio.
+
+        Cancelarlo sólo puede hacerlo quien lo anunció: si cualquiera pudiera borrar el
+        aviso ajeno, dos grupos terminarían saliendo a la vez sin saberlo.
+        """
+        report = await self.repository.get(report_id)
+        if report is None:
+            raise ReportNotFoundError
+        if not evaluate_access(
+            actor, Permission.REPORT_ATTEND, ResourceContext(territory_id=report.territory_id)
+        ).allowed:
+            raise ReportAccessDeniedError
+        if (
+            not payload.en_route
+            and is_en_route(report.en_route_at)
+            and report.en_route_by_organization_id != actor.organization_id
+            and Role.ADMINISTRATOR not in actor.roles
+        ):
+            raise ForeignEnRouteError
+        moment = datetime.now(UTC) if payload.en_route else None
+        return self.to_report_read(
+            await self.repository.mark_en_route(report, actor.organization_id, moment)
+        )
+
     async def mark_attended(
         self, report_id: UUID, payload: ReportAttendance, actor: Actor
     ) -> ReportRead:
@@ -187,6 +222,7 @@ class ReportService:
             contacted_at=report.contacted_at,
             attended_at=report.attended_at,
             attended_note=report.attended_note,
+            en_route_at=report.en_route_at,
             contact=(
                 decrypt_sensitive(report.contact_ciphertext) if report.contact_ciphertext else None
             ),
@@ -216,6 +252,7 @@ class ReportService:
             updated_at=report.updated_at,
             is_stale=is_stale(report.updated_at),
             attended_at=report.attended_at,
+            en_route_since=report.en_route_at if is_en_route(report.en_route_at) else None,
         )
 
     @staticmethod

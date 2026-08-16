@@ -61,6 +61,7 @@ class ReportRead(ReportCreate):
     contacted_at: datetime | None = None
     attended_at: datetime | None = None
     attended_note: str | None = None
+    en_route_at: datetime | None = None
 
 
 class PublicReportRead(BaseModel):
@@ -81,6 +82,8 @@ class PublicReportRead(BaseModel):
     # Que alguien ya llegó es información pública: evita que tres grupos suban al mismo
     # sitio mientras a otro no llega nadie. Quién llegó no se publica.
     attended_at: datetime | None = None
+    # Sólo se publica si el aviso sigue vigente; uno vencido volvería el sitio invisible.
+    en_route_since: datetime | None = None
 
 
 class ReportStatusRead(BaseModel):
@@ -88,6 +91,12 @@ class ReportStatusRead(BaseModel):
     verification_status: VerificationStatus
     created_at: datetime
     updated_at: datetime
+
+
+class ReportEnRoute(BaseModel):
+    """Anunciar que un grupo va para allá, o cancelarlo si al final no fue."""
+
+    en_route: bool = True
 
 
 class ReportAttendance(BaseModel):

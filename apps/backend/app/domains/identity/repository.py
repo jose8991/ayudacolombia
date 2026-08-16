@@ -27,9 +27,7 @@ class IdentityRepository:
     async def get_center(self, center_id: UUID) -> AidCenter | None:
         return await self.session.get(AidCenter, center_id)
 
-    async def actor_context(
-        self, user: User
-    ) -> tuple[list[Membership], set[str], set[UUID]]:
+    async def actor_context(self, user: User) -> tuple[list[Membership], set[str], set[UUID]]:
         memberships: list[Membership] = list(
             (
                 await self.session.scalars(select(Membership).where(Membership.user_id == user.id))

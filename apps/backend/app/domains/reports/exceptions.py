@@ -16,3 +16,7 @@ class InvalidModerationStatusError(ReportDomainError):
 
 class ReportIdempotencyConflictError(ReportDomainError):
     pass
+
+
+class ForeignEnRouteError(ReportDomainError):
+    """Cancelar el aviso de otro grupo dejaría a dos saliendo al mismo sitio sin saberlo."""

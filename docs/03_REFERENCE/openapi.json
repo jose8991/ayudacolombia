@@ -847,6 +847,65 @@
         }
       }
     },
+    "/api/v1/reports/{report_id}/en-route": {
+      "post": {
+        "tags": [
+          "reports"
+        ],
+        "summary": "Mark Report En Route",
+        "description": "Un grupo va para allá. Caduca solo a las seis horas.",
+        "operationId": "mark_report_en_route_api_v1_reports__report_id__en_route_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "report_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Report Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReportEnRoute"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReportRead"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/reports/{report_id}/attended": {
       "post": {
         "tags": [
@@ -1862,6 +1921,18 @@
               }
             ],
             "title": "Attended At"
+          },
+          "en_route_since": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "En Route Since"
           }
         },
         "type": "object",
@@ -2114,6 +2185,18 @@
         ],
         "title": "ReportCreate"
       },
+      "ReportEnRoute": {
+        "properties": {
+          "en_route": {
+            "type": "boolean",
+            "title": "En Route",
+            "default": true
+          }
+        },
+        "type": "object",
+        "title": "ReportEnRoute",
+        "description": "Anunciar que un grupo va para allá, o cancelarlo si al final no fue."
+      },
       "ReportModerationUpdate": {
         "properties": {
           "verification_status": {
@@ -2267,6 +2350,18 @@
               }
             ],
             "title": "Attended Note"
+          },
+          "en_route_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "En Route At"
           }
         },
         "type": "object",

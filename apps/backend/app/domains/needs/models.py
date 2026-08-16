@@ -13,9 +13,7 @@ class AssistanceNeed(Base):
     __tablename__ = "assistance_needs"
     id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     tracking_code: Mapped[str] = mapped_column(String(16), unique=True, nullable=False, index=True)
-    idempotency_key_hash: Mapped[str | None] = mapped_column(
-        String(64), unique=True, nullable=True
-    )
+    idempotency_key_hash: Mapped[str | None] = mapped_column(String(64), unique=True, nullable=True)
     request_fingerprint: Mapped[str | None] = mapped_column(String(64), nullable=True)
     territory_id: Mapped[str] = mapped_column(String(80), nullable=False, index=True)
     category: Mapped[str] = mapped_column(String(40), nullable=False)

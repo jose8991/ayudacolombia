@@ -13,6 +13,7 @@ interface PublicReport {
   verification_status: 'reported' | 'verified' | 'official';
   is_stale?: boolean;
   attended_at?: string | null;
+  en_route_since?: string | null;
 }
 
 const mapCategory = (category: PublicReport['category']): MapCategory =>
@@ -52,6 +53,8 @@ export interface DeliveryStop {
   severity: HumanitarianMapPoint['severity'];
   coordinates: { longitude: number; latitude: number } | null;
   attendedAt: string | null;
+  /** Sólo viene si el aviso sigue vigente; el backend descarta los vencidos. */
+  enRouteSince: string | null;
 }
 
 /**
@@ -60,6 +63,9 @@ export interface DeliveryStop {
  * Primero los que no ha visitado nadie: es exactamente el dato que falta cuando tres
  * grupos suben a la misma vereda el mismo día y a otra no llega ninguno.
  */
+/** Pendiente primero, luego lo que ya tiene un grupo en camino, y al final lo entregado. */
+const orden = (stop: DeliveryStop): number => (stop.attendedAt ? 2 : stop.enRouteSince ? 1 : 0);
+
 export async function loadDeliveryStops(territoryId: string): Promise<DeliveryStop[]> {
   const response = await fetch(
     '/api/v1/reports/public?' + new URLSearchParams({ territory_id: territoryId }).toString(),
@@ -76,6 +82,7 @@ export async function loadDeliveryStops(territoryId: string): Promise<DeliverySt
       severity: report.severity,
       coordinates: report.coordinates,
       attendedAt: report.attended_at ?? null,
+      enRouteSince: report.en_route_since ?? null,
     }))
-    .sort((a, b) => Number(Boolean(a.attendedAt)) - Number(Boolean(b.attendedAt)));
+    .sort((a, b) => orden(a) - orden(b));
 }

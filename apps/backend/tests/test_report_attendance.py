@@ -6,15 +6,19 @@ a otro no llega nadie. Es distinto de haber llamado por teléfono, que ya se reg
 aparte.
 """
 
-from datetime import UTC, datetime
+from datetime import UTC, datetime, timedelta
 from uuid import UUID, uuid4
 
 import pytest
 
 from app.domains.identity.policy import evaluate_access
 from app.domains.identity.schemas import Actor, Permission, ResourceContext, Role
-from app.domains.reports.exceptions import ReportAccessDeniedError, ReportNotFoundError
-from app.domains.reports.schemas import ReportAttendance
+from app.domains.reports.exceptions import (
+    ForeignEnRouteError,
+    ReportAccessDeniedError,
+    ReportNotFoundError,
+)
+from app.domains.reports.schemas import ReportAttendance, ReportEnRoute
 from app.domains.reports.service import ReportService
 
 REPORT_ID = UUID("40000000-0000-0000-0000-000000000001")
@@ -44,6 +48,8 @@ class FakeReport:
         self.attended_at: datetime | None = None
         self.attended_by_organization_id: UUID | None = None
         self.attended_note: str | None = None
+        self.en_route_at: datetime | None = None
+        self.en_route_by_organization_id: UUID | None = None
 
 
 class FakeRepository:
@@ -57,6 +63,14 @@ class FakeRepository:
         report.attended_at = moment
         report.attended_by_organization_id = organization_id if moment else None
         report.attended_note = note if moment else None
+        if moment:
+            report.en_route_at = None
+            report.en_route_by_organization_id = None
+        return report
+
+    async def mark_en_route(self, report, organization_id, moment):
+        report.en_route_at = moment
+        report.en_route_by_organization_id = organization_id if moment else None
         return report
 
 
@@ -137,3 +151,64 @@ async def test_lo_publico_dice_que_ya_llegaron_pero_no_quien() -> None:
     assert publico.attended_at is not None
     assert not hasattr(publico, "attended_note")
     assert not hasattr(publico, "attended_by_organization_id")
+
+
+OTRA_ORG = UUID("20000000-0000-0000-0000-000000000009")
+
+
+async def test_anunciar_que_van_en_camino_evita_que_otro_salga_al_mismo_sitio() -> None:
+    report = FakeReport()
+    await ReportService(FakeRepository(report)).mark_en_route(
+        REPORT_ID, ReportEnRoute(), grupo()
+    )
+    publico = ReportService.to_public_report_read(report)
+    assert publico.en_route_since is not None
+
+
+async def test_el_aviso_de_camino_caduca_solo() -> None:
+    """Un aviso permanente deja el sitio marcado como cubierto mientras no llega nadie, y
+    los demás grupos lo saltan. Pasadas las seis horas vuelve a aparecer como pendiente."""
+    report = FakeReport()
+    report.en_route_at = datetime.now(UTC) - timedelta(hours=7)
+    publico = ReportService.to_public_report_read(report)
+    assert publico.en_route_since is None
+
+
+async def test_llegar_borra_el_aviso_de_camino() -> None:
+    report = FakeReport()
+    service = ReportService(FakeRepository(report))
+    await service.mark_en_route(REPORT_ID, ReportEnRoute(), grupo())
+    await service.mark_attended(REPORT_ID, ReportAttendance(), grupo())
+    assert report.en_route_at is None
+    assert report.attended_at is not None
+
+
+async def test_un_grupo_no_cancela_el_viaje_de_otro() -> None:
+    """Si cualquiera pudiera borrar el aviso ajeno, dos grupos saldrían a la vez sin saberlo."""
+    report = FakeReport()
+    report.en_route_at = datetime.now(UTC)
+    report.en_route_by_organization_id = OTRA_ORG
+    with pytest.raises(ForeignEnRouteError):
+        await ReportService(FakeRepository(report)).mark_en_route(
+            REPORT_ID, ReportEnRoute(en_route=False), grupo()
+        )
+
+
+async def test_el_grupo_si_cancela_su_propio_viaje() -> None:
+    report = FakeReport()
+    service = ReportService(FakeRepository(report))
+    quienes = grupo()
+    await service.mark_en_route(REPORT_ID, ReportEnRoute(), quienes)
+    await service.mark_en_route(REPORT_ID, ReportEnRoute(en_route=False), quienes)
+    assert report.en_route_at is None
+
+
+async def test_un_aviso_ya_vencido_lo_puede_retomar_cualquiera() -> None:
+    """Vencido ya no protege a nadie: exigir permiso para limpiarlo sólo estorbaría."""
+    report = FakeReport()
+    report.en_route_at = datetime.now(UTC) - timedelta(hours=7)
+    report.en_route_by_organization_id = OTRA_ORG
+    leido = await ReportService(FakeRepository(report)).mark_en_route(
+        REPORT_ID, ReportEnRoute(en_route=False), grupo()
+    )
+    assert leido.en_route_at is None

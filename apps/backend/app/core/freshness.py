@@ -11,6 +11,24 @@ from datetime import UTC, datetime, timedelta
 STALE_AFTER = timedelta(hours=72)
 
 
+# Un "vamos en camino" que nadie limpia es peor que no tenerlo: deja el sitio marcado como
+# cubierto mientras no llega nadie, y los demás grupos lo saltan. Por eso caduca solo.
+#
+# Seis horas es lo que puede tomar una subida a una vereda con vía en mal estado, contando
+# el regreso. Pasado eso, el sitio vuelve a aparecer como pendiente: si el grupo sí llegó,
+# lo marca como entregado y se acabó; si no llegó, alguien más debe poder ir.
+EN_ROUTE_WINDOW = timedelta(hours=6)
+
+
+def is_en_route(en_route_at: datetime | None, now: datetime | None = None) -> bool:
+    """Indica si el aviso de que un grupo iba en camino sigue siendo creíble."""
+    if en_route_at is None:
+        return False
+    reference = now or datetime.now(UTC)
+    moment = en_route_at if en_route_at.tzinfo is not None else en_route_at.replace(tzinfo=UTC)
+    return reference - moment <= EN_ROUTE_WINDOW
+
+
 def is_stale(last_confirmed_at: datetime | None, now: datetime | None = None) -> bool:
     """Indica si una publicación lleva demasiado tiempo sin reconfirmarse."""
     if last_confirmed_at is None:

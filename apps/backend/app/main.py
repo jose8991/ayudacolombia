@@ -23,6 +23,7 @@ from app.domains.identity.exceptions import (
 )
 from app.domains.needs.exceptions import NeedIdempotencyConflictError, NeedNotFoundError
 from app.domains.reports.exceptions import (
+    ForeignEnRouteError,
     InvalidModerationStatusError,
     ReportAccessDeniedError,
     ReportIdempotencyConflictError,
@@ -130,6 +131,21 @@ async def invalid_moderation_status_handler(
     )
 
 
+@app.exception_handler(ForeignEnRouteError)
+async def foreign_en_route_handler(request: Request, _: ForeignEnRouteError) -> JSONResponse:
+    return JSONResponse(
+        status_code=409,
+        content={
+            "error": {
+                "code": "FOREIGN_EN_ROUTE",
+                "message": "Otro grupo anunció ese viaje; sólo ellos pueden cancelarlo",
+                "details": None,
+                "request_id": getattr(request.state, "request_id", None),
+            }
+        },
+    )
+
+
 @app.exception_handler(CenterNotFoundError)
 async def center_not_found_handler(request: Request, _: CenterNotFoundError) -> JSONResponse:
     return JSONResponse(
@@ -146,9 +162,7 @@ async def center_not_found_handler(request: Request, _: CenterNotFoundError) -> 
 
 
 @app.exception_handler(EmptyCenterUpdateError)
-async def empty_center_update_handler(
-    request: Request, _: EmptyCenterUpdateError
-) -> JSONResponse:
+async def empty_center_update_handler(request: Request, _: EmptyCenterUpdateError) -> JSONResponse:
     return JSONResponse(
         status_code=422,
         content={

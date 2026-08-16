@@ -14,9 +14,7 @@ class CitizenReport(Base):
 
     id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     tracking_code: Mapped[str] = mapped_column(String(16), unique=True, nullable=False, index=True)
-    idempotency_key_hash: Mapped[str | None] = mapped_column(
-        String(64), unique=True, nullable=True
-    )
+    idempotency_key_hash: Mapped[str | None] = mapped_column(String(64), unique=True, nullable=True)
     request_fingerprint: Mapped[str | None] = mapped_column(String(64), nullable=True)
     territory_id: Mapped[str] = mapped_column(String(80), nullable=False, index=True)
     category: Mapped[str] = mapped_column(String(32), nullable=False)
@@ -38,6 +36,9 @@ class CitizenReport(Base):
     attended_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     attended_by_organization_id: Mapped[uuid.UUID | None] = mapped_column(UUID(as_uuid=True))
     attended_note: Mapped[str | None] = mapped_column(String(300))
+    # Un grupo anunció que va para allá. Caduca solo: ver EN_ROUTE_WINDOW.
+    en_route_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    en_route_by_organization_id: Mapped[uuid.UUID | None] = mapped_column(UUID(as_uuid=True))
     privacy_policy_version: Mapped[str] = mapped_column(String(32), nullable=False)
     privacy_accepted_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
     created_at: Mapped[datetime] = mapped_column(
