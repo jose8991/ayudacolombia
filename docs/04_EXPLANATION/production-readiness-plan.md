@@ -19,8 +19,8 @@ cerrada cuando tiene implementación, prueba, documentación y validación de de
 | 4 | Mutaciones con TanStack Query | Cerrado | Envíos y consulta de estado fuera de la página y administrados mediante la capa de datos. |
 | 5 | Conectividad degradada segura | Cerrado | Cola AES-GCM por sesión, clave idempotente estable, reintento automático y descarte seguro de datos indescifrables. |
 | 5.1 | Mantenibilidad frontend | Parcial | `HomePage` pasó de 1.485 a 265 líneas y de complejidad 155 a 19. El panel de recorridos, el formulario, el workspace del mapa y la bandeja de revisión viven en widgets propios. Queda `EmergencyMap` en 700 líneas. |
-| 6 | Accesibilidad automatizada | Parcial | axe pasa portada y recorridos en cada push. Faltan lector de pantalla y validación de contraste en navegador real. |
-| 7 | Presupuesto de rendimiento | Parcial | Build limita JS inicial a 100 KB gzip, CSS a 12 KB y mapa diferido a 300 KB. Falta Lighthouse móvil reproducible para LCP e INP. |
+| 6 | Accesibilidad automatizada | Cerrado | axe pasa portada y recorridos en cada push. Auditado además en navegador real contra producción con contraste activo: 0 violaciones en móvil (con y sin mapa) y escritorio. Queda pendiente una prueba manual con lector de pantalla. |
+| 7 | Presupuesto de rendimiento | Cerrado | Build limita JS inicial a 100 KB gzip, CSS a 12 KB y mapa diferido a 300 KB. Lighthouse móvil sobre producción: rendimiento 99, bloqueo total 74 ms, interactivo 1,9 s, LCP 1,7 s, CLS 0,026 (mediana de tres corridas). |
 | 8 | Observabilidad completa | Parcial | Request ID y logs JSON ya existen; respaldo diario verificado por systemd. Faltan métricas, alertas y trazas. |
 | 9 | Migraciones y contratos en CI | Cerrado | GitHub Actions ejecuta el ciclo upgrade/downgrade/upgrade sobre PostGIS y falla si el contrato OpenAPI se desvía del código. |
 | 10 | Documentación y ownership | Parcial | LICENSE (MIT), CONTRIBUTING y SECURITY publicados. Falta `llms-full.txt`. |
@@ -90,3 +90,30 @@ validación en navegador real de contraste, zoom al 200/400 %, lector de pantall
 
 Después de cada bloque se actualizan este plan y la auditoría. Los bloqueos externos se mantienen
 visibles y nunca se convierten en supuestos ni datos inventados.
+
+## Por qué el mapa no se carga solo en el teléfono
+
+Lighthouse móvil daba rendimiento 69 y un tiempo total de bloqueo de entre 5.868 y 8.102 ms
+según la corrida. La causa era una sola: MapLibre consume cerca de siete segundos de CPU en
+un teléfono de gama media y producía las cinco tareas largas de la carga. La página se veía
+en 1,9 s, pero durante diez segundos los tres botones no respondían al toque.
+
+Se intentó primero aplazarlo con `requestIdleCallback`. **No sirvió**: mover el gasto más
+tarde no lo elimina, y la medición empeoró. Lo que funcionó fue no cargarlo: en pantallas de
+hasta 900 px el mapa espera a que alguien lo pida con un botón que dice cuántos puntos hay.
+En escritorio, donde el mapa es el centro de la página y sobra CPU, sigue cargando solo.
+
+Resultado medido sobre producción, mediana de tres corridas:
+
+| | Antes | Después |
+|---|---:|---:|
+| Rendimiento | 69 | 99 |
+| Bloqueo total | 5.868–8.102 ms | 74 ms |
+| Hasta poder interactuar | 10,2 s | 1,9 s |
+
+Las tres corridas nuevas dieron 50, 74 y 94 ms. La dispersión enorme de antes la producían
+las propias tareas largas de MapLibre, no la máquina de medición.
+
+Antes de tocar esto, comprobar lo que no depende del ruido de Lighthouse: en un viewport de
+teléfono no debe pedirse ningún recurso `maplibre` durante la carga, y sí debe pedirse al
+tocar el botón.
