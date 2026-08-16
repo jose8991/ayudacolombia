@@ -12,6 +12,7 @@ interface PublicReport {
   observed_at: string;
   verification_status: 'reported' | 'verified' | 'official';
   is_stale?: boolean;
+  attended_at?: string | null;
 }
 
 const mapCategory = (category: PublicReport['category']): MapCategory =>
@@ -41,4 +42,40 @@ export async function loadPublicReportPoints(
       ? ([report.coordinates.longitude, report.coordinates.latitude] as const)
       : null,
   }));
+}
+
+export interface DeliveryStop {
+  id: string;
+  title: string;
+  description: string;
+  neighborhood: string | null;
+  severity: HumanitarianMapPoint['severity'];
+  coordinates: { longitude: number; latitude: number } | null;
+  attendedAt: string | null;
+}
+
+/**
+ * Los sitios que pidieron ayuda en un municipio, para armar un recorrido de entrega.
+ *
+ * Primero los que no ha visitado nadie: es exactamente el dato que falta cuando tres
+ * grupos suben a la misma vereda el mismo día y a otra no llega ninguno.
+ */
+export async function loadDeliveryStops(territoryId: string): Promise<DeliveryStop[]> {
+  const response = await fetch(
+    '/api/v1/reports/public?' + new URLSearchParams({ territory_id: territoryId }).toString(),
+  );
+  if (!response.ok) throw new Error('No fue posible cargar los sitios');
+  const reports = (await response.json()) as PublicReport[];
+  return reports
+    .filter((report) => report.category === 'need')
+    .map((report) => ({
+      id: report.id,
+      title: report.title,
+      description: report.description,
+      neighborhood: report.neighborhood,
+      severity: report.severity,
+      coordinates: report.coordinates,
+      attendedAt: report.attended_at ?? null,
+    }))
+    .sort((a, b) => Number(Boolean(a.attendedAt)) - Number(Boolean(b.attendedAt)));
 }

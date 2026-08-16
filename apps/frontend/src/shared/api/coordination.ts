@@ -90,6 +90,19 @@ export function updateCenter(
   });
 }
 
+export function markReportAttended(
+  token: string,
+  reportId: string,
+  attended: boolean,
+  note?: string,
+): Promise<unknown> {
+  return request(`/reports/${reportId}/attended`, {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ attended, note: note || null }),
+  });
+}
+
 export function loadManagedCenters(token: string): Promise<ManagedCenter[]> {
   return request('/centers/mine', { headers: { Authorization: `Bearer ${token}` } });
 }

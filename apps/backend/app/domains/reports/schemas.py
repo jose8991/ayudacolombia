@@ -59,6 +59,8 @@ class ReportRead(ReportCreate):
     verification_status: VerificationStatus
     created_at: datetime
     contacted_at: datetime | None = None
+    attended_at: datetime | None = None
+    attended_note: str | None = None
 
 
 class PublicReportRead(BaseModel):
@@ -76,6 +78,9 @@ class PublicReportRead(BaseModel):
     verification_status: VerificationStatus
     updated_at: datetime
     is_stale: bool = False
+    # Que alguien ya llegó es información pública: evita que tres grupos suban al mismo
+    # sitio mientras a otro no llega nadie. Quién llegó no se publica.
+    attended_at: datetime | None = None
 
 
 class ReportStatusRead(BaseModel):
@@ -83,6 +88,13 @@ class ReportStatusRead(BaseModel):
     verification_status: VerificationStatus
     created_at: datetime
     updated_at: datetime
+
+
+class ReportAttendance(BaseModel):
+    """Dejar constancia de que un grupo llegó al sitio, o deshacerlo si fue un error."""
+
+    attended: bool = True
+    note: str | None = Field(default=None, max_length=300)
 
 
 class ReportModerationUpdate(BaseModel):

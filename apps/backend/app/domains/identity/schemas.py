@@ -17,6 +17,8 @@ class Role(StrEnum):
 class Permission(StrEnum):
     REPORT_READ_SENSITIVE = "report.read_sensitive"
     REPORT_VERIFY = "report.verify"
+    # Dejar constancia de que se llegó al sitio. No exige poder ver datos de contacto.
+    REPORT_ATTEND = "report.attend"
     CENTER_UPDATE = "center.update"
     INVENTORY_UPDATE = "inventory.update"
     AID_ASSIGN = "aid.assign"

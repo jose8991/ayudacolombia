@@ -3052,3 +3052,83 @@ input:focus-visible {
     grid-template-columns: 1fr;
   }
 }
+
+/* Recorrido de entrega: los pendientes primero, lo entregado apagado pero visible. */
+.delivery-stops {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+  list-style: none;
+}
+.delivery-stops li {
+  display: grid;
+  gap: 0.6rem;
+  padding: 0.85rem 0.9rem;
+  border: 1px solid rgba(23, 51, 42, 0.14);
+  border-left: 4px solid var(--color-brand);
+  border-radius: 12px;
+  background: #fff;
+}
+.delivery-stop-body {
+  display: grid;
+  gap: 0.15rem;
+}
+.delivery-stop-body strong {
+  font-size: 0.98rem;
+}
+.delivery-stop-body span {
+  color: #4f5e56;
+  font-size: 0.78rem;
+}
+.delivery-stop-body p {
+  margin: 0.2rem 0 0;
+  color: var(--color-ink);
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+.delivery-stop-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.delivery-stop-actions a,
+.delivery-stop-actions button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 44px;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--color-brand);
+  border-radius: 999px;
+  color: var(--color-brand);
+  background: #fff;
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+.delivery-stop-actions button {
+  color: #fff;
+  background: var(--color-brand);
+}
+/* Lo entregado no se marca sólo con color: baja el borde y lo dice con palabras. */
+.delivery-stops li.is-done {
+  border-left-color: #b9c5be;
+  background: #f6f8f6;
+}
+.delivery-stops li.is-done .delivery-stop-body strong {
+  font-weight: 600;
+}
+.delivery-stops li.is-done .delivery-stop-actions button {
+  color: #4f5e56;
+  background: #fff;
+  border-color: #b9c5be;
+}
+.delivery-done-mark {
+  margin-top: 0.25rem;
+  color: var(--color-brand);
+  font-weight: 700;
+  font-size: 0.78rem;
+}

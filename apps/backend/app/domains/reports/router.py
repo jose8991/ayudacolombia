@@ -16,6 +16,7 @@ from app.domains.identity.schemas import Actor
 from .repository import ReportRepository
 from .schemas import (
     PublicReportRead,
+    ReportAttendance,
     ReportCreate,
     ReportModerationUpdate,
     ReportRead,
@@ -90,17 +91,17 @@ async def promote_report_to_center(
     if report.latitude is None or report.longitude is None:
         raise HTTPException(
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-            detail='Ese reporte no trae ubicación exacta: regístralo estando en el lugar.',
+            detail="Ese reporte no trae ubicación exacta: regístralo estando en el lugar.",
         )
     if report.category not in {"shelter", "aid-center"}:
         raise HTTPException(
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-            detail='Solo un albergue o un punto de acopio puede convertirse en centro.',
+            detail="Solo un albergue o un punto de acopio puede convertirse en centro.",
         )
     if actor.organization_id is None:
         raise HTTPException(
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-            detail='Tu cuenta no pertenece a ninguna organización.',
+            detail="Tu cuenta no pertenece a ninguna organización.",
         )
     center = await centers.create(
         CenterCreate(
@@ -127,6 +128,17 @@ async def mark_report_contacted(
     service: Annotated[ReportService, Depends(get_report_service)],
 ) -> ReportRead:
     return await service.mark_contacted(report_id, actor)
+
+
+@router.post("/{report_id}/attended", response_model=ReportRead)
+async def mark_report_attended(
+    report_id: UUID,
+    payload: ReportAttendance,
+    actor: Annotated[Actor, Depends(get_current_actor)],
+    service: Annotated[ReportService, Depends(get_report_service)],
+) -> ReportRead:
+    """Un grupo llegó al sitio y entregó. Se puede deshacer si se marcó el punto errado."""
+    return await service.mark_attended(report_id, payload, actor)
 
 
 @router.get("/{code}/status", response_model=ReportStatusRead)

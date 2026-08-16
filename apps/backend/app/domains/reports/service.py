@@ -19,6 +19,7 @@ from .models import CitizenReport
 from .schemas import (
     Coordinates,
     PublicReportRead,
+    ReportAttendance,
     ReportCreate,
     ReportModerationUpdate,
     ReportRead,
@@ -39,6 +40,13 @@ class ReportRepositoryPort(Protocol):
         self, report: CitizenReport, verification_status: str, note: str | None
     ) -> CitizenReport: ...
     async def mark_contacted(self, report: CitizenReport) -> CitizenReport: ...
+    async def mark_attended(
+        self,
+        report: CitizenReport,
+        organization_id: UUID | None,
+        note: str | None,
+        moment: datetime | None,
+    ) -> CitizenReport: ...
 
 
 class ReportService:
@@ -129,6 +137,27 @@ class ReportService:
             raise ReportAccessDeniedError
         return self.to_report_read(await self.repository.mark_contacted(report))
 
+    async def mark_attended(
+        self, report_id: UUID, payload: ReportAttendance, actor: Actor
+    ) -> ReportRead:
+        """Dejar constancia de que un grupo llegó al sitio y entregó.
+
+        No es lo mismo que haberlo contactado por teléfono. Sirve para que dos grupos no
+        suban a la misma vereda mientras a otra no llega nadie, y se puede deshacer: en un
+        recorrido con señal intermitente marcar el punto equivocado es cuestión de tiempo.
+        """
+        report = await self.repository.get(report_id)
+        if report is None:
+            raise ReportNotFoundError
+        if not evaluate_access(
+            actor, Permission.REPORT_ATTEND, ResourceContext(territory_id=report.territory_id)
+        ).allowed:
+            raise ReportAccessDeniedError
+        moment = datetime.now(UTC) if payload.attended else None
+        return self.to_report_read(
+            await self.repository.mark_attended(report, actor.organization_id, payload.note, moment)
+        )
+
     async def get_status(self, code: str) -> ReportStatusRead:
         report = await self.repository.get_by_tracking_code(code)
         if report is None:
@@ -156,10 +185,10 @@ class ReportService:
             verification_status=report.verification_status,
             created_at=report.created_at,
             contacted_at=report.contacted_at,
+            attended_at=report.attended_at,
+            attended_note=report.attended_note,
             contact=(
-                decrypt_sensitive(report.contact_ciphertext)
-                if report.contact_ciphertext
-                else None
+                decrypt_sensitive(report.contact_ciphertext) if report.contact_ciphertext else None
             ),
             privacy_authorized=True,
             privacy_policy_version=report.privacy_policy_version,
@@ -186,6 +215,7 @@ class ReportService:
             verification_status=report.verification_status,
             updated_at=report.updated_at,
             is_stale=is_stale(report.updated_at),
+            attended_at=report.attended_at,
         )
 
     @staticmethod

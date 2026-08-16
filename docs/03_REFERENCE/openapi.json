@@ -847,6 +847,65 @@
         }
       }
     },
+    "/api/v1/reports/{report_id}/attended": {
+      "post": {
+        "tags": [
+          "reports"
+        ],
+        "summary": "Mark Report Attended",
+        "description": "Un grupo llegó al sitio y entregó. Se puede deshacer si se marcó el punto errado.",
+        "operationId": "mark_report_attended_api_v1_reports__report_id__attended_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "report_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Report Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReportAttendance"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReportRead"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/reports/{code}/status": {
       "get": {
         "tags": [
@@ -1791,6 +1850,18 @@
             "type": "boolean",
             "title": "Is Stale",
             "default": false
+          },
+          "attended_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Attended At"
           }
         },
         "type": "object",
@@ -1916,6 +1987,30 @@
           "urgent"
         ],
         "title": "PublicationPriority"
+      },
+      "ReportAttendance": {
+        "properties": {
+          "attended": {
+            "type": "boolean",
+            "title": "Attended",
+            "default": true
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 300
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          }
+        },
+        "type": "object",
+        "title": "ReportAttendance",
+        "description": "Dejar constancia de que un grupo llegó al sitio, o deshacerlo si fue un error."
       },
       "ReportCategory": {
         "type": "string",
@@ -2149,6 +2244,29 @@
               }
             ],
             "title": "Contacted At"
+          },
+          "attended_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Attended At"
+          },
+          "attended_note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Attended Note"
           }
         },
         "type": "object",

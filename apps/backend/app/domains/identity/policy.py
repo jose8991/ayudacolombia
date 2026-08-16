@@ -1,17 +1,28 @@
 from .schemas import AccessDecision, Actor, Permission, ResourceContext, Role
 
 ROLE_PERMISSIONS: dict[Role, set[Permission]] = {
-    Role.CENTER_OPERATOR: {Permission.CENTER_UPDATE, Permission.INVENTORY_UPDATE},
-    Role.VERIFIER: {Permission.REPORT_READ_SENSITIVE, Permission.REPORT_VERIFY},
+    Role.CENTER_OPERATOR: {
+        Permission.CENTER_UPDATE,
+        Permission.INVENTORY_UPDATE,
+        # Un grupo que reparte desde su acopio marca dónde ya entregó.
+        Permission.REPORT_ATTEND,
+    },
+    Role.VERIFIER: {
+        Permission.REPORT_READ_SENSITIVE,
+        Permission.REPORT_VERIFY,
+        Permission.REPORT_ATTEND,
+    },
     Role.TERRITORIAL_COORDINATOR: {
         Permission.REPORT_READ_SENSITIVE,
         Permission.REPORT_VERIFY,
+        Permission.REPORT_ATTEND,
         Permission.AID_ASSIGN,
     },
     Role.ORGANIZATION_MEMBER: {Permission.AID_ASSIGN},
     Role.OFFICIAL: {
         Permission.REPORT_READ_SENSITIVE,
         Permission.REPORT_VERIFY,
+        Permission.REPORT_ATTEND,
         Permission.CENTER_UPDATE,
         Permission.AID_ASSIGN,
     },
@@ -36,6 +47,14 @@ def evaluate_access(
     ):
         if resource.center_id is None or resource.center_id not in actor.center_ids:
             return AccessDecision(allowed=False, reason="center_out_of_scope")
+    # Un grupo que reparte desde su acopio marca entregas en su municipio, no en otro.
+    if (
+        permission is Permission.REPORT_ATTEND
+        and Role.CENTER_OPERATOR in actor.roles
+        and resource.territory_id
+        and resource.territory_id not in actor.territory_ids
+    ):
+        return AccessDecision(allowed=False, reason="territory_out_of_scope")
     territorial_roles = {Role.VERIFIER, Role.TERRITORIAL_COORDINATOR, Role.OFFICIAL}
     if (
         actor.roles & territorial_roles

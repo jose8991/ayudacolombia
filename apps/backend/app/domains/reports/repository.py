@@ -62,6 +62,20 @@ class ReportRepository:
         )
         return list(result.all())
 
+    async def mark_attended(
+        self,
+        report: CitizenReport,
+        organization_id: UUID | None,
+        note: str | None,
+        moment: datetime | None,
+    ) -> CitizenReport:
+        report.attended_at = moment
+        report.attended_by_organization_id = organization_id if moment else None
+        report.attended_note = note if moment else None
+        await self.session.commit()
+        await self.session.refresh(report)
+        return report
+
     async def mark_contacted(self, report: CitizenReport) -> CitizenReport:
         report.contacted_at = datetime.now(UTC)
         await self.session.commit()

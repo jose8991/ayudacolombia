@@ -34,6 +34,10 @@ class CitizenReport(Base):
     contact_ciphertext: Mapped[bytes | None] = mapped_column(LargeBinary)
     # Evita que dos personas del equipo llamen a la misma persona por separado.
     contacted_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    # Alguien llegó al sitio y entregó. Distinto de contacted_at, que es sólo una llamada.
+    attended_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    attended_by_organization_id: Mapped[uuid.UUID | None] = mapped_column(UUID(as_uuid=True))
+    attended_note: Mapped[str | None] = mapped_column(String(300))
     privacy_policy_version: Mapped[str] = mapped_column(String(32), nullable=False)
     privacy_accepted_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
     created_at: Mapped[datetime] = mapped_column(

@@ -4,6 +4,7 @@ import { ModerationList } from './ModerationList';
 import { RegisterCenter } from './RegisterCenter';
 import { InviteOperator } from './InviteOperator';
 import { CenterStatus } from './CenterStatus';
+import { DeliveryRun } from './DeliveryRun';
 import { VALIDITY_OPTIONS, expiresAt } from '@timeliber/kit';
 import { ArrowLeft, CheckCircle2, LogIn, Megaphone, PackagePlus, ShieldCheck } from 'lucide-react';
 import {
@@ -421,6 +422,9 @@ export function CoordinationPage() {
           }
           session={session}
         />
+      )}
+      {session && session.actor.territory_ids.length > 0 && (
+        <DeliveryRun session={session} territoryId={session.actor.territory_ids[0]} />
       )}
       {session && (
         <RegisterCenter
