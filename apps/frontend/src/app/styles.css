@@ -372,7 +372,6 @@ button {
 }
 .action-button small {
   color: inherit;
-  opacity: 0.82;
   font-size: 0.7rem;
   font-weight: 500;
   line-height: 1.25;
