@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from sqlalchemy import func, or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -37,6 +39,16 @@ class CenterRepository:
         else:
             return []
         return list((await self.session.scalars(statement)).all())
+
+    async def update(
+        self, center: AidCenter, changes: dict[str, object], moment: datetime
+    ) -> AidCenter:
+        for field, value in changes.items():
+            setattr(center, field, value)
+        center.last_verified_at = moment
+        await self.session.commit()
+        await self.session.refresh(center)
+        return center
 
     async def add(self, center: AidCenter) -> AidCenter:
         self.session.add(center)

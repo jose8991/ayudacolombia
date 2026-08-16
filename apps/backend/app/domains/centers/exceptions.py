@@ -8,3 +8,7 @@ class CenterNotFoundError(CenterDomainError):
 
 class CenterAccessDeniedError(CenterDomainError):
     pass
+
+
+class EmptyCenterUpdateError(CenterDomainError):
+    """Una actualización sin cambios sería un 200 que no hizo nada."""

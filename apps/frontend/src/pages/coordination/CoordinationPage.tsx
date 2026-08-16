@@ -3,6 +3,7 @@ import { RELIEF_ITEMS } from '../../shared/data/relief-items';
 import { ModerationList } from './ModerationList';
 import { RegisterCenter } from './RegisterCenter';
 import { InviteOperator } from './InviteOperator';
+import { CenterStatus } from './CenterStatus';
 import { VALIDITY_OPTIONS, expiresAt } from '@timeliber/kit';
 import { ArrowLeft, CheckCircle2, LogIn, Megaphone, PackagePlus, ShieldCheck } from 'lucide-react';
 import {
@@ -410,6 +411,17 @@ export function CoordinationPage() {
           </form>
         )}
       </section>
+      {session && centers.length > 0 && (
+        <CenterStatus
+          center={centers.find((item) => item.id === centerId) ?? centers[0]}
+          onChanged={(actualizado) =>
+            setCenters((previos) =>
+              previos.map((item) => (item.id === actualizado.id ? actualizado : item)),
+            )
+          }
+          session={session}
+        />
+      )}
       {session && (
         <RegisterCenter
           busy={busy}

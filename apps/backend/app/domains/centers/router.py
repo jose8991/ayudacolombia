@@ -9,7 +9,13 @@ from app.core.deps import get_current_actor
 from app.domains.identity.schemas import Actor
 
 from .repository import CenterRepository
-from .schemas import CenterCreate, CenterPublicationCreate, CenterPublicationRead, CenterRead
+from .schemas import (
+    CenterCreate,
+    CenterPublicationCreate,
+    CenterPublicationRead,
+    CenterRead,
+    CenterUpdate,
+)
 from .service import CenterService
 
 router = APIRouter(prefix="/centers", tags=["centers"])
@@ -43,6 +49,17 @@ async def create_center(
     service: Annotated[CenterService, Depends(get_center_service)],
 ) -> CenterRead:
     return await service.create(payload, actor)
+
+
+@router.patch("/{center_id}", response_model=CenterRead)
+async def update_center(
+    center_id: UUID,
+    payload: CenterUpdate,
+    actor: Annotated[Actor, Depends(get_current_actor)],
+    service: Annotated[CenterService, Depends(get_center_service)],
+) -> CenterRead:
+    """Corregir un centro, y sobre todo decir que se llenó o que cerró."""
+    return await service.update(center_id, payload, actor)
 
 
 @router.get("/mine", response_model=list[CenterRead])

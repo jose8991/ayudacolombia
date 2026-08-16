@@ -2998,3 +2998,57 @@ input:focus-visible {
 .location-capture small {
   color: var(--color-muted);
 }
+
+/* Cambiar el estado del lugar: cuatro destinos, un toque, sin formulario de por medio. */
+.status-switch {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+}
+.status-option {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.85rem 0.9rem;
+  min-height: 44px;
+  border: 1px solid rgba(23, 51, 42, 0.16);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--color-ink);
+  text-align: left;
+  cursor: pointer;
+}
+.status-option strong {
+  font-size: 0.95rem;
+}
+.status-option span {
+  color: #4f5e56;
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+.status-option:hover:not(:disabled) {
+  border-color: var(--color-brand);
+}
+.status-option:disabled {
+  cursor: default;
+}
+/* El estado actual no se marca sólo con color: lleva borde grueso y una marca de texto. */
+.status-option.is-current {
+  border: 2px solid var(--color-brand);
+  background: #eef5f1;
+}
+.status-option.is-current strong::after {
+  content: ' · ahora';
+  color: var(--color-brand);
+  font-weight: 700;
+}
+.status-saved {
+  margin: 0.7rem 0 0;
+  color: var(--color-brand);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+@media (max-width: 520px) {
+  .status-switch {
+    grid-template-columns: 1fr;
+  }
+}

@@ -9,7 +9,11 @@ from app.api.router import api_router
 from app.core.config import get_settings
 from app.core.observability import RequestContextMiddleware
 from app.domains.abuse.exceptions import RateLimitExceededError
-from app.domains.centers.exceptions import CenterAccessDeniedError, CenterNotFoundError
+from app.domains.centers.exceptions import (
+    CenterAccessDeniedError,
+    CenterNotFoundError,
+    EmptyCenterUpdateError,
+)
 from app.domains.identity.exceptions import (
     IdentityAccessDeniedError,
     IdentityConflictError,
@@ -134,6 +138,23 @@ async def center_not_found_handler(request: Request, _: CenterNotFoundError) -> 
             "error": {
                 "code": "CENTER_NOT_FOUND",
                 "message": "Centro no encontrado",
+                "details": None,
+                "request_id": getattr(request.state, "request_id", None),
+            }
+        },
+    )
+
+
+@app.exception_handler(EmptyCenterUpdateError)
+async def empty_center_update_handler(
+    request: Request, _: EmptyCenterUpdateError
+) -> JSONResponse:
+    return JSONResponse(
+        status_code=422,
+        content={
+            "error": {
+                "code": "EMPTY_CENTER_UPDATE",
+                "message": "No enviaste ningún cambio",
                 "details": None,
                 "request_id": getattr(request.state, "request_id", None),
             }

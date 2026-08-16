@@ -41,6 +41,21 @@ class CenterCreate(BaseModel):
     accepted_items: list[str] = Field(default_factory=list, max_length=50)
 
 
+class CenterUpdate(BaseModel):
+    """Lo que puede cambiar de un centro sin dejar de ser el mismo centro.
+
+    Fuera quedan a propósito las coordenadas, el municipio y la organización: mover un
+    albergue en el mapa desde un formulario es como se manda gente a la cuadra equivocada.
+    Si el lugar cambia de sitio, es otro lugar.
+    """
+
+    name: str | None = Field(default=None, min_length=3, max_length=160)
+    address: str | None = Field(default=None, min_length=3, max_length=255)
+    status: CenterStatus | None = None
+    schedule: str | None = Field(default=None, max_length=255)
+    accepted_items: list[str] | None = Field(default=None, max_length=50)
+
+
 class CenterRead(BaseModel):
     model_config = ConfigDict(from_attributes=True)
     id: UUID

@@ -262,6 +262,65 @@
         }
       }
     },
+    "/api/v1/centers/{center_id}": {
+      "patch": {
+        "tags": [
+          "centers"
+        ],
+        "summary": "Update Center",
+        "description": "Corregir un centro, y sobre todo decir que se llenó o que cerró.",
+        "operationId": "update_center_api_v1_centers__center_id__patch",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "center_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Center Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CenterUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CenterRead"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/centers/mine": {
       "get": {
         "tags": [
@@ -674,6 +733,55 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ReportStatusRead"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/reports/moderation/{report_id}/promote": {
+      "post": {
+        "tags": [
+          "reports"
+        ],
+        "summary": "Promote Report To Center",
+        "description": "Convierte un lugar reportado por la ciudadanía en un centro que puede operar.\n\nUn reporte solo dice \"aquí hay un acopio\". Un centro además publica su horario, qué\nrecibe y de qué ya tiene suficiente. Sin esta conversión había que volver a teclear\ntodo a mano, y el reporte quedaba como punto de segunda para siempre.",
+        "operationId": "promote_report_to_center_api_v1_reports_moderation__report_id__promote_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "report_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Report Id"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CenterRead"
                 }
               }
             }
@@ -1244,6 +1352,76 @@
           "closed"
         ],
         "title": "CenterStatus"
+      },
+      "CenterUpdate": {
+        "properties": {
+          "name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160,
+                "minLength": 3
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "address": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 255,
+                "minLength": 3
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Address"
+          },
+          "status": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CenterStatus"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "schedule": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 255
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Schedule"
+          },
+          "accepted_items": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array",
+                "maxItems": 50
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Accepted Items"
+          }
+        },
+        "type": "object",
+        "title": "CenterUpdate",
+        "description": "Lo que puede cambiar de un centro sin dejar de ser el mismo centro.\n\nFuera quedan a propósito las coordenadas, el municipio y la organización: mover un\nalbergue en el mapa desde un formulario es como se manda gente a la cuadra equivocada.\nSi el lugar cambia de sitio, es otro lugar."
       },
       "CenterVerificationStatus": {
         "type": "string",

@@ -76,6 +76,20 @@ export function createCenter(token: string, input: CenterInput): Promise<Managed
   });
 }
 
+export function updateCenter(
+  token: string,
+  centerId: string,
+  changes: Partial<
+    Pick<CenterInput, 'name' | 'address' | 'status' | 'schedule' | 'accepted_items'>
+  >,
+): Promise<ManagedCenter> {
+  return request(`/centers/${centerId}`, {
+    method: 'PATCH',
+    headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify(changes),
+  });
+}
+
 export function loadManagedCenters(token: string): Promise<ManagedCenter[]> {
   return request('/centers/mine', { headers: { Authorization: `Bearer ${token}` } });
 }
