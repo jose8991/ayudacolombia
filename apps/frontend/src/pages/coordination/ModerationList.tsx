@@ -7,13 +7,24 @@ interface ModerationListProps {
   busy: boolean;
   onModerate: (reportId: string, verificationStatus: 'verified' | 'rejected') => void;
   onContacted: (reportId: string) => void;
+  onPromote: (reportId: string) => void;
 }
+
+/** Un lugar reportado puede pasar a ser un centro; un daño o una necesidad, no. */
+const esLugar = (report: PendingReport) =>
+  report.category === 'shelter' || report.category === 'aid-center';
 
 /**
  * La bandeja de revisión: lo que la ciudadanía envió y espera que alguien confirme.
  * Aquí es donde los tres niveles dejan de ser una idea y pasan a existir.
  */
-export function ModerationList({ reports, busy, onModerate, onContacted }: ModerationListProps) {
+export function ModerationList({
+  reports,
+  busy,
+  onModerate,
+  onContacted,
+  onPromote,
+}: ModerationListProps) {
   return (
     <section className="coordination-card moderation-card">
       <div className="coordination-intro">
@@ -88,6 +99,17 @@ export function ModerationList({ reports, busy, onModerate, onContacted }: Moder
                 >
                   Marcar verificado
                 </button>
+                {esLugar(report) && report.coordinates && (
+                  <button
+                    className="verify-action"
+                    disabled={busy}
+                    onClick={() => onPromote(report.id)}
+                    title="Pasa a ser un centro que puede publicar qué le falta"
+                    type="button"
+                  >
+                    Convertir en centro
+                  </button>
+                )}
               </div>
             </article>
           ))

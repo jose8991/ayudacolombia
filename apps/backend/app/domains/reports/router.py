@@ -1,12 +1,16 @@
+from decimal import Decimal
 from typing import Annotated
 from uuid import UUID
 
-from fastapi import APIRouter, Depends, Header, Query, status
+from fastapi import APIRouter, Depends, Header, HTTPException, Query, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.database import get_db
 from app.core.deps import get_current_actor
 from app.domains.abuse.deps import enforce_public_submission_limit
+from app.domains.centers.router import get_center_service
+from app.domains.centers.schemas import CenterCreate, CenterRead, CenterStatus
+from app.domains.centers.service import CenterService
 from app.domains.identity.schemas import Actor
 
 from .repository import ReportRepository
@@ -67,6 +71,53 @@ async def moderate_report(
     service: Annotated[ReportService, Depends(get_report_service)],
 ) -> ReportStatusRead:
     return await service.moderate(report_id, payload, actor)
+
+
+@router.post("/moderation/{report_id}/promote", status_code=status.HTTP_201_CREATED)
+async def promote_report_to_center(
+    report_id: UUID,
+    actor: Annotated[Actor, Depends(get_current_actor)],
+    service: Annotated[ReportService, Depends(get_report_service)],
+    centers: Annotated[CenterService, Depends(get_center_service)],
+) -> CenterRead:
+    """Convierte un lugar reportado por la ciudadanía en un centro que puede operar.
+
+    Un reporte solo dice "aquí hay un acopio". Un centro además publica su horario, qué
+    recibe y de qué ya tiene suficiente. Sin esta conversión había que volver a teclear
+    todo a mano, y el reporte quedaba como punto de segunda para siempre.
+    """
+    report = await service.take_for_promotion(report_id, actor)
+    if report.latitude is None or report.longitude is None:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail='Ese reporte no trae ubicación exacta: regístralo estando en el lugar.',
+        )
+    if report.category not in {"shelter", "aid-center"}:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail='Solo un albergue o un punto de acopio puede convertirse en centro.',
+        )
+    if actor.organization_id is None:
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail='Tu cuenta no pertenece a ninguna organización.',
+        )
+    center = await centers.create(
+        CenterCreate(
+            organization_id=actor.organization_id,
+            territory_id=report.territory_id,
+            name=report.title,
+            address=report.neighborhood_code or report.title,
+            latitude=Decimal(str(report.latitude)),
+            longitude=Decimal(str(report.longitude)),
+            status=CenterStatus.OPEN,
+            schedule=report.description[:255],
+            accepted_items=[],
+        ),
+        actor,
+    )
+    await service.close_as_promoted(report)
+    return center
 
 
 @router.post("/moderation/{report_id}/contacted", response_model=ReportRead)

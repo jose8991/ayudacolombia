@@ -341,3 +341,30 @@ async def test_marking_contacted_requires_an_authorized_session(fake_report_repo
     assert created.status_code == 201
     assert created.json()["contacted_at"] is None
     assert response.status_code == 401
+
+
+async def test_promoting_a_report_requires_an_authorized_session(fake_report_repository) -> None:
+    payload = {
+        "territory_id": "co-ris-pereira",
+        "category": "aid-center",
+        "title": "Acopio del barrio",
+        "description": "Recibe agua y mercados.",
+        "severity": "medium",
+        "coordinates": {"longitude": -75.6975, "latitude": 4.8105},
+        "observed_at": "2026-08-16T09:00:00-05:00",
+        "privacy_authorized": True,
+        "privacy_policy_version": "2026-08-13",
+    }
+    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as client:
+        created = await client.post(
+            "/api/v1/reports", json=payload, headers={"Idempotency-Key": "promocion-test-0001"}
+        )
+        response = await client.post(
+            f"/api/v1/reports/moderation/{created.json()['id']}/promote"
+        )
+
+    assert created.status_code == 201
+    # Un lugar reportado nace "sin confirmar"; convertirlo en centro es decisión de quien
+    # coordina, nunca de quien lo reportó.
+    assert created.json()["verification_status"] == "reported"
+    assert response.status_code == 401

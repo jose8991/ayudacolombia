@@ -10,6 +10,7 @@ import {
   inviteCenterOperator,
   loadManagedCenters,
   loadPendingReports,
+  promoteReportToCenter,
   markReportContacted,
   login,
   moderateReport,
@@ -103,6 +104,21 @@ export function CoordinationPage() {
       setReports((current) => current.filter((report) => report.id !== reportId));
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : 'No fue posible revisar el reporte');
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function handlePromote(reportId: string) {
+    if (!session) return;
+    setBusy(true);
+    setError('');
+    try {
+      await promoteReportToCenter(session.access_token, reportId);
+      setReports((current) => current.filter((report) => report.id !== reportId));
+      await refreshCenters();
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : 'No fue posible convertirlo en centro');
     } finally {
       setBusy(false);
     }
@@ -407,6 +423,7 @@ export function CoordinationPage() {
           busy={busy}
           onContacted={(id) => void handleContacted(id)}
           onModerate={handleModerate}
+          onPromote={(id) => void handlePromote(id)}
           reports={reports}
         />
       )}

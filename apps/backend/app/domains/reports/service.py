@@ -104,6 +104,21 @@ class ReportService:
             )
         )
 
+    async def take_for_promotion(self, report_id: UUID, actor: Actor) -> CitizenReport:
+        """Entrega un reporte que alguien con permiso quiere convertir en centro."""
+        report = await self.repository.get(report_id)
+        if report is None:
+            raise ReportNotFoundError
+        if not evaluate_access(
+            actor, Permission.REPORT_VERIFY, ResourceContext(territory_id=report.territory_id)
+        ).allowed:
+            raise ReportAccessDeniedError
+        return report
+
+    async def close_as_promoted(self, report: CitizenReport) -> None:
+        """El reporte deja de vivir suelto: a partir de ahora el centro lo reemplaza."""
+        await self.repository.moderate(report, "closed", "Convertido en centro")
+
     async def mark_contacted(self, report_id: UUID, actor: Actor) -> ReportRead:
         report = await self.repository.get(report_id)
         if report is None:
