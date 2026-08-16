@@ -357,7 +357,7 @@ export function MapWorkspace({
           visiblePoints={visiblePoints}
         />
       </aside>
-      <div className="map-stage" ref={mapStageRef}>
+      <div className={mapReady ? 'map-stage' : 'map-stage map-stage--waiting'} ref={mapStageRef}>
         {mapReady && (
           <div className="map-guide" role="status">
             <strong>Explora {region.name}</strong>
@@ -401,7 +401,7 @@ export function MapWorkspace({
             />
           </Suspense>
         ) : (
-          <button className="map-canvas map-invite" onClick={() => setMapReady(true)} type="button">
+          <button className="map-invite" onClick={() => setMapReady(true)} type="button">
             <MapIcon aria-hidden="true" />
             <strong>Ver el mapa</strong>
             <span>

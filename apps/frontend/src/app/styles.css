@@ -942,18 +942,27 @@ input:focus-visible {
   color: var(--color-muted);
   font-weight: 700;
 }
-/* El mapa en espera. No es un cargador: es una invitación, y tiene que verse tocable. */
+/* El mapa en espera. No es un cargador: es una invitación, y tiene que verse tocable.
+   No reserva la altura del mapa: un bloque vacío de media pantalla deja el rótulo bajo el
+   pliegue y parece una zona muerta. Ocupa lo que mide y ya. */
 .map-invite {
+  width: 100%;
   display: grid;
-  place-content: center;
   justify-items: center;
-  gap: 0.35rem;
-  padding: 1.5rem;
+  gap: 0.3rem;
+  padding: 1.6rem 1.25rem;
   border: 0;
+  border-top: 1px solid rgba(23, 51, 42, 0.1);
   color: var(--color-ink);
   background: #e9eee9;
   text-align: center;
   cursor: pointer;
+}
+@media (max-width: 900px) {
+  .map-stage.map-stage--waiting {
+    height: auto;
+    min-height: 0;
+  }
 }
 .map-invite svg {
   width: 30px;
