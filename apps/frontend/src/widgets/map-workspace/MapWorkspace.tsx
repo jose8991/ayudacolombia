@@ -1,6 +1,6 @@
 import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { Navigation, Search, Share2, X } from 'lucide-react';
+import { Map as MapIcon, Navigation, Search, Share2, X } from 'lucide-react';
 import type {
   HumanitarianMapPoint,
   HumanitarianRegion,
@@ -153,6 +153,11 @@ export function MapWorkspace({
     if (!target) return;
     // Sin IntersectionObserver el mapa ya arrancó listo desde el estado inicial.
     if (!('IntersectionObserver' in window)) return;
+    // En un teléfono MapLibre cuesta cerca de siete segundos de CPU, y mientras se dibuja
+    // el mapa los tres botones de arriba no responden. En pantalla pequeña, entonces, el
+    // mapa espera a que alguien lo pida: primero se puede pedir ayuda. En escritorio es el
+    // centro de la página y hay CPU de sobra, así que se carga solo.
+    if (window.matchMedia('(max-width: 900px)').matches) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -353,16 +358,18 @@ export function MapWorkspace({
         />
       </aside>
       <div className="map-stage" ref={mapStageRef}>
-        <div className="map-guide" role="status">
-          <strong>Explora {region.name}</strong>
-          <span>
-            {hasLocalBoundaries
-              ? region.id === 'co-ris-dosquebradas'
-                ? 'Elige una comuna o toca un barrio en el mapa.'
-                : 'Toca una comuna. Acerca el mapa para ver sus barrios.'
-              : 'Consulta los puntos publicados o busca un lugar dentro del municipio.'}
-          </span>
-        </div>
+        {mapReady && (
+          <div className="map-guide" role="status">
+            <strong>Explora {region.name}</strong>
+            <span>
+              {hasLocalBoundaries
+                ? region.id === 'co-ris-dosquebradas'
+                  ? 'Elige una comuna o toca un barrio en el mapa.'
+                  : 'Toca una comuna. Acerca el mapa para ver sus barrios.'
+                : 'Consulta los puntos publicados o busca un lugar dentro del municipio.'}
+            </span>
+          </div>
+        )}
         {mapReady ? (
           <Suspense
             fallback={
@@ -394,15 +401,17 @@ export function MapWorkspace({
             />
           </Suspense>
         ) : (
-          <button
-            className="map-canvas map-loading"
-            onClick={() => setMapReady(true)}
-            type="button"
-          >
-            Ver el mapa
+          <button className="map-canvas map-invite" onClick={() => setMapReady(true)} type="button">
+            <MapIcon aria-hidden="true" />
+            <strong>Ver el mapa</strong>
+            <span>
+              {visiblePoints.length}{' '}
+              {visiblePoints.length === 1 ? 'punto publicado' : 'puntos publicados'} en{' '}
+              {region.name}
+            </span>
           </button>
         )}
-        <MapLegend showAreaScale={hasLocalBoundaries} />
+        {mapReady && <MapLegend showAreaScale={hasLocalBoundaries} />}
       </div>
     </section>
   );

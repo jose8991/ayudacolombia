@@ -942,6 +942,37 @@ input:focus-visible {
   color: var(--color-muted);
   font-weight: 700;
 }
+/* El mapa en espera. No es un cargador: es una invitación, y tiene que verse tocable. */
+.map-invite {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 0.35rem;
+  padding: 1.5rem;
+  border: 0;
+  color: var(--color-ink);
+  background: #e9eee9;
+  text-align: center;
+  cursor: pointer;
+}
+.map-invite svg {
+  width: 30px;
+  height: 30px;
+  color: var(--color-brand);
+  stroke-width: 1.7;
+}
+.map-invite strong {
+  font-size: 1.05rem;
+}
+.map-invite span {
+  color: var(--color-muted);
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+.map-invite:hover,
+.map-invite:focus-visible {
+  background: #dfe7e1;
+}
 .urgency-scale {
   width: 42px;
   height: 8px;
