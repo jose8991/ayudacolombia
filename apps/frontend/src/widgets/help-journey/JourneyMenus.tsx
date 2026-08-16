@@ -1,4 +1,5 @@
 import { linesForTerritory } from '../../shared/data/emergency-lines';
+import { OTHER_PLATFORMS } from '../../shared/data/other-platforms';
 import type { HumanitarianRegion, MapCategory } from '../../entities/incident';
 import type { HelpJourney } from '../home-primary-actions';
 import type { ReportKind } from './report-kind';
@@ -74,6 +75,19 @@ export function JourneyMenus({
                     <span>{line.display}</span>
                   </a>
                   <small>{line.purpose}</small>
+                </li>
+              ))}
+            </ul>
+          </details>
+          <details className="other-platforms">
+            <summary>Otros sitios que pueden ayudarte</summary>
+            <ul>
+              {OTHER_PLATFORMS.map((platform) => (
+                <li key={platform.url}>
+                  <a href={platform.url} rel="noreferrer" target="_blank">
+                    {platform.name}
+                  </a>
+                  <small>{platform.purpose}</small>
                 </li>
               ))}
             </ul>

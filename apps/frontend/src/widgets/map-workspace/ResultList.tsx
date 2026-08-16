@@ -1,4 +1,5 @@
 import { ShieldCheck } from 'lucide-react';
+import { OTHER_PLATFORMS } from '../../shared/data/other-platforms';
 import type { HumanitarianMapPoint, MapCategory } from '../../entities/incident';
 import { formatFreshness } from '@timeliber/kit';
 
@@ -92,6 +93,19 @@ export function ResultList({
                 Ver también lo que falta por confirmar
               </button>
             )
+          )}
+          {!query && (
+            <p className="empty-elsewhere">
+              Otros sitios tienen más información:{' '}
+              {OTHER_PLATFORMS.slice(0, 2).map((platform, index) => (
+                <span key={platform.url}>
+                  {index > 0 && ' · '}
+                  <a href={platform.url} rel="noreferrer" target="_blank">
+                    {platform.name}
+                  </a>
+                </span>
+              ))}
+            </p>
           )}
         </div>
       )}

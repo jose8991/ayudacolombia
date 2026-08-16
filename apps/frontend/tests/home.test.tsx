@@ -316,3 +316,16 @@ it('permite avisar que en un lugar necesitan ayuda, sin que sea una solicitud pr
   expect(screen.getByLabelText(/Tu teléfono/i)).not.toBeRequired();
   expect(screen.getByText(/solo para coordinar esta ayuda/i)).toBeVisible();
 });
+
+it('ofrece otros sitios cuando aquí no hay lo que la persona busca', () => {
+  renderHome();
+  fireEvent.click(screen.getByRole('button', { name: /^Necesito ayuda/ }));
+  fireEvent.click(screen.getByText('Otros sitios que pueden ayudarte'));
+  const panel = within(screen.getByText('Otros sitios que pueden ayudarte').closest('details')!);
+  const ayudasPereira = panel.getByRole('link', { name: 'Ayudas Pereira' });
+  expect(ayudasPereira).toHaveAttribute('href', 'https://alluda.online/');
+  expect(ayudasPereira).toHaveAttribute('target', '_blank');
+  expect(panel.getByRole('link', { name: 'Mapa del terremoto' })).toBeVisible();
+  // Y también donde más falta hacen: cuando la lista de aquí está vacía.
+  expect(screen.getAllByRole('link', { name: 'Ayudas Pereira' }).length).toBeGreaterThan(1);
+});
