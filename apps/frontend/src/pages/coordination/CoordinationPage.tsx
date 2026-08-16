@@ -1,6 +1,7 @@
 import { type FormEvent, useState } from 'react';
 import { RELIEF_ITEMS } from '../../shared/data/relief-items';
 import { ModerationList } from './ModerationList';
+import { RegisterCenter } from './RegisterCenter';
 import { InviteOperator } from './InviteOperator';
 import { VALIDITY_OPTIONS, expiresAt } from '@timeliber/kit';
 import { ArrowLeft, CheckCircle2, LogIn, Megaphone, PackagePlus, ShieldCheck } from 'lucide-react';
@@ -104,6 +105,17 @@ export function CoordinationPage() {
       setError(reason instanceof Error ? reason.message : 'No fue posible revisar el reporte');
     } finally {
       setBusy(false);
+    }
+  }
+
+  async function refreshCenters() {
+    if (!session) return;
+    try {
+      const nextCenters = await loadManagedCenters(session.access_token);
+      setCenters(nextCenters);
+      if (nextCenters.length > 0 && !centerId) setCenterId(nextCenters[0].id);
+    } catch {
+      // Registrar salió bien; si la lista no se refresca, se ve al recargar.
     }
   }
 
@@ -382,6 +394,14 @@ export function CoordinationPage() {
           </form>
         )}
       </section>
+      {session && (
+        <RegisterCenter
+          busy={busy}
+          onBusy={setBusy}
+          onCreated={() => void refreshCenters()}
+          session={session}
+        />
+      )}
       {session && canModerate && (
         <ModerationList
           busy={busy}

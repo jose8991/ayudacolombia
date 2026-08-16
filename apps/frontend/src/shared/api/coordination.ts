@@ -3,6 +3,8 @@ const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:8000/api/v1';
 export interface SessionActor {
   display_name: string;
   roles: string[];
+  organization_id: string | null;
+  territory_ids: string[];
 }
 export interface Session {
   access_token: string;
@@ -13,6 +15,17 @@ export interface ManagedCenter {
   name: string;
   address: string;
   status: string;
+}
+export interface CenterInput {
+  organization_id: string;
+  territory_id: string;
+  name: string;
+  address: string;
+  latitude: number;
+  longitude: number;
+  status: 'open' | 'almost_full' | 'do_not_send' | 'closed';
+  schedule: string | null;
+  accepted_items: string[];
 }
 export interface PublicationInput {
   title: string;
@@ -51,6 +64,14 @@ export function login(email: string, password: string): Promise<Session> {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password }),
+  });
+}
+
+export function createCenter(token: string, input: CenterInput): Promise<ManagedCenter> {
+  return request('/centers', {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify(input),
   });
 }
 

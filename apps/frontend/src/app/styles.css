@@ -2929,3 +2929,32 @@ input:focus-visible {
   color: var(--color-brand-dark);
   font-weight: 800;
 }
+
+/* Tomar la ubicación estando en el lugar, en vez de escribir coordenadas. */
+.location-capture {
+  display: grid;
+  gap: 0.4rem;
+}
+.location-capture button {
+  min-height: 48px;
+  padding: 0 0.9rem;
+  border: 1px solid var(--color-brand);
+  border-radius: 10px;
+  background: white;
+  color: var(--color-brand-dark);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+.location-capture button:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+.location-capture p {
+  margin: 0;
+  color: var(--color-brand-dark);
+  font-weight: 700;
+}
+.location-capture small {
+  color: var(--color-muted);
+}
