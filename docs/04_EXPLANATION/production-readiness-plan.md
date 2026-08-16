@@ -21,7 +21,7 @@ cerrada cuando tiene implementación, prueba, documentación y validación de de
 | 5.1 | Mantenibilidad frontend | Parcial | `HomePage` pasó de 1.485 a 265 líneas y de complejidad 155 a 19. El panel de recorridos, el formulario, el workspace del mapa y la bandeja de revisión viven en widgets propios. Queda `EmergencyMap` en 700 líneas. |
 | 6 | Accesibilidad automatizada | Parcial | axe pasa portada y recorridos en cada push. Faltan lector de pantalla y validación de contraste en navegador real. |
 | 7 | Presupuesto de rendimiento | Parcial | Build limita JS inicial a 100 KB gzip, CSS a 12 KB y mapa diferido a 300 KB. Falta Lighthouse móvil reproducible para LCP e INP. |
-| 8 | Observabilidad completa | Parcial | Request ID y logs JSON ya existen; faltan métricas, alertas y trazas. |
+| 8 | Observabilidad completa | Parcial | Request ID y logs JSON ya existen; respaldo diario verificado por systemd. Faltan métricas, alertas y trazas. |
 | 9 | Migraciones y contratos en CI | Cerrado | GitHub Actions ejecuta el ciclo upgrade/downgrade/upgrade sobre PostGIS y falla si el contrato OpenAPI se desvía del código. |
 | 10 | Documentación y ownership | Parcial | LICENSE (MIT), CONTRIBUTING y SECURITY publicados. Falta `llms-full.txt`. |
 | 11 | Política de tratamiento de datos | Bloqueado por información | TIMELIBER S.A.S. debe aportar NIT, domicilio, dirección, teléfono, retención y revisión jurídica. |
