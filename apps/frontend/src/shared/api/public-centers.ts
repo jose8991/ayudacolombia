@@ -2,6 +2,19 @@ import type { HumanitarianMapPoint } from '../../entities/incident';
 
 const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:8000/api/v1';
 
+const STATUS_TEXT: Record<PublicCenter['status'], string> = {
+  open: 'Abierto para recibir ayudas.',
+  almost_full: 'Capacidad casi completa; revise antes de ir.',
+  do_not_send: 'No enviar más donaciones por ahora.',
+  closed: 'Centro cerrado por ahora.',
+};
+
+const PRIORITY_SEVERITY: Record<CenterPublication['priority'], HumanitarianMapPoint['severity']> = {
+  urgent: 'critical',
+  high: 'high',
+  normal: 'low',
+};
+
 interface PublicCenter {
   id: string;
   name: string;
@@ -41,14 +54,7 @@ export async function loadPublicCenterPoints(
         ? ((await publicationsResponse.json()) as CenterPublication[])
         : [];
       const latest = publications[0];
-      const statusText =
-        center.status === 'open'
-          ? 'Abierto para recibir ayudas.'
-          : center.status === 'almost_full'
-            ? 'Capacidad casi completa; revise antes de ir.'
-            : center.status === 'do_not_send'
-              ? 'No enviar más donaciones por ahora.'
-              : 'Centro cerrado por ahora.';
+      const statusText = STATUS_TEXT[center.status];
       return {
         id: `center-${center.id}`,
         regionId,
@@ -56,12 +62,7 @@ export async function loadPublicCenterPoints(
         title: center.name,
         neighborhood: center.address,
         description: latest ? latest.message : statusText,
-        severity:
-          latest?.priority === 'urgent'
-            ? ('critical' as const)
-            : latest?.priority === 'high'
-              ? ('high' as const)
-              : ('low' as const),
+        severity: PRIORITY_SEVERITY[latest?.priority ?? 'normal'],
         verificationStatus: center.verification_status,
         isStale: center.is_stale ?? false,
         status: center.status,

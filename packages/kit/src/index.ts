@@ -15,3 +15,14 @@ export {
   type MarkerState,
   type TrustLevel,
 } from './map/markers';
+export {
+  boundingBox,
+  isPointInArea,
+  isPointInRing,
+  type AreaGeometry,
+  type BoundingBox,
+  type MultiPolygonGeometry,
+  type PolygonGeometry,
+  type Position,
+  type Ring,
+} from './geo/polygon';

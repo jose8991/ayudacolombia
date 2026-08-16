@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import maplibregl, { type GeoJSONSource, type Map as MapLibreMap } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import type { FeatureCollection, MultiPolygon, Polygon } from 'geojson';
+import { boundingBox, isPointInArea, type AreaGeometry } from '@timeliber/kit';
 import type { HumanitarianMapPoint, HumanitarianRegion } from '../../entities/incident';
 import {
   MARKER_PIXEL_RATIO,
@@ -29,45 +30,10 @@ const normalizeBoundaryName = (value: unknown) =>
     .replace(/^BARRIO\s+(URBANIZACIÓN\s+)?/i, '')
     .trim();
 
+/** Puente entre la caja que calcula el paquete y el tipo que espera MapLibre. */
 function boundsForGeometry(geometry: Polygon | MultiPolygon) {
-  const bounds = new maplibregl.LngLatBounds();
-  const visit = (coordinates: unknown): void => {
-    if (!Array.isArray(coordinates)) return;
-    if (
-      coordinates.length >= 2 &&
-      typeof coordinates[0] === 'number' &&
-      typeof coordinates[1] === 'number'
-    ) {
-      bounds.extend([coordinates[0], coordinates[1]]);
-      return;
-    }
-    coordinates.forEach(visit);
-  };
-  visit(geometry.coordinates);
-  return bounds;
-}
-
-function isPointInRing(point: readonly [number, number], ring: number[][]) {
-  let inside = false;
-  for (let index = 0, previous = ring.length - 1; index < ring.length; previous = index++) {
-    const [x, y] = ring[index];
-    const [previousX, previousY] = ring[previous];
-    if (
-      y > point[1] !== previousY > point[1] &&
-      point[0] < ((previousX - x) * (point[1] - y)) / (previousY - y) + x
-    )
-      inside = !inside;
-  }
-  return inside;
-}
-
-function isPointInBoundary(point: readonly [number, number], geometry: Polygon | MultiPolygon) {
-  const polygons = geometry.type === 'Polygon' ? [geometry.coordinates] : geometry.coordinates;
-  return polygons.some(
-    (polygon) =>
-      isPointInRing(point, polygon[0]) &&
-      !polygon.slice(1).some((hole) => isPointInRing(point, hole)),
-  );
+  const box = boundingBox(geometry as AreaGeometry);
+  return new maplibregl.LngLatBounds([box.west, box.south], [box.east, box.north]);
 }
 
 function enrichBoundaries(
@@ -79,7 +45,8 @@ function enrichBoundaries(
     ...collection,
     features: collection.features.map((feature) => {
       const contained = points.filter(
-        (point) => point.coordinates && isPointInBoundary(point.coordinates, feature.geometry),
+        (point) =>
+          point.coordinates && isPointInArea(point.coordinates, feature.geometry as AreaGeometry),
       );
       const needs = contained.filter((point) => point.category === 'need');
       const damage = contained.filter((point) => point.category === 'damage');
