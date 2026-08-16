@@ -974,7 +974,8 @@ input:focus-visible {
   font-size: 1.05rem;
 }
 .map-invite span {
-  color: var(--color-muted);
+  /* El gris apagado da 4,1:1 sobre este verde: no llega al 4,5:1 que pide la norma. */
+  color: #4f5e56;
   font-size: 0.82rem;
   line-height: 1.35;
 }
